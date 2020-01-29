@@ -30,7 +30,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.14.1" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../GitHub/javascript-library" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -68,7 +68,7 @@
       <workItem from="1580113636747" duration="924000" />
       <workItem from="1580114585690" duration="14045000" />
       <workItem from="1580199402717" duration="17238000" />
-      <workItem from="1580285534197" duration="6211000" />
+      <workItem from="1580285534197" duration="10501000" />
     </task>
     <servers />
   </component>
@@ -92,6 +92,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="239" y="234" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1579875679355" />
+    <state x="549" y="155" key="FileChooserDialogImpl" timestamp="1580297007715">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="155" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1580297007715" />
     <state width="1515" height="261" key="GridCell.Tab.0.bottom" timestamp="1580144509771">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

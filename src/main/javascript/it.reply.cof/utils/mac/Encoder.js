@@ -26,12 +26,14 @@
        }
 
         myObject.macFields.forEach( function(field) {
+            console.log(field);
             if (typeof field !== "function") {
-                myString += appendField(myObject[field], key);
+                myString += appendField(myObject[field], field);
             }
             myString = myString.substring(1);
 
         });
+
        const hmac = crypto.createHmac("sha256", key);
        console.log("myString: " + myString);
        hmac.update(myString, "utf8");
