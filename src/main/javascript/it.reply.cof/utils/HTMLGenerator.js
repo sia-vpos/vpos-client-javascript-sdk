@@ -3,16 +3,17 @@ const fs = require("fs");
 const FORM_PATTERN = "PGZvcm0gYWN0aW9uPSJbQVBPU19VUkxdIiBtZXRob2Q9IlBPU1QiPjxpbnB1dCBuYW1lPSJQQUdFIiB0eXBlPSJoaWRkZW4iIHZhbHVlPSJMQU5EIj5bUEFSQU1FVEVSU108aW5wdXQgaWQ9InN1Ym1pdCIgc3R5bGU9ImRpc3BsYXk6IG5vbmU7IiB0eXBlPXN1Ym1pdCAgdmFsdWU9Ii4iPjwvZm9ybT4=";
 const INPUT_PATTERN = "PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iS0VZIiB2YWx1ZT0iVkFMVUUiPg==";
 const SCRIPT = "PHNjcmlwdCB0eXBlPSJ0ZXh0L2phdmFzY3JpcHQiPndpbmRvdy5vbmxvYWQgPSBmdW5jdGlvbigpe3NldFRpbWVvdXQoZnVuY3Rpb24oKXtkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnc3VibWl0JykuY2xpY2soKTt9LCBbREVMQVldKTt9PC9zY3JpcHQ+";
-const HTML_PATH = "C:\\Users\\danie\\Documents\\GitHub\\javascript-library\\src\\main\\resources\\default.html"
+const HTML_PATH = "..\\resources\\default.html";
+const CUSTOM_HTML_PATH = "";
 
 
-function htmlToBase64(path, urlApos, params){
+function htmlToBase64(isCustomHTML, urlApos, params){
     let html = "";
-
+    let path =  typeof isCustomHTML === "boolean" && isCustomHTML ? CUSTOM_HTML_PATH : HTML_PATH;
             try {
                 html = fs.readFileSync(path);
             } catch (e) {
-                console.log("errror");
+                console.log("inside HTMLGenerator's htmlToBase64 function");
                 throw COFException.constructor(e.message);
             }
 
@@ -32,7 +33,6 @@ function base64ToHtml(base64, delay){
     html = html.replace("</html>", decodedScript + "</html>");
     html = html.replace("[DELAY]", delay.toString());
 
-    console.log(html);
     return html;
 
 }
@@ -50,3 +50,8 @@ function generateParamsHTML(params){
     })
     return result;
 }
+ module.exports = {
+    htmlToBase64 : htmlToBase64(),
+    base64ToHtml : base64ToHtml()
+
+  }
