@@ -1,15 +1,19 @@
 'use strict';
 //"working" draft
     const crypto = require("crypto");
+    const algorithms = require("./MacAlgorithms");
 
-   let getMAC = function ( myObject, key){
+   let getMAC = function ( algorithm, myObject, key ){
         let myString = "";
+        if(!algorithm || algorithm !== algorithms.algos.HMAC_SHA_512){
+            algorithm = algorithms.algos.HMAC_SHA_256;
+        }
 
        let appendField = function (value, key){
            let result = "";
-           if(key === undefined || key === null || key === ""){
+           if(myObject.isResponse){
                if(value !== null &&  value.trim() !== ""){
-                   result += ("&")
+                   result += ("&");
                    result += value;
                }
                return result;
@@ -26,32 +30,32 @@
        }
 
         myObject.macFields.forEach( function(field) {
-            console.log(field);
             if (typeof field !== "function") {
                 myString += appendField(myObject[field], field);
             }
-            myString = myString.substring(1);
-
         });
 
-       const hmac = crypto.createHmac("sha256", key);
-       console.log("myString: " + myString);
+       myString = myString.substring(1);
+       const hmac = crypto.createHmac(algorithm, key);
        hmac.update(myString, "utf8");
        return hmac.digest("hex");
 
     }
 
 
-    let prova = {
-        test : "prova",
+   function getMAC256(myObject, key ) {
+       return getMAC(algorithms.algos.HMAC_SHA_256, myObject, key)
+   };
 
-        macFields : ["test"]
+   function getMAC512(myObject, key){
+       return getMAC(algorithms.algos.HMAC_SHA_512, myObject, key)
+   }
+
+    module.exports = {
+        getMAC256 : getMAC256(),
+        getMAC512 : getMAC512()
+
     }
-
-
-    console.log("finally: " + getMAC(prova, "chiave"));
-
-
 
 
 

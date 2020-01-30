@@ -1,5 +1,8 @@
-function COFException(message) {
+class COFException{ constructor(message) {
+    COFException.prototype = Object.create(Error.prototype);
+    COFException.prototype.name = "COFException";
     this.message = message;
+
     if ("captureStackTrace" in Error) {
         Error.captureStackTrace(this, COFException);
     }
@@ -7,8 +10,5 @@ function COFException(message) {
         this.stack = (new Error()).stack;
 }
 
-COFException.prototype = Object.create(Error.prototype);
-COFException.prototype.name = "COFException";
-COFException.prototype.constructor = COFException;
-
-//draft
+}
+module.exports = COFException;

@@ -1,7 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="11aeef7b-7ef7-4f51-8144-70755d3c7801" name="Default Changelist" comment="" />
+    <list default="true" id="11aeef7b-7ef7-4f51-8144-70755d3c7801" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/HTMLGenerator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/default.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/JS-library.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/jsLibraryMappings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/jsLinters/jslint.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/HMTLGenerator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/builders/XMLUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/exception/COFException.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/exception/COFException.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/mac/Encoder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/mac/Encoder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/mac/MacAlgorithms.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/mac/MacAlgorithms.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/Application.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/apos/request/Auth3DSStep1Request.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/apos/request/Auth3DSStep2Request.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/apos/request/BPWXmlRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/apos/request/ConfirmRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/apos/request/Data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/apos/request/Data3DS.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/apos/request/GeneralRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/apos/request/Header.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/apos/request/MasterpassData.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/apos/request/RefudRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/apos/request/Request.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/apos/request/StatusRequest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/apos/response/APosResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/apos/response/Authorization.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/apos/response/BPWXmlResponse.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/apos/response/Operation.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/apos/response/PanAliasData.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/apos/response/VBVRedirect.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/apos/utils/APOSPaymentClient.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/client/VPOSClient.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/client/VPOSClientAbstract.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/client/VPOSClientSSL.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/client/VPOSClientWithProxy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/client/VPOSSimpleClient.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/utils/HMTLGenerator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/utils/RequestValidator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/utils/ResponseMapper.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/utils/constants/AposConstants.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/utils/constants/Constants.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/utils/constants/Errors.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/utils/constants/Operations.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/utils/encryption/AESEncoder.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/utils/exception/COFException.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/utils/mac/Encoder.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/src/main/javascript/it.reply.cof/utils/mac/MacAlgorithms.js" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +65,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
     <exe-path />
@@ -21,6 +75,9 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectId" id="1Wn5KLlYMzp1YubrikSaYCjEWQe" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -30,7 +87,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.14.1" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../GitHub/javascript-library" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -42,6 +99,10 @@
     <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\danie\Documents\GitHub\javascript-library\src\main\javascript\it.reply.cof\utils" />
+      <recent name="C:\Users\danie\Documents\GitHub\javascript-library\src\main\resources" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\danie\Documents\JS-library\src\main\javascript\it.reply.cof\utils" />
     </key>
@@ -69,6 +130,10 @@
       <workItem from="1580114585690" duration="14045000" />
       <workItem from="1580199402717" duration="17238000" />
       <workItem from="1580285534197" duration="10501000" />
+      <workItem from="1580317210493" duration="459000" />
+      <workItem from="1580371243131" duration="327000" />
+      <workItem from="1580371586198" duration="33000" />
+      <workItem from="1580371719830" duration="11667000" />
     </task>
     <servers />
   </component>
