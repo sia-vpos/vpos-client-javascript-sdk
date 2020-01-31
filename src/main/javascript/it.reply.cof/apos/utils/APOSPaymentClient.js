@@ -41,13 +41,13 @@ let AposPaymentClient = class APOSPaymentClient{
     }
 }
 
+
 const options = {
-    host: 'atpostest.ssb.it',
-    port: 8080,
-    path:'/atpos/apibo/apiBO.app',
+    proxy: 'proxy-dr.reply.it:8080',
     method: 'POST'
 }
-let req = httpsUtil.request(options, function(res) {
+
+let req = httpsUtil.request('https://atpostest.ssb.it/atpos/apibo/apiBO.app',options, function(res) {
     console.log('STATUS: ' + res.statusCode);
     console.log('HEADERS: ' + JSON.stringify(res.headers));
     res.setEncoding('utf8');
@@ -60,6 +60,6 @@ req.on('error', function(e) {
     console.log('problem with request: ' + e.message);
 });
 
-req.write("props");
+req.write('data\n')
 req.end();
 
