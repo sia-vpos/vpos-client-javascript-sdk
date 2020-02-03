@@ -41,25 +41,56 @@ let AposPaymentClient = class APOSPaymentClient{
     }
 }
 
+const body = 'data=<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+    '<BPWXmlRequest>' +
+    '<Release>02</Release>' +
+    '<Request>' +
+    '<Operation>VERIFY</Operation>' +
+    '<Timestamp>2020-02-03T10:45:10.284</Timestamp>' +
+    '<MAC>2868343ee5542beb37e10499ff397cb3359f46053f1da38ccdf9d9dc922efa44</MAC>' +
+    '</Request>' +
+    '<Data>' +
+    '<VerifyRequest>' +
+    '<Header>' +
+    '<ShopID>129281292800109</ShopID>' +
+    '<OperatorID>Giammaicol</OperatorID>' +
+    '<ReqRefNum>20200203348292671587284472685941</ReqRefNum>' +
+    '</Header>' +
+    '<OriginalReqRefNum>20200121747989345505071695860709</OriginalReqRefNum>' +
+    '</VerifyRequest>' +
+    '</Data>' +
+    '</BPWXmlRequest>';
 
 const options = {
+    host: 'atpostest.ssb.it',
+    path: '/atpos/apibo/apiBOXML.app',
     proxy: 'proxy-dr.reply.it:8080',
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'charset' : 'utf-8'
+    },
     method: 'POST'
 }
 
-let req = httpsUtil.request('https://atpostest.ssb.it/atpos/apibo/apiBO.app',options, function(res) {
-    console.log('STATUS: ' + res.statusCode);
-    console.log('HEADERS: ' + JSON.stringify(res.headers));
+const req = httpsUtil.request(options, (res) => {
     res.setEncoding('utf8');
-    res.on('data', function (chunk) {
-        console.log('BODY: ' + chunk);
-    });
+    console.log("STATUS CODE: " + res.statusCode);
+    var buffer = "";
+    if(res.statusCode) {
+        res.on('data', function (chunk) {
+            buffer = chunk;
+        });
+        res.on('end', function (chunk) {
+            console.log(buffer);
+        })
+    }
 });
 
-req.on('error', function(e) {
+
+req.on('error', (e) => {
     console.log('problem with request: ' + e.message);
 });
 
-req.write('data\n')
+req.write(body);
 req.end();
 
