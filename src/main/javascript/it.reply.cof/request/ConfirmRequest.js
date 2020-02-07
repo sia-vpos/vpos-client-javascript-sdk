@@ -1,8 +1,9 @@
+const GeneralRequest = require('./GeneralRequest');
+
 class ConfirmRequest extends GeneralRequest{
 
     accountingMode;
     closeOrder;
-    options;
 
     get accountingMode() {
         return this.accountingMode;

@@ -7,11 +7,32 @@ class GeneralRequest{
     amount;
     currency;
     exponent;
+    opDescr;
+    options;
+
 
     constructor() {
         /*
         * no args constructor
         * */
+    }
+
+    get options(){
+        return this.options;
+
+    }
+
+    set options(options){
+        this.options = options;
+
+    }
+
+    get opDescr(){
+        return this.opDescr
+    }
+
+    set opDescr(opDescr){
+        this.opDescr = opDescr;
     }
 
     get Header() {

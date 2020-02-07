@@ -1,7 +1,8 @@
-class RefundRequest extends GeneralReques{
+const GeneralRequest = require('./GeneralRequest')
+class RefundRequest extends GeneralRequest{
+
 
     opDescr;
-    options;
 
     constructor() {
         super();

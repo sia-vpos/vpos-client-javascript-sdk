@@ -4,6 +4,15 @@ class Auth3DSStep2Request{
     originalReqRefNum;
     paRes;
     acquirer;
+    options;
+
+    get options(){
+        return this.options;
+    }
+    set options(options){
+        this.options = options;
+
+    };
 
     constructor() {
         /*

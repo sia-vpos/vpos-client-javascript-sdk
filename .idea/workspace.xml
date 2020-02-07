@@ -3,6 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="11aeef7b-7ef7-4f51-8144-70755d3c7801" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/Auth3DSStep1Request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/Auth3DSStep1Request.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/Auth3DSStep2Request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/Auth3DSStep2Request.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/ConfirmRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/ConfirmRequest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/GeneralRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/GeneralRequest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/RefudRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/RefudRequest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/RequestBuilder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/RequestBuilder.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +96,10 @@
       <workItem from="1580457800798" duration="14366000" />
       <workItem from="1580719139449" duration="22901000" />
       <workItem from="1580805001890" duration="14130000" />
-      <workItem from="1580829260610" duration="4371000" />
+      <workItem from="1580829260610" duration="4829000" />
+      <workItem from="1580901414217" duration="667000" />
+      <workItem from="1581021692468" duration="6407000" />
+      <workItem from="1581061398453" duration="13191000" />
     </task>
     <task id="LOCAL-00001" summary="APOSClient draft">
       <created>1580403587065</created>
@@ -120,7 +129,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580829290552</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="RequestBuilder draft (fixes todo)">
+      <created>1580834924795</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1580834924795</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,7 +160,9 @@
     <MESSAGE value="    APOSClient call implementation" />
     <MESSAGE value="Fixed API calls" />
     <MESSAGE value="Folder structure change" />
-    <option name="LAST_COMMIT_MESSAGE" value="Folder structure change" />
+    <MESSAGE value="RequestBuilder draft" />
+    <MESSAGE value="RequestBuilder draft (fixes todo)" />
+    <option name="LAST_COMMIT_MESSAGE" value="RequestBuilder draft (fixes todo)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="72" key="#JSLint" timestamp="1580201225673">
@@ -167,10 +185,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="596" y="259" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1580745530743" />
-    <state x="245" y="8" key="CommitChangelistDialog2" timestamp="1580834891435">
+    <state x="245" y="8" key="CommitChangelistDialog2" timestamp="1580834924015">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="245" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580834891435" />
+    <state x="245" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1580834924015" />
     <state x="549" y="155" key="FileChooserDialogImpl" timestamp="1580297007715">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -251,9 +269,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="798" y="190" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1580724070285" />
-    <state x="692" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1580722815460">
+    <state x="692" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1581071214748">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="692" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1580722815460" />
+    <state x="692" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1581071214748" />
   </component>
 </project>

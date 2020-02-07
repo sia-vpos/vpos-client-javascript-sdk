@@ -1,5 +1,6 @@
 class Auth3DSStep1Request{
 
+    isMasterPass;
     header;
     data3DS;
     masterpassData;
@@ -27,6 +28,14 @@ class Auth3DSStep1Request{
     createPanAlias;
     inPerson;
     merchantURL;
+
+    get isMasterpass(){
+        return this.isMasterPass;
+    }
+
+    set isMasterpass(masterpass){
+        this.isMasterPass = masterpass;
+    }
 
     get header() {
         return this.header;
