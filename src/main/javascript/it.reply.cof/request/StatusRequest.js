@@ -1,11 +1,7 @@
-const encoder = require('C:\\Users\\danie\\Documents\\GitHub\\javascript-library\\src\\main\\javascript\\it.reply.cof\\utils\\mac\\Encoder.js')
-const x = require('C:\\Users\\danie\\Documents\\GitHub\\javascript-library\\src\\main\\javascript\\it.reply.cof\\utils\\builders\\XMLUtils.js')
 
 class StatusRequest{
 
 
-    operation = 'ORDERSTATUS';
-    timestamp;
     originalReqRefNum;
     orderid;
     productRef;
@@ -13,7 +9,6 @@ class StatusRequest{
 
 
     constructor(originalReqRefNum, orderid, productRef = "", options = "") {
-        this.timestamp = new Date().toISOString().substring(0,23);
         this.originalReqRefNum = originalReqRefNum;
         this.orderid = orderid;
         this.productRef = productRef;

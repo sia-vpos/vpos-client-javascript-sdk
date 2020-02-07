@@ -11,10 +11,18 @@ class GeneralRequest{
     options;
 
 
-    constructor() {
-        /*
-        * no args constructor
-        * */
+    constructor( transactionid, orderid, amount, currency, exponent, opDescr = "", options = "") {
+
+       this.transactionID = transactionid;
+       this.orderID = orderid;
+       this.amount = amount;
+       this.currency = currency;
+       this.exponent = exponent;
+       this.opDescr = opDescr;
+       this.options = options;
+
+       return this;
+
     }
 
     get options(){

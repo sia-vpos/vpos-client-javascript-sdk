@@ -1,4 +1,5 @@
 class BPWXmlResponse{
+    //might delete
 
     release;
     request;

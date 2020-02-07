@@ -1,10 +1,18 @@
 class Auth3DSStep2Request{
     
-    header;
     originalReqRefNum;
     paRes;
     acquirer;
     options;
+
+    constructor(OriginalReqRefNum, PaRes, Acquirer = "", Options = "") {
+
+        this.originalReqRefNum = OriginalReqRefNum;
+        this.paRes = PaRes;
+        this.acquirer = Acquirer;
+        this.options = Options;
+
+    }
 
     get options(){
         return this.options;

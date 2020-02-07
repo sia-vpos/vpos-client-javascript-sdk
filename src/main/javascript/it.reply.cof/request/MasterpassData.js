@@ -3,10 +3,9 @@ class MasterpassData{
     pp_AuthenticationMethod;
     pp_CardEnrollMethod;
 
-    constructor() {
-        /*
-         * no args constructor
-         * */
+    constructor(authenticationMethod, cardEnrollMethod) {
+        this.pp_AuthenticationMethod = authenticationMethod;
+        this.pp_CardEnrollMethod = cardEnrollMethod;
     }
 
     constructor(pp_AuthenticationMethod, pp_CardEnrollMethod) {

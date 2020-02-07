@@ -5,6 +5,12 @@ class ConfirmRequest extends GeneralRequest{
     accountingMode;
     closeOrder;
 
+    constructor(transactionid, orderid, amount, currency, exponent, accountingMode, closeOrder, opDescr = "", options = "") {
+        super(transactionid, orderid, amount, currency, exponent, opDescr = "", options = "");
+        this.accountingMode = accountingMode;
+        this.closeOrder = closeOrder;
+    }
+
     get accountingMode() {
         return this.accountingMode;
     }

@@ -1,9 +1,6 @@
 class Auth3DSStep1Request{
 
     isMasterPass;
-    header;
-    data3DS;
-    masterpassData;
     orderID;
     pan;
     cvv2;
@@ -28,6 +25,13 @@ class Auth3DSStep1Request{
     createPanAlias;
     inPerson;
     merchantURL;
+
+    constructor(isMasterpass = false, orderID, pan, cvv2 = "", expDate, amount, currency,
+                exponent, accountingMode, network, emailCH = "", userID = "", acquirer  = "", ipAddress  = "",
+                usrAuthFlag = "", opDescr = "", options = "", antifraud = "", productRef = "", name = "", surname = "",
+                taxID = "", createPanAlias = "", inPerson = "", merchantURL  = ""
+    ) {
+    }
 
     get isMasterpass(){
         return this.isMasterPass;

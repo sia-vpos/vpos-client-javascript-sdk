@@ -3,7 +3,7 @@
     const crypto = require("crypto");
     const algorithms = require("./MacAlgorithms");
 
-   let getMAC = function ( algorithm, myObject, key ){
+   let getMAC = function (algorithm, myObject, key){
         let myString = "";
         if(!algorithm || algorithm !== algorithms.algos.HMAC_SHA_512){
             algorithm = algorithms.algos.HMAC_SHA_256;
@@ -30,7 +30,7 @@
            }
        }
 
-        myObject.macFields.forEach( function(field) {
+        Object.getOwnPropertyNames(myObject).forEach( function(field) {
             if ( myObject[field] !== "" && myObject[field] !== undefined) {
                 console.log("Key: " + field + " Value: " + myObject[field])
                 myString += appendField(myObject[field], field.toUpperCase());

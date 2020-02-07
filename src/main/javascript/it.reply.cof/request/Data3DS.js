@@ -8,6 +8,18 @@ class Data3DS{
     scEnrollStatus;
     signatureVerification;
 
+    constructor(service, eci, xid, cavv, paresStatus, scEnrollStatus, signatureVerification) {
+
+        this.service =  service;
+        this.eci = eci;
+        this.xid = xid;
+        this.cavv = cavv;
+        this.paresStatus = paresStatus;
+        this.scEnrollStatus = scEnrollStatus;
+        this.signatureVerification = signatureVerification;
+
+    }
+
     get service() {
         return this.service;
     }

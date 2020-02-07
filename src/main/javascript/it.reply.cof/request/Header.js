@@ -10,6 +10,8 @@ class Header{
         this.ShopID = ShopID;
         this.OperatorID = OperatorID;
         this.ReqRefNum = ReqRefNum;
+
+        return this;
     }
 
     //Setters

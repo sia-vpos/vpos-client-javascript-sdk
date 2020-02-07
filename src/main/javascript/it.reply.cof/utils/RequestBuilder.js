@@ -1,13 +1,19 @@
 const x = require('../utils/XMLUtils');
-const encode = require('../utils/Encoder');
-const encoder = new encode;
+const encoder = ""; //require('../utils/Encoder');
 
-buildRefundRequest = () => {
-    const refundRequest = require('../request/RefudRequest');
+buildRefundRequest = (
+
+    ShopID, OperatorID, ReqRefNum,
+    TransactionID, OrderID, Amount, Currency,
+    Exponent, OpDescr = "", Options = ""
+
+    ) => {
+
+    const refundRequest = require('../request/GeneralRequest');
     const Header = require('../request/Header');
 
-    let refund = new refundRequest();
-    let header = new Header();
+    let refund = new refundRequest(TransactionID, OrderID, Amount, Currency, Exponent, OpDescr, Options);
+    let header = new Header(ShopID, OperatorID, ReqRefNum);
     let xmlBody = "";
     let xmlBuffer = "";
 
@@ -15,7 +21,7 @@ buildRefundRequest = () => {
 
         "Operation": "REFUND",
         "Timestamp": new Date().toISOString().substring(0, 23),
-        "MAC": encoder.getMAC256()
+        "MAC": encoder
     }
 
 
@@ -35,8 +41,8 @@ buildRefundRequest = () => {
         "Amount": refund.amount,
         "Currency": refund.currency,
         "Exponent": refund.exponent,
-        "opDescr": refund.opDescr !== "" ? refund.opDescr : "",
-        "Options": refund.options !== "" ? refund.options : ""
+        "opDescr": refund.opDescr,
+        "Options": refund.options
 
     }
 
@@ -44,12 +50,18 @@ buildRefundRequest = () => {
 
 }
 
-buildConfirmRequest = () => {
+buildConfirmRequest = (
+
+    ShopID, OperatorID, ReqRefNum,
+    TransactionID, OrderID, Amount, Currency,
+    Exponent, AccountingMode, CloseOrder,OpDescr = "", Options = ""
+
+    ) => {
+
     const confirmRequest = require('../request/ConfirmRequest');
     const Header = require('../request/Header');
-
-    let confirm = new confirmRequest();
-    let header = new Header();
+    let confirm = new confirmRequest(TransactionID, OrderID, Amount, Currency, Exponent, AccountingMode, CloseOrder, OpDescr, Options);
+    let header = new Header(ShopID, OperatorID, ReqRefNum);
     let xmlBody = "";
     let xmlBuffer = "";
 
@@ -57,7 +69,7 @@ buildConfirmRequest = () => {
 
         "Operation": "DEFERREDREQUEST",
         "Timestamp": new Date().toISOString().substring(0, 23),
-        "MAC": encoder.getMAC256()
+        "MAC": encoder
 
     }
 
@@ -86,18 +98,25 @@ buildConfirmRequest = () => {
 
 }
 
-buildBookingRequest = () => {
+buildBookingRequest = (
+
+    ShopID, OperatorID, ReqRefNum,
+    TransactionID, OrderID, Amount, Currency,
+    Exponent, OpDescr = "", Options = ""
+
+    ) => {
+
     const bookingRequest = require('../request/GeneralRequest');
     const Header = require('../request/Header');
 
-    let booking = new bookingRequest();
-    let header = new Header();
+    let booking = new bookingRequest(TransactionID, OrderID, Amount, Currency, Exponent, OpDescr, Options);
+    let header = new Header(ShopID, OperatorID, ReqRefNum);
 
     let xmlRequest = {
 
         "Operation": "ACCOUNTING",
         "Timestamp": new Date().toISOString().substring(0, 23),
-        "MAC": encoder.getMAC256()
+        "MAC": encoder
 
     }
 
@@ -125,18 +144,23 @@ buildBookingRequest = () => {
 
 }
 
-buildOrderStatusRequest = (shopid, operatorid, reqRefNum, originalReqRefNum, orderid, productref, options) => {
+buildOrderStatusRequest = (
+
+    ShopID, OperatorID, ReqRefNum,
+    OriginalReqRefNum, OrderID, ProductRef = "", Options = ""
+
+    ) => {
     const OrderStatusRequest = require('../request/StatusRequest');
     const Header = require('../request/Header');
 
-    let header = new Header(shopid, operatorid, reqRefNum);
-    let orderStatus = new OrderStatusRequest(originalReqRefNum, orderid, productref, options);
+    let header = new Header(ShopID, OperatorID, ReqRefNum);
+    let orderStatus = new OrderStatusRequest(OriginalReqRefNum, OrderID, ProductRef, Options);
 
     let xmlRequest = {
 
         "Operation": "ORDERSTATUS",
         "Timestamp": new Date().toISOString().substring(0, 23),
-        "MAC": encoder.getMAC256(),
+        "MAC": encoder
 
     }
 
@@ -150,7 +174,7 @@ buildOrderStatusRequest = (shopid, operatorid, reqRefNum, originalReqRefNum, ord
 
     let xmlFields = {
 
-        "OrderID": orderStatus.orderID,
+        "OrderID": orderStatus.orderid,
         "ProductRef": orderStatus.productRef,
         "Options ": orderStatus.options
 
@@ -160,19 +184,24 @@ buildOrderStatusRequest = (shopid, operatorid, reqRefNum, originalReqRefNum, ord
 
 }
 
-buildVerifyRequest = (key,) => {
+buildVerifyRequest = (
+
+    ShopID, OperatorID, ReqRefNum,
+    OriginalReqRefNum, OrderID, ProductRef = "", Options = ""
+
+    ) => {
     const verifyRequest = require('../request/StatusRequest');
     const Header = require('../request/Header');
     const encoder = require('../utils/Encoder');
 
-    let header = new Header();
-    let verifyRequestInstance = new verifyRequest();
+    let header = new Header(ShopID, OperatorID, ReqRefNum);
+    let verifyRequestInstance = new verifyRequest(OriginalReqRefNum, OrderID, ProductRef, Options);
 
     let xmlRequest = {
 
         "Operation": "VERIFY",
         "Timestamp": new Date().toISOString().substring(0, 23),
-        "MAC": encoder.getMAC256(key),
+        "MAC": encoder
 
     }
 
@@ -194,11 +223,17 @@ buildVerifyRequest = (key,) => {
     return xmlBodyBuilder(xmlRequest, xmlHeader, xmlFields, 'VerifyRequest');
 
 }
-buildData3DS = () => {
+buildData3DS = (
+
+    Service, Eci, XID, CAVV,
+    PaResStatus, ScEnrollStatus, SignatureVerification,
+    pp_AuthenticationMethod, pp_CardEnrollMethod
+
+    ) => {
     const data3DS = require('../request/data3DS');
     const masterpassData = require('../request/MasterpassData');
-    let data3DSInstance = new data3DS();
-    let masterpassDataInstance = new masterpassData();
+    let data3DSInstance = new data3DS(Service, Eci, XID, CAVV, PaResStatus, ScEnrollStatus, SignatureVerification);
+    let masterpassDataInstance = new masterpassData(pp_AuthenticationMethod, pp_CardEnrollMethod);
 
     let xml3DS = {
         "Service": data3DSInstance.service,
@@ -221,18 +256,36 @@ buildData3DS = () => {
     return {xml3DS, xmlMasterPass};
 
 }
-buildAuth3DSStep1Request = (data3DSObj = null) => {
+buildAuth3DSStep1Request = (
+
+    ShopID, OperatorID, ReqRefNum,
+    IsMasterpass = false, OrderID, Pan, CVV2, ExpDate,
+    Amount, Currency, Exponent, AccountingMode, Network, EmailCH,
+    UserID, Acquirer, IpAddress, UsrAuthFlag, OpDescr, Options,
+    Antifraud, ProductRef, Name, Surname, TaxID, CreatePanAlias,
+    InPerson, MerchantURL,
+
+    data3DSObj = null
+
+    ) => {
     const auth3DSStep1Request = require('../request/Auth3DSStep1Request');
     const Header = require('../request/Header');
 
-    let header = new Header();
-    let auth3DSStep1 = new auth3DSStep1Request();
+    let header = new Header(ShopID, OperatorID, ReqRefNum);
+    let auth3DSStep1 = new auth3DSStep1Request(
+
+        IsMasterpass, OrderID, Pan, CVV2, ExpDate, Amount, Currency,
+        Exponent, AccountingMode, Network, EmailCH, UserID, Acquirer,
+        IpAddress, UsrAuthFlag, OpDescr, Options, Antifraud, ProductRef, Name,
+        Surname, TaxID, CreatePanAlias, InPerson, MerchantURL
+
+    );
     let data3DSInstance = data3DSObj !== null ? data3DSObj : null;
 
     let xmlRequest = {
         "Operation": "AUTHORIZATION3DSSTEP1",
         "Timestamp": new Date().toISOString().substring(0, 23),
-        "MAC": encoder.getMAC256()
+        "MAC": encoder
     }
 
     let xmlHeader = {
@@ -267,19 +320,23 @@ buildAuth3DSStep1Request = (data3DSObj = null) => {
     return xmlBodyBuilder(xmlRequest, xmlHeader, xmlFields, 'AuthorizationRequest',data3DSInstance);
 }
 
-build3DSStep2AuthRequest = () => {
+build3DSStep2AuthRequest = (
+
+    ShopID, OperatorID, ReqRefNum,
+    OriginalReqRefNum, PaRes, Acquirer, Options
+
+) => {
     const auth3DSStep2Request = require('../request/Auth3DSStep2Request');
     const Header = require('../request/Header');
 
-    let header = new Header();
-    let auth3DSStep2 = new auth3DSStep2Request();
+    let header = new Header(ShopID, OperatorID, ReqRefNum);
+    let auth3DSStep2 = new auth3DSStep2Request(OriginalReqRefNum, PaRes, Acquirer, Options);
 
     let xmlRequest = {
 
         "Operation": "AUTHORIZATION3DSSTEP2",
         "Timestamp": new Date().toISOString().substring(0, 23),
-        "MAC": encoder.getMAC256()
-
+        "MAC": encoder
     }
 
     let xmlHeader = {
@@ -305,7 +362,6 @@ build3DSStep2AuthRequest = () => {
 }
 
 getBPWXmlRequest = (requestDataXml) => {
-    const BPWXmlRequest = require('../request/BPWXmlRequest');
 
     let xmlBody = "";
 
@@ -321,13 +377,13 @@ xmlBodyBuilder = (xmlRequest, xmlHeader, xmlFields, requestName, masterPass = nu
     let xmlBody = "";
     let xmlBuffer = "";
 
-    xmlRequest.getOwnPropertyNames((key) => {
+    Object.getOwnPropertyNames(xmlRequest).forEach( key => {
         xmlBody += x.populateSingleXMLElement(key, xmlRequest[key])
     })
 
     xmlBody = x.populateSingleXMLElement('Request', xmlBody);
 
-    xmlHeader.getOwnPropertyNames((key) => {
+    Object.getOwnPropertyNames(xmlHeader).forEach(key => {
         xmlBuffer += x.populateSingleXMLElement(key, xmlHeader[key]);
     })
 
@@ -338,13 +394,13 @@ xmlBodyBuilder = (xmlRequest, xmlHeader, xmlFields, requestName, masterPass = nu
         let xml3DS = "";
         let xmlMasterpass = "";
 
-        masterPass.xml3DS.getOwnPropertyNames((key) => {
+        Object.getOwnPropertyNames(masterPass.xml3DS).forEach(key => {
             xml3DS += x.populateSingleXMLElement(key, xml3DS[key])
         });
 
         xml3DS = x.populateSingleXMLElement('Data3DS', xml3DS);
 
-        masterPass.xmlMasterPass.getOwnPropertyNames((key) => {
+        Object.getOwnPropertyNames(masterPass.xmlMasterPass).forEach(key => {
             xmlMasterpass += x.populateSingleXMLElement(key, xmlMasterpass[key])
         })
 
@@ -354,8 +410,8 @@ xmlBodyBuilder = (xmlRequest, xmlHeader, xmlFields, requestName, masterPass = nu
     }
 
 
-    xmlFields.getOwnPropertyNames((key) => {
-        if (xmlFields[key] !== "")
+    Object.getOwnPropertyNames(xmlFields).forEach(key => {
+        if (xmlFields[key] !== "" && xmlFields[key] !== undefined)
             xmlBuffer += x.populateSingleXMLElement(key, xmlFields[key]);
     })
 
@@ -365,3 +421,4 @@ xmlBodyBuilder = (xmlRequest, xmlHeader, xmlFields, requestName, masterPass = nu
 
 
 }
+
