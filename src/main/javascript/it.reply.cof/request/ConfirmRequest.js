@@ -4,11 +4,21 @@ class ConfirmRequest extends GeneralRequest{
 
     accountingMode;
     closeOrder;
+    ipAddress;
 
-    constructor(transactionid, orderid, amount, currency, exponent, accountingMode, closeOrder, opDescr = "", options = "") {
+    constructor(transactionid, orderid, amount, currency, exponent, accountingMode, closeOrder, ipAddress = "", opDescr = "", options = "") {
         super(transactionid, orderid, amount, currency, exponent, opDescr = "", options = "");
         this.accountingMode = accountingMode;
         this.closeOrder = closeOrder;
+        this.ipAddress = ipAddress;
+    }
+
+    get ipAddress(){
+        return this.ipAddress;
+    }
+
+    set ipAddress(ipAddress){
+        this.ipAddress = ipAddress;
     }
 
     get accountingMode() {

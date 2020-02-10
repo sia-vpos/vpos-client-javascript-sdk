@@ -5,7 +5,7 @@
 
    let getMAC = function (algorithm, myObject, key){
         let myString = "";
-        if(!algorithm || algorithm !== algorithms.algos.HMAC_SHA_512){
+        if(!algorithm){
             algorithm = algorithms.algos.HMAC_SHA_256;
         }
 
@@ -31,8 +31,8 @@
        }
 
         Object.getOwnPropertyNames(myObject).forEach( function(field) {
-            if ( myObject[field] !== "" && myObject[field] !== undefined) {
-                console.log("Key: " + field + " Value: " + myObject[field])
+            if ( myObject[field] !== null && typeof myObject[field] !== 'undefined') {
+                console.log("Key: " + field + " Value: " + myObject[field] + " Type: " + typeof  myObject[field])
                 myString += appendField(myObject[field], field.toUpperCase());
             }
         });
@@ -58,7 +58,8 @@
 
     module.exports = {
         getMAC256 : getMAC256,
-        getMAC512 : getMAC512
+        getMAC512 : getMAC512,
+        getMAC :   getMAC
 
     }
 

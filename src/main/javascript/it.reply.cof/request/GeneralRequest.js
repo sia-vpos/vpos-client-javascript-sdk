@@ -11,7 +11,7 @@ class GeneralRequest{
     options;
 
 
-    constructor( transactionid, orderid, amount, currency, exponent, opDescr = "", options = "") {
+    constructor( transactionid, orderid, amount, currency, exponent = "", opDescr = "", options = "") {
 
        this.transactionID = transactionid;
        this.orderID = orderid;

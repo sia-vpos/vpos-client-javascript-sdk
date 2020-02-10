@@ -3,17 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="11aeef7b-7ef7-4f51-8144-70755d3c7801" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/Auth3DSStep1Request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/Auth3DSStep1Request.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/Auth3DSStep2Request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/Auth3DSStep2Request.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/BPWXmlRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/BPWXmlRequest.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/ConfirmRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/ConfirmRequest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/Data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/Data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/Data3DS.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/Data3DS.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/GeneralRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/GeneralRequest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/MasterpassData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/MasterpassData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/RefudRequest.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/StatusRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/StatusRequest.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/Encoder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/Encoder.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/RequestBuilder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/RequestBuilder.js" afterDir="false" />
     </list>
@@ -106,7 +97,8 @@
       <workItem from="1580829260610" duration="4829000" />
       <workItem from="1580901414217" duration="667000" />
       <workItem from="1581021692468" duration="6407000" />
-      <workItem from="1581061398453" duration="21828000" />
+      <workItem from="1581061398453" duration="22024000" />
+      <workItem from="1581322974709" duration="10134000" />
     </task>
     <task id="LOCAL-00001" summary="APOSClient draft">
       <created>1580403587065</created>
@@ -150,7 +142,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581076974047</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="RequestBuilder (working)">
+      <created>1581094596170</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1581094596170</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,7 +176,8 @@
     <MESSAGE value="RequestBuilder draft" />
     <MESSAGE value="RequestBuilder draft (fixes todo)" />
     <MESSAGE value="RequestBuilder draft 2 (fixes todo)" />
-    <option name="LAST_COMMIT_MESSAGE" value="RequestBuilder draft 2 (fixes todo)" />
+    <MESSAGE value="RequestBuilder (working)" />
+    <option name="LAST_COMMIT_MESSAGE" value="RequestBuilder (working)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="72" key="#JSLint" timestamp="1580201225673">
@@ -200,10 +200,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="596" y="259" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1580745530743" />
-    <state x="245" y="8" key="CommitChangelistDialog2" timestamp="1581076973048">
+    <state x="245" y="8" key="CommitChangelistDialog2" timestamp="1581094595189">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="245" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581076973048" />
+    <state x="245" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581094595189" />
     <state x="549" y="155" key="FileChooserDialogImpl" timestamp="1580297007715">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
