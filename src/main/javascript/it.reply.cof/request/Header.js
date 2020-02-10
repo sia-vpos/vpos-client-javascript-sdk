@@ -6,10 +6,9 @@ class Header{
 
 
 
-    constructor(ShopID, OperatorID, ReqRefNum){
+    constructor(ShopID, OperatorID){
         this.ShopID = ShopID;
         this.OperatorID = OperatorID;
-        this.ReqRefNum = ReqRefNum;
 
         return this;
     }

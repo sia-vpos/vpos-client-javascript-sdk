@@ -1,11 +1,12 @@
-const x = require('../utils/XMLUtils');
-const encoder = require('../utils/Encoder');
+const x = require('./XMLUtils');
+const encoder = require('./Encoder');
+const reqRef = require('./ReqRefGenerator');
 const key = "fU-9et-s-Sj8W---E8uhUDu9fEzqr8hH3L95s48r9nq-cq3cBXbp-tZsvGQU--t-nqmtaW-7x-7-C2PdcuFdbHuShQ-pYVWnr-4-"
 let algorithm = "";
 
 buildRefundRequest = (
 
-    ShopID, OperatorID, ReqRefNum,
+    ShopID, OperatorID,
     TransactionID, OrderID, Amount, Currency,
     Exponent, OpDescr = "", Options = ""
 
@@ -15,7 +16,7 @@ buildRefundRequest = (
     const Header = require('../request/Header');
 
     let refund = new refundRequest(TransactionID, OrderID, Amount, Currency, Exponent, OpDescr, Options);
-    let header = new Header(ShopID, OperatorID, ReqRefNum);
+    let header = new Header(ShopID, OperatorID);
     let xmlBody = "";
     let xmlBuffer = "";
 
@@ -26,6 +27,7 @@ buildRefundRequest = (
         "MAC": ""
     }
 
+    header.ReqRefNum =  reqRef.generator(xmlRequest.Timestamp);
 
     let xmlHeader = {
 
@@ -72,7 +74,7 @@ buildRefundRequest = (
 
 buildConfirmRequest = (
 
-    ShopID, OperatorID, ReqRefNum,
+    ShopID, OperatorID,
     TransactionID, OrderID, Amount, Currency,
     Exponent, AccountingMode, CloseOrder,OpDescr = "", Options = ""
 
@@ -81,7 +83,7 @@ buildConfirmRequest = (
     const confirmRequest = require('../request/ConfirmRequest');
     const Header = require('../request/Header');
     let confirm = new confirmRequest(TransactionID, OrderID, Amount, Currency, Exponent, AccountingMode, CloseOrder, OpDescr, Options);
-    let header = new Header(ShopID, OperatorID, ReqRefNum);
+    let header = new Header(ShopID, OperatorID);
     let xmlBody = "";
     let xmlBuffer = "";
 
@@ -92,6 +94,8 @@ buildConfirmRequest = (
         "MAC": ""
 
     }
+
+    header.ReqRefNum =  reqRef.generator(xmlRequest.Timestamp);
 
     let xmlHeader = {
 
@@ -145,7 +149,7 @@ buildConfirmRequest = (
 
 buildBookingRequest = (
 
-    ShopID, OperatorID, ReqRefNum,
+    ShopID, OperatorID,
     TransactionID, OrderID, Amount, Currency,
     Exponent, OpDescr = "", Options = ""
 
@@ -155,7 +159,7 @@ buildBookingRequest = (
     const Header = require('../request/Header');
 
     let booking = new bookingRequest(TransactionID, OrderID, Amount, Currency, Exponent, OpDescr, Options);
-    let header = new Header(ShopID, OperatorID, ReqRefNum);
+    let header = new Header(ShopID, OperatorID);
 
     let xmlRequest = {
 
@@ -164,6 +168,8 @@ buildBookingRequest = (
         "MAC": ""
 
     }
+
+    header.ReqRefNum =  reqRef.generator(xmlRequest.Timestamp);
 
     let xmlHeader = {
 
@@ -209,14 +215,14 @@ buildBookingRequest = (
 
 buildOrderStatusRequest = (
 
-    ShopID, OperatorID, ReqRefNum,
+    ShopID, OperatorID,
     OriginalReqRefNum, OrderID, ProductRef = "", Options = ""
 
     ) => {
     const OrderStatusRequest = require('../request/StatusRequest');
     const Header = require('../request/Header');
 
-    let header = new Header(ShopID, OperatorID, ReqRefNum);
+    let header = new Header(ShopID, OperatorID);
     let orderStatus = new OrderStatusRequest(OriginalReqRefNum, OrderID, ProductRef, Options);
 
     let xmlRequest = {
@@ -226,6 +232,8 @@ buildOrderStatusRequest = (
         "MAC": ""
 
     }
+
+    header.ReqRefNum =  reqRef.generator(xmlRequest.Timestamp);
 
     let xmlHeader = {
 
@@ -263,7 +271,7 @@ buildOrderStatusRequest = (
 
 buildVerifyRequest = (
 
-    ShopID, OperatorID, ReqRefNum,
+    ShopID, OperatorID,
     OriginalReqRefNum, OrderID, ProductRef = "", Options = ""
 
     ) => {
@@ -271,7 +279,7 @@ buildVerifyRequest = (
     const Header = require('../request/Header');
     const encoder = require('../utils/Encoder');
 
-    let header = new Header(ShopID, OperatorID, ReqRefNum);
+    let header = new Header(ShopID, OperatorID);
     let verifyRequestInstance = new verifyRequest(OriginalReqRefNum, OrderID, ProductRef, Options);
 
     let xmlRequest = {
@@ -281,6 +289,8 @@ buildVerifyRequest = (
         "MAC": ""
 
     }
+
+    header.ReqRefNum =  reqRef.generator(xmlRequest.Timestamp);
 
     let xmlHeader = {
 
@@ -349,7 +359,7 @@ buildData3DS = (
 
 buildAuth3DSStep1Request = (
 
-    ShopID, OperatorID, ReqRefNum,
+    ShopID, OperatorID,
     IsMasterpass = false, OrderID, Pan, CVV2, ExpDate,
     Amount, Currency, Exponent, AccountingMode, Network, EmailCH,
     UserID, Acquirer, IpAddress, UsrAuthFlag, OpDescr, Options,
@@ -362,7 +372,7 @@ buildAuth3DSStep1Request = (
     const auth3DSStep1Request = require('../request/Auth3DSStep1Request');
     const Header = require('../request/Header');
 
-    let header = new Header(ShopID, OperatorID, ReqRefNum);
+    let header = new Header(ShopID, OperatorID);
     let auth3DSStep1 = new auth3DSStep1Request(
 
         IsMasterpass, OrderID, Pan, CVV2, ExpDate, Amount, Currency,
@@ -371,13 +381,16 @@ buildAuth3DSStep1Request = (
         Surname, TaxID, CreatePanAlias, InPerson, MerchantURL
 
     );
-    let data3DSInstance = data3DSObj !== null ? data3DSObj : null;
+
+    let data3DSInstance = data3DSObj !== null || !Object.keys(data3DSObj).length ? data3DSObj : null;
 
     let xmlRequest = {
         "Operation": "AUTHORIZATION3DSSTEP1",
         "Timestamp": new Date().toISOString().substring(0, 23),
         "MAC": encoder
     }
+
+    header.ReqRefNum =  reqRef.generator(xmlRequest.Timestamp);
 
     let xmlHeader = {
 
@@ -447,7 +460,7 @@ buildAuth3DSStep1Request = (
 
     }
 
-    if(auth3DSStep1.isMasterPass){
+    if(auth3DSStep1.isMasterPass && data3DSInstance){
         let  xml3DS = data3DSObj.xml3DS;
         let masterPass = data3DSObj.xmlMasterPass;
         macObject.SERVICE = xml3DS.Service;
@@ -466,22 +479,24 @@ buildAuth3DSStep1Request = (
 
 build3DSStep2AuthRequest = (
 
-    ShopID, OperatorID, ReqRefNum,
+    ShopID, OperatorID,
     OriginalReqRefNum, PaRes, Acquirer, Options
 
 ) => {
     const auth3DSStep2Request = require('../request/Auth3DSStep2Request');
     const Header = require('../request/Header');
 
-    let header = new Header(ShopID, OperatorID, ReqRefNum);
+    let header = new Header(ShopID, OperatorID);
     let auth3DSStep2 = new auth3DSStep2Request(OriginalReqRefNum, PaRes, Acquirer, Options);
 
     let xmlRequest = {
 
         "Operation": "AUTHORIZATION3DSSTEP2",
         "Timestamp": new Date().toISOString().substring(0, 23),
-        "MAC": encoder
+        "MAC": ""
     }
+
+    header.ReqRefNum =  reqRef.generator(xmlRequest.Timestamp);
 
     let xmlHeader = {
 
@@ -579,17 +594,18 @@ xmlBodyBuilder = (xmlRequest, xmlHeader, xmlFields, requestName, masterPass = nu
 
 }
 
-console.log(getBPWXmlRequest(buildRefundRequest('uno', 'due', 'tre', 'quattro', 'cinque', 'sei')))
 
+module.exports = {
 
-module.exports = buildOrderStatusRequest;
-module.exports = build3DSStep2AuthRequest;
-module.exports = buildAuth3DSStep1Request;
-module.exports = buildConfirmRequest
-module.exports = buildBookingRequest;
-module.exports = buildData3DS;
-module.exports = buildRefundRequest;
-module.exports = buildVerifyRequest;
-module.exports = getBPWXmlRequest;
-module.exports = xmlBodyBuilder;
+    buildOrderStatusRequest :  buildOrderStatusRequest,
+    build3DSStep2AuthRequest : build3DSStep2AuthRequest,
+    buildAuth3DSStep1Request : buildAuth3DSStep1Request,
+    buildConfirmRequest : buildConfirmRequest,
+    buildBookingRequest : buildBookingRequest,
+    buildData3DS : buildData3DS,
+    buildRefundRequest : buildRefundRequest,
+    buildVerifyRequest : buildVerifyRequest,
+    getBPWXmlRequest: getBPWXmlRequest,
+    xmlBodyBuilder: xmlBodyBuilder
 
+}

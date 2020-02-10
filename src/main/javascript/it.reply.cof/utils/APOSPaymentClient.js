@@ -1,4 +1,5 @@
 const httpsUtil = require("https");
+const requester = require('./RequestBuilder');
 
 let AposPaymentClient = class APOSPaymentClient{
    constructor() {
@@ -41,7 +42,8 @@ let AposPaymentClient = class APOSPaymentClient{
     }
 }
 
-let body = 'data=<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
+let body = 'data=';
+body += requester.getBPWXmlRequest(requester.buildConfirmRequest('129281292800109', 'John Doe', ''))
 console.log("BODY: " + body);
 
 const options = {
