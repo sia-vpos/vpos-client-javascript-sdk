@@ -12,12 +12,12 @@ crypto = require("crypto");
  * @throws COFException in case of failure
  */
 
-aesEncrypt = (key, str) =>{
+aesEncrypt = (key, str) => {
 
-   let bitkey = key.substring(0,16);
-   let iv = '0000000000000000';
+    let bitkey = key.substring(0, 16);
+    let iv = '0000000000000000';
     console.log(bitkey);
-    const cipher = crypto.createCipheriv('aes-128-cbc', bitkey, iv );
+    const cipher = crypto.createCipheriv('aes-128-cbc', bitkey, iv);
     let crypt = cipher.update(str, 'utf8', 'base64');
     crypt += cipher.final("base64");
     return crypt;

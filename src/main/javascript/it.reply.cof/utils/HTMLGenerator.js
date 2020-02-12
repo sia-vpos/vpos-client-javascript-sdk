@@ -20,7 +20,7 @@ function htmlToBase64(isCustomHTML, urlApos, params) {
     return Buffer.from(html.toString()
         .replace("[APOS_URL]", urlApos)).toString()
         .replace("[PARAMETERS]", generateParamsHTML(params))
-        .toString("base64");
+        .toString('base64');
 }
 
 function base64ToHtml(base64, delay) {
@@ -42,7 +42,7 @@ function generateParamsHTML(params) {
     let result = "";
     let decodedInputPattern = Buffer.from(INPUT_PATTERN, "base64").toString();
     Object.keys(params).forEach(function (key) {
-        if (params[key] !== null && params[key] !== undefined && params[key].trim() !== "") {
+        if (params[key] !== null && typeof params[key] === 'string' && params[key] !== "") {
             let toAppend = decodedInputPattern.replace("KEY", key)
                 .replace("VALUE", params[key]);
             result += toAppend;

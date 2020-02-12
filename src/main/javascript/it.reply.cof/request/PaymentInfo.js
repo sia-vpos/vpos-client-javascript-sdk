@@ -11,7 +11,30 @@ class PaymentInfo {
     accountingMode;
     authorMode;
     data3DSJson;
-    notCompulsoryFields = {};
+    notCompulsoryFields = {
+        'LANG': '',
+        'SHOPEMAIL': '',
+        'OPTIONS': '',
+        'LOCKCARD': '',
+        'COMMIS': '',
+        'EMAIL': '',
+        'ORDDESCR': '',
+        'VSID': '',
+        'OPDESCR': '',
+        'REMAININGDURATION': '',
+        'USERID': '',
+        'BP_POSTEPAY': '',
+        'BP_CARDS': '',
+        'PHONENUMBER': '',
+        'CAUSATION': '',
+        'USER': '',
+        'NAME': '',
+        'SURNAME': '',
+        'TAXID': '',
+        'PRODUCTREF': '',
+        'ANTIFRAUD': ''
+
+    };
 
     constructor() {
     }
@@ -108,55 +131,8 @@ class PaymentInfo {
         return this.notCompulsoryFields;
     }
 
-    set notCompulsoryFields( value) {
+    set notCompulsoryFields(value) {
         this.notCompulsoryFields = value
-    }
-
-    FieldNames = {
-        'LANG': '',
-        'SHOPEMAIL': '',
-        'OPTIONS': '',
-        'LOCKCARD': '',
-        'COMMIS': '',
-        'EMAIL': '',
-        'ORDDESCR': '',
-        'VSID': '',
-        'OPDESCR': '',
-        'REMAININGDURATION': '',
-        'USERID': '',
-        'BP_POSTEPAY': '',
-        'BP_CARDS': '',
-        'PHONENUMBER': '',
-        'CAUSATION': '',
-        'USER': '',
-        'NAME': '',
-        'SURNAME': '',
-        'TAXID': '',
-        'PRODUCTREF': '',
-        'ANTIFRAUD': ''
-
-    }
-
-
-    OptionName = [
-        'B', 'D', 'F', 'G', 'H', 'I', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'V', 'W', 'X'
-    ]
-
-
-      addOption(option) {
-        let field = this.notCompulsoryFields.OPTIONS;
-        if (typeof field === 'undefined' || field === null) {
-            field = "";
-        }
-
-        if(this.OptionName.includes(option.toUpperCase())) {
-            field += option.toUpperCase();
-        } else {
-            //TODO THROW ERROR
-        }
-
-        this.notCompulsoryFields.OPTIONS += field;
-        console.log(this.notCompulsoryFields.OPTIONS + "whooooohoooo");
     }
 
 }
@@ -494,7 +470,7 @@ class Data3DSJson {
 }
 
 module.exports = {
-    PaymentInfo : PaymentInfo,
-    Data3DSJson : Data3DSJson
+    PaymentInfo: PaymentInfo,
+    Data3DSJson: Data3DSJson
 
 }

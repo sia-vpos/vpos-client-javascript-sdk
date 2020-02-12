@@ -585,20 +585,6 @@ getHtmlPaymentDocument = (paymentInfos, urlApos, templatePath = "", data3DSJson 
     const HtmlGenerator = require('../utils/HTMLGenerator');
     const aesEncoder = require('../utils/AESEncoder');
 
-    paymentInfo.amount = '10000';
-    paymentInfo.currency = '978';
-    paymentInfo.orderId = '3976467995007545454';
-    paymentInfo.shopId = '129281292800109';
-    paymentInfo.urlBack = 'http://localhost:8080/payment-gateway/vpos/tokenize';
-    paymentInfo.urlDone = 'http://localhost:8080/payment-gateway/vpos/tokenize';
-    paymentInfo.urlMs = 'https://te.t-frutta.eu/TImooneyWS/app_api/v10/payment/cardData?consumerId=3b350c34-d923-4552-91bf-67bc4f99da92';
-    paymentInfo.notCompulsoryFields = {};
-    paymentInfo.accountingMode = 'I';
-    paymentInfo.authorMode = 'I';
-    paymentInfo.FieldNames = {'OPTIONS' : 'GM'};
-
-
-
     if (data3DSJson) {
         paymentInfo.data3DSJson = data3DSJson;
     }
@@ -614,7 +600,7 @@ getHtmlPaymentDocument = (paymentInfos, urlApos, templatePath = "", data3DSJson 
         'EXPONENT': paymentInfo.exponent ? paymentInfo.exponent : null,
         'ACCOUNTINGMODE': paymentInfo.accountingMode,
         'AUTHORMODE': paymentInfo.authorMode,
-        'OPTIONS': paymentInfo.FieldNames.OPTIONS ? paymentInfo.FieldNames.OPTIONS : null,
+        'OPTIONS': paymentInfo.notCompulsoryFields.OPTIONS ? paymentInfo.notCompulsoryFields.OPTIONS : null,
         'NAME': paymentInfo.notCompulsoryFields.NAME ? paymentInfo.notCompulsoryFields.NAME : null,
         'SURNAME': paymentInfo.notCompulsoryFields.SURNAME ? paymentInfo.notCompulsoryFields.SURNAME : null,
         'TAXID': paymentInfo.notCompulsoryFields.TAXID ? paymentInfo.notCompulsoryFields.TAXID : null,
@@ -649,11 +635,29 @@ getHtmlPaymentDocument = (paymentInfos, urlApos, templatePath = "", data3DSJson 
     }
 
 
-    return HtmlGenerator.htmlToBase64(templatePath, urlApos, myObject)
+    return HtmlGenerator.htmlToBase64(templatePath, urlApos, myObject);
 
 
 }
 
+tokenizeCard = (shopId, urlBack, urlDone, urlMs, urlApos, templatePath = "") => {
+    const paymentInfo = require('../request/PaymentInfo');
+    const HtmlGenerator = require('../utils/HTMLGenerator');
+
+    paymentInfo.amount = '10';
+    paymentInfo.currency = '978';
+    paymentInfo.orderId = 'Virtualizza Carta';
+    paymentInfo.shopId = shopId;
+    paymentInfo.urlBack = urlBack;
+    paymentInfo.urlDone = urlDone;
+    paymentInfo.urlMs = urlMs;
+    paymentInfo.accountingMode = 'D';
+    paymentInfo.authorMode = 'I';
+    paymentInfo.nonCompulsoryFields = {'OPTIONS': 'GM'};
+
+    return HtmlGenerator.htmlToBase64(templatePath, urlApos, paymentInfo);
+
+}
 
 module.exports = {
 
@@ -666,8 +670,13 @@ module.exports = {
     buildRefundRequest: buildRefundRequest,
     buildVerifyRequest: buildVerifyRequest,
     getBPWXmlRequest: getBPWXmlRequest,
-    xmlBodyBuilder: xmlBodyBuilder
+    getHtmlPaymentDocument: getHtmlPaymentDocument,
+    xmlBodyBuilder: xmlBodyBuilder,
+    tokenizeCard: tokenizeCard
 
 }
 
-console.log(getHtmlPaymentDocument('', urlApos))
+console.log(tokenizeCard('129281292800109', 'http://localhost:8080/payment-gateway/vpos/tokenize',
+    'http://localhost:8080/payment-gateway/vpos/tokenize', 'https://te.t-frutta.eu/TImooneyWS/app_api/v10/payment/cardData?consumerId=3b350c34-d923-4552-91bf-67bc4f99da92',
+    urlApos, '')
+)
