@@ -1,41 +1,41 @@
 const httpsUtil = require("https");
 const requester = require('./RequestBuilder');
 
-let AposPaymentClient = class APOSPaymentClient{
-   constructor() {
+let AposPaymentClient = class APOSPaymentClient {
+    constructor() {
         this.urlWebApi = "https://atpostest.ssb.it/atpos/apibo/apiBOXML.app";
     }
 
     //Vpos simple client
-  /*  constructor(urlWebApi) {
+    simpleClient = (urlWebApi) => {
         this.urlWebApi = urlWebApi;
     }
 
     //VposClient w proxy
-    constructor(urlWebApi, proxyName, port) {
+    proxyClient = (urlWebApi, proxyName, proxyPort) => {
         this.urlWebApi(urlWebApi);
         this.proxy = true;
         this.proxyName = proxyName;
-        this.proxyPort = port;
+        this.proxyPort = proxyPort;
     }
 
     //Vpos Client w SSL
-    constructor(urlWebApi, ppp, keyStore, keyFile) {
+    sslClient = (urlWebApi, ppp, keyStore, keyFile) => {
         this.urlWebApi = urlWebApi;
         this.ssl = true;
         this.ppp = ppp;
         this.keyStore = keyStore;
         this.keyFile = keyFile;
-    } */
+    }
 
-    setProxy(proxyName, proxyPort){
+    setProxy(proxyName, proxyPort) {
         this.proxy = true;
         this.proxyName = proxyName;
         this.proxyPort = proxyPort;
 
     }
 
-    executeCall(BPWXMLRequest){
+    executeCall(BPWXMLRequest) {
         let inputXML = "data=";
         inputXML = parseRequest(BPWXMLRequest);
 
@@ -43,8 +43,7 @@ let AposPaymentClient = class APOSPaymentClient{
 }
 
 let body = 'data=';
-body += requester.getBPWXmlRequest(requester.buildConfirmRequest('129281292800109', 'John Doe', ''))
-console.log("BODY: " + body);
+console.log("REQUEST BODY:\n" + body);
 
 const options = {
     host: 'atpostest.ssb.it',
@@ -52,16 +51,16 @@ const options = {
     proxy: 'proxy-dr.reply.it:8080',
     headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'charset' : 'utf-8'
+        'charset': 'utf-8'
     },
     method: 'POST'
 }
 
 const req = httpsUtil.request(options, (res) => {
     res.setEncoding('utf8');
-    console.log("STATUS CODE: " + res.statusCode);
+    console.log("\nSTATUS CODE: " + res.statusCode + "\n");
     var buffer = "";
-    if(res.statusCode) {
+    if (res.statusCode) {
         res.on('data', function (chunk) {
             buffer = chunk;
         });

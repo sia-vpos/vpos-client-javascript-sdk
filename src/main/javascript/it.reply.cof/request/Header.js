@@ -1,12 +1,11 @@
-class Header{
+class Header {
 
     ShopID;
     OperatorID;
     ReqRefNum;
 
 
-
-    constructor(ShopID, OperatorID){
+    constructor(ShopID, OperatorID) {
         this.ShopID = ShopID;
         this.OperatorID = OperatorID;
 
@@ -14,28 +13,32 @@ class Header{
     }
 
     //Setters
-    setShopID(ShopID){
+    setShopID(ShopID) {
         this.ShopID = ShopID;
     }
-    setOperatorID(OperatorID){
+
+    setOperatorID(OperatorID) {
         this.OperatorID = OperatorID;
     }
-    setReqRefNum(ReqRefNum){
+
+    setReqRefNum(ReqRefNum) {
         this.ReqRefNum = ReqRefNum;
     }
 
     //Getters
-    getShopID(){
+    getShopID() {
         return this.ShopID
     }
-    getOperatorID(){
+
+    getOperatorID() {
         return this.OperatorID
     }
-    getReqRefNum(){
+
+    getReqRefNum() {
         return this.ReqRefNum
     }
 
-    toString(){
+    toString() {
         return "ShopID: " + this.ShopID + " OperatorID: " + this.OperatorID + " ReqRefNum: " + this.ReqRefNum;
 
     }
