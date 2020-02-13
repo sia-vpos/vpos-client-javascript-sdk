@@ -496,7 +496,7 @@ build3DSStep2AuthRequest = (
 
         "OriginalReqRefNum": auth3DSStep2.originalReqRefNum,
         "Acquirer": auth3DSStep2.acquirer,
-        "PaRes": auth3DSStep2.paRes,
+        "PaRes": decodeURI(auth3DSStep2.paRes),
         "Options": auth3DSStep2.options,
 
     }
@@ -519,7 +519,7 @@ build3DSStep2AuthRequest = (
 
 }
 
-getBPWXmlRequest = (requestDataXml) => {
+buildBPWXmlRequest = (requestDataXml) => {
 
     let xmlBody = "";
 
@@ -669,14 +669,10 @@ module.exports = {
     buildData3DS: buildData3DS,
     buildRefundRequest: buildRefundRequest,
     buildVerifyRequest: buildVerifyRequest,
-    getBPWXmlRequest: getBPWXmlRequest,
+    buildBPWXmlRequest: buildBPWXmlRequest,
     getHtmlPaymentDocument: getHtmlPaymentDocument,
     xmlBodyBuilder: xmlBodyBuilder,
     tokenizeCard: tokenizeCard
 
 }
 
-console.log(tokenizeCard('129281292800109', 'http://localhost:8080/payment-gateway/vpos/tokenize',
-    'http://localhost:8080/payment-gateway/vpos/tokenize', 'https://te.t-frutta.eu/TImooneyWS/app_api/v10/payment/cardData?consumerId=3b350c34-d923-4552-91bf-67bc4f99da92',
-    urlApos, '')
-)

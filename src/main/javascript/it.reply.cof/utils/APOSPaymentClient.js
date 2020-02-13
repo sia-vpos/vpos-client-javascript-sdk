@@ -1,80 +1,131 @@
-const httpsUtil = require("https");
+const httpsUtil = require('https');
 const requester = require('./RequestBuilder');
+const xmlUtils = require('./XMLUtils');
+const fs = require('fs');
+const hostUrlFormatter = require('./HostUrlFormatter')
 
 let AposPaymentClient = class APOSPaymentClient {
-    constructor() {
-        this.urlWebApi = "https://atpostest.ssb.it/atpos/apibo/apiBOXML.app";
-    }
 
-    //Vpos simple client
     simpleClient = (urlWebApi) => {
-        this.urlWebApi = urlWebApi;
+        options.host = hostUrlFormatter(urlWebApi).host;
+        options.path = hostUrlFormatter(urlWebApi).path;
     }
 
-    //VposClient w proxy
     proxyClient = (urlWebApi, proxyName, proxyPort) => {
-        this.urlWebApi(urlWebApi);
-        this.proxy = true;
-        this.proxyName = proxyName;
-        this.proxyPort = proxyPort;
+        options.host = hostUrlFormatter(urlWebApi).host;
+        options.path = hostUrlFormatter(urlWebApi).path;
+        options.proxy = proxyName + ':' + proxyPort;
     }
 
-    //Vpos Client w SSL
-    sslClient = (urlWebApi, ppp, keyStore, keyFile) => {
-        this.urlWebApi = urlWebApi;
-        this.ssl = true;
-        this.ppp = ppp;
-        this.keyStore = keyStore;
-        this.keyFile = keyFile;
-    }
-
-    setProxy(proxyName, proxyPort) {
-        this.proxy = true;
-        this.proxyName = proxyName;
-        this.proxyPort = proxyPort;
+    sslClient = (urlWebApi, pathKey, pathCert) => {
+        options.host = hostUrlFormatter(urlWebApi).host;
+        options.path = hostUrlFormatter(urlWebApi).path;
+        options.key = fs.readFileSync(pathKey);
+        options.cert = fs.readFileSync(pathCert);
 
     }
 
-    executeCall(BPWXMLRequest) {
-        let inputXML = "data=";
-        inputXML = parseRequest(BPWXMLRequest);
 
-    }
 }
 
 let body = 'data=';
-console.log("REQUEST BODY:\n" + body);
 
-const options = {
-    host: 'atpostest.ssb.it',
-    path: '/atpos/apibo/apiBOXML.app',
-    proxy: 'proxy-dr.reply.it:8080',
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'charset': 'utf-8'
-    },
-    method: 'POST'
+
+setProxy = (proxyName, proxyPort) => {
+    options.proxy = proxyName + ':' + proxyPort;
+
 }
 
-const req = httpsUtil.request(options, (res) => {
-    res.setEncoding('utf8');
-    console.log("\nSTATUS CODE: " + res.statusCode + "\n");
-    var buffer = "";
-    if (res.statusCode) {
-        res.on('data', function (chunk) {
-            buffer = chunk;
-        });
-        res.on('end', function (chunk) {
-            console.log(buffer);
-        })
+
+aposCaller = function(options, body) {
+
+    const req = httpsUtil.request(options, (res) => {
+        res.setEncoding('utf8');
+        let buffer = "";
+        let result = "";
+
+        if (res.statusCode) {
+            res.on('data', function (chunk) {
+                buffer = chunk;
+            });
+            res.on('end', function (chunk) {
+               result = xmlUtils.fromXML(buffer);
+                return result;
+
+            })
+        }
+    });
+
+
+    req.on('error', (e) => {
+        console.log('problem with request: ' + e.message);
+    });
+
+    req.write(body);
+    req.end();
+
+}
+
+aposClientSetup = (hostUrl) => {
+    const setup = new AposPaymentClient();
+    let body = 'data=';
+    const options = {
+
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'charset': 'utf-8'
+        },
+        method: 'POST'
+
     }
-});
+    setup.simpleClient(hostUrl);
+
+    return options;
+
+};
+
+aposProxyClientSetup = (hostUrl, proxyName, proxyPort) => {
+    const setup = new AposPaymentClient();
+    let body = 'data=';
+    const options = {
+
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'charset': 'utf-8'
+        },
+        method: 'POST'
+
+    }
+
+    setup.proxyClient(hostUrl, proxyName, proxyPort);
+
+    return options;
+
+};
+
+aposSSLClientSetup = (hostUrl, pathKey, pathCert, setProxy = null, proxyName = null, proxyPort = null) => {
+    const setup = new AposPaymentClient();
+    let body = 'data=';
+    const options = {
+
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'charset': 'utf-8'
+        },
+        method: 'POST'
+
+    }
+
+    setup.sslClient(hostUrl, pathKey, pathCert);
+
+    if(setProxy && proxyName !== null && proxyPort !== null){
+        setProxy(proxyName, proxyPort);
+    }
+
+    return options;
+
+};
 
 
-req.on('error', (e) => {
-    console.log('problem with request: ' + e.message);
-});
 
-req.write(body);
-req.end();
 
