@@ -25,13 +25,19 @@ let AposPaymentClient = class APOSPaymentClient {
 
     }
 
+    options = {
+
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'charset': 'utf-8'
+        },
+        method: 'POST'
+
+    }
 
 }
 
-let body = 'data=';
-
-
-setProxy = (proxyName, proxyPort) => {
+setProxy = (options, proxyName, proxyPort) => {
     options.proxy = proxyName + ':' + proxyPort;
 
 }
@@ -67,64 +73,41 @@ aposCaller = function(options, body) {
 }
 
 aposClientSetup = (hostUrl) => {
-    const setup = new AposPaymentClient();
-    let body = 'data=';
-    const options = {
+    setup = new AposPaymentClient();
 
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'charset': 'utf-8'
-        },
-        method: 'POST'
-
-    }
     setup.simpleClient(hostUrl);
 
-    return options;
+    return setup.options;
 
 };
 
 aposProxyClientSetup = (hostUrl, proxyName, proxyPort) => {
-    const setup = new AposPaymentClient();
-    let body = 'data=';
-    const options = {
-
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'charset': 'utf-8'
-        },
-        method: 'POST'
-
-    }
+    setup = new AposPaymentClient();
 
     setup.proxyClient(hostUrl, proxyName, proxyPort);
 
-    return options;
+    return setup.options;
 
 };
 
-aposSSLClientSetup = (hostUrl, pathKey, pathCert, setProxy = null, proxyName = null, proxyPort = null) => {
+aposSSLClientSetup = (hostUrl, pathKey, pathCert) => {
     const setup = new AposPaymentClient();
-    let body = 'data=';
-    const options = {
-
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'charset': 'utf-8'
-        },
-        method: 'POST'
-
-    }
 
     setup.sslClient(hostUrl, pathKey, pathCert);
 
-    if(setProxy && proxyName !== null && proxyPort !== null){
-        setProxy(proxyName, proxyPort);
-    }
-
-    return options;
+    return setup.options;
 
 };
+
+module.exports = {
+
+    aposCaller : aposCaller,
+    aposClientSetup : aposClientSetup,
+    aposProxyClientSetup : aposProxyClientSetup,
+    aposSSLClientSetup : aposSSLClientSetup,
+    setProxy : setProxy
+
+}
 
 
 

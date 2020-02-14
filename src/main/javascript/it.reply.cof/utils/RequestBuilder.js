@@ -1,4 +1,5 @@
 const x = require('./XMLUtils');
+const fs = require('fs');
 const encoder = require('./Encoder');
 const reqRef = require('./ReqRefGenerator');
 const key = 'fU-9et-s-Sj8W---E8uhUDu9fEzqr8hH3L95s48r9nq-cq3cBXbp-tZsvGQU--t-nqmtaW-7x-7-C2PdcuFdbHuShQ-pYVWnr-4-';
@@ -10,7 +11,7 @@ let algorithm = "";
 buildRefundRequest = (
     ShopID, OperatorID,
     TransactionID, OrderID, Amount, Currency,
-    Exponent, OpDescr = "", Options = ""
+    Exponent, OpDescr = "", Options = "", algorithm
 ) => {
 
     const refundRequest = require('../request/GeneralRequest');
@@ -77,7 +78,7 @@ buildRefundRequest = (
 buildConfirmRequest = (
     ShopID, OperatorID,
     TransactionID, OrderID, Amount, Currency,
-    Exponent, AccountingMode, CloseOrder, OpDescr = "", Options = ""
+    Exponent, AccountingMode, CloseOrder, OpDescr = "", Options = "", algorithm
 ) => {
 
     const confirmRequest = require('../request/ConfirmRequest');
@@ -267,11 +268,10 @@ buildOrderStatusRequest = (
 
 buildVerifyRequest = (
     ShopID, OperatorID,
-    OriginalReqRefNum, OrderID = "", ProductRef = "", Options = ""
+    OriginalReqRefNum, OrderID = "", ProductRef = "", Options = "", algorithm
 ) => {
     const verifyRequest = require('../request/StatusRequest');
     const Header = require('../request/Header');
-    const encoder = require('../utils/Encoder');
 
     let header = new Header(ShopID, OperatorID);
     let verifyRequestInstance = new verifyRequest(OriginalReqRefNum, OrderID, ProductRef, Options);
@@ -356,7 +356,7 @@ buildAuth3DSStep1Request = (
     UserID, Acquirer, IpAddress, UsrAuthFlag, OpDescr, Options,
     Antifraud, ProductRef, Name, Surname, TaxID, CreatePanAlias,
     InPerson, MerchantURL,
-    data3DSObj = null
+    data3DSObj = null, algorithm
 ) => {
     const auth3DSStep1Request = require('../request/Auth3DSStep1Request');
     const Header = require('../request/Header');
@@ -466,7 +466,7 @@ buildAuth3DSStep1Request = (
 
 build3DSStep2AuthRequest = (
     ShopID, OperatorID,
-    OriginalReqRefNum, PaRes, Acquirer, Options
+    OriginalReqRefNum, PaRes, Acquirer, Options, algorithm
 ) => {
     const auth3DSStep2Request = require('../request/Auth3DSStep2Request');
     const Header = require('../request/Header');
@@ -659,6 +659,32 @@ tokenizeCard = (shopId, urlBack, urlDone, urlMs, urlApos, templatePath = "") => 
 
 }
 
+injectHtmlTemplate = (base64TemplateString, delay, filePath) => {
+    const base64ToHtml = require('../utils/HTMLGenerator').base64ToHtml;
+
+    let html = base64ToHtml(base64TemplateString, delay);
+
+    try{
+        let stream = fs.createWriteStream(filePath);
+        stream.once('open', function(fd) {
+            stream.end(html);
+
+            fs.access(filePath, fs.F_OK, (err) => {
+                if (err) {
+                    err.message = "something went wrong during the file creation"
+                    throw err;
+                }
+
+                //all fine
+            })
+        })
+
+    }catch(e){
+        //TODO implement COFException
+    }
+
+}
+
 module.exports = {
 
     buildOrderStatusRequest: buildOrderStatusRequest,
@@ -671,6 +697,7 @@ module.exports = {
     buildVerifyRequest: buildVerifyRequest,
     buildBPWXmlRequest: buildBPWXmlRequest,
     getHtmlPaymentDocument: getHtmlPaymentDocument,
+    injectHtmlTemplate : injectHtmlTemplate,
     xmlBodyBuilder: xmlBodyBuilder,
     tokenizeCard: tokenizeCard
 

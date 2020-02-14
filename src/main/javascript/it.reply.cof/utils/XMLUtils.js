@@ -171,8 +171,7 @@ fromXML = (xmlData) => {
 }
 
 module.exports = {
-    tagOpener : tagOpener,
-    tagCloser : tagCloser,
+
     populateSingleXMLElement : populateSingleXMLElement,
     fromXML : fromXML
 
