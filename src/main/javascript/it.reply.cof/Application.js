@@ -9,6 +9,8 @@ const URL_BACK = "http://localhost:8080/payment-gateway/vpos/tokenize";
 const URLMS = "https://te.t-frutta.eu/TImooneyWS/app_api/v10/payment/cardData?consumerId=3b350c34-d923-4552-91bf-67bc4f99da92";
 const URL_WEB_API = "https://atpostest.ssb.it/atpos/apibo/apiBOXML.app";
 const OPERATOR_ID = "John Doe";
+const aposCaller = require('./utils/APOSPaymentClient').aposCaller;
+
 
 const PROXYNAME = "proxy-dr.reply.it";
 const PROXYPORT = 8080;

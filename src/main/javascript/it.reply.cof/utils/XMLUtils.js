@@ -15,7 +15,7 @@ function populateSingleXMLElement(tagName, value){
 }
 
 let fromXMLDirty;
-! function(r) {
+!function(r) {
     function t(r, t) {
         return a(n(r), t)
     }
@@ -146,7 +146,6 @@ let fromXMLDirty;
 
 objectCleaner = (dirtyObject) => {
     Object.keys(dirtyObject).forEach((key) => {
-
         if(typeof dirtyObject[key] === 'object'  && dirtyObject[key] !== null){
             objectCleaner(dirtyObject[key]);
         }else if (typeof dirtyObject[key] === 'string'){
@@ -163,7 +162,7 @@ objectCleaner = (dirtyObject) => {
 
 fromXML = (xmlData) => {
 
-    let dirtyObject = fromXMLDirty(xmlData).BPWXmlResponse;
+    let dirtyObject = fromXMLDirty(xmlData).BPWXmlResponse ? fromXMLDirty(xmlData).BPWXmlResponse : fromXMLDirty(xmlData).BPWXmlRisposta;
 
     return objectCleaner(dirtyObject);
 

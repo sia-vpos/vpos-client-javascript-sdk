@@ -27,10 +27,30 @@ class Auth3DSStep1Request{
     merchantURL;
 
     constructor(isMasterpass = false, orderID, pan, cvv2 = "", expDate, amount, currency,
-                exponent, accountingMode, network, emailCH = "", userID = "", acquirer  = "", ipAddress  = "",
+                exponent, accountingMode, network, merchantURL  = "", emailCH = "", userID = "", acquirer  = "", ipAddress  = "",
                 usrAuthFlag = "", opDescr = "", options = "", antifraud = "", productRef = "", name = "", surname = "",
-                taxID = "", createPanAlias = "", inPerson = "", merchantURL  = ""
+                taxID = "", createPanAlias = "", inPerson = ""
     ) {
+        this.isMasterPass = isMasterpass;
+        this.orderID = orderID;
+        this.pan = pan;
+        this.cvv2 = cvv2;
+        this.expDate = expDate;
+        this.amount = amount;
+        this.currency = currency;
+        this.exponent = exponent;
+        this.accountingMode = accountingMode;
+        this.network = network;
+        this.merchantURL = merchantURL;
+        this.emailCH = emailCH;
+        this.userID = userID;
+        this.acquirer = acquirer;
+        this.ipAddress = ipAddress;
+        this.usrAuthFlag = usrAuthFlag;
+        this.taxID = taxID;
+        this.createPanAlias = createPanAlias;
+        this.inPerson = inPerson;
+
     }
 
     get isMasterpass(){
@@ -255,12 +275,6 @@ class Auth3DSStep1Request{
 
     set merchantURL(merchantURL) {
         this.merchantURL = merchantURL;
-    }
-
-    constructor() {
-        /*
-        * no args constructor
-        * */
     }
 
     toString(){

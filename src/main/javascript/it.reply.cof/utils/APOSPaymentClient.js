@@ -1,29 +1,10 @@
 const httpsUtil = require('https');
-const requester = require('./RequestBuilder');
 const xmlUtils = require('./XMLUtils');
 const fs = require('fs');
 const hostUrlFormatter = require('./HostUrlFormatter')
 
 let AposPaymentClient = class APOSPaymentClient {
 
-    simpleClient = (urlWebApi) => {
-        options.host = hostUrlFormatter(urlWebApi).host;
-        options.path = hostUrlFormatter(urlWebApi).path;
-    }
-
-    proxyClient = (urlWebApi, proxyName, proxyPort) => {
-        options.host = hostUrlFormatter(urlWebApi).host;
-        options.path = hostUrlFormatter(urlWebApi).path;
-        options.proxy = proxyName + ':' + proxyPort;
-    }
-
-    sslClient = (urlWebApi, pathKey, pathCert) => {
-        options.host = hostUrlFormatter(urlWebApi).host;
-        options.path = hostUrlFormatter(urlWebApi).path;
-        options.key = fs.readFileSync(pathKey);
-        options.cert = fs.readFileSync(pathCert);
-
-    }
 
     options = {
 
@@ -35,16 +16,71 @@ let AposPaymentClient = class APOSPaymentClient {
 
     }
 
+
+
+    simpleClient = (urlWebApi) => {
+        this.options.host = hostUrlFormatter(urlWebApi).host;
+        this.options.path = hostUrlFormatter(urlWebApi).path;
+    }
+
+    proxyClient = (urlWebApi, proxyName, proxyPort) => {
+        this.options.host = hostUrlFormatter(urlWebApi).host;
+        this.options.path = hostUrlFormatter(urlWebApi).path;
+        this.options.proxy = proxyName + ':' + proxyPort;
+    }
+
+    sslClient = (urlWebApi, pathKey, pathCert) => {
+        this.options.host = hostUrlFormatter(urlWebApi).host;
+        this.options.path = hostUrlFormatter(urlWebApi).path;
+        this.options.key = fs.readFileSync(pathKey);
+        this.options.cert = fs.readFileSync(pathCert);
+
+    }
+
+
 }
 
-setProxy = (options, proxyName, proxyPort) => {
-    options.proxy = proxyName + ':' + proxyPort;
+
+
+setProxy = (proxyName, proxyPort) => {
+    this.options.proxy = proxyName + ':' + proxyPort;
 
 }
 
+aposClientSetup = (hostUrl) => {
+    const setup = new AposPaymentClient();
+    let body = 'data=';
 
-aposCaller = function(options, body) {
+    setup.simpleClient(hostUrl);
 
+    return setup.options;
+
+};
+
+aposProxyClientSetup = (hostUrl, proxyName, proxyPort) => {
+    const setup = new AposPaymentClient();
+    let body = 'data=';
+    setup.proxyClient(hostUrl, proxyName, proxyPort);
+    return setup.options;
+
+};
+
+aposSSLClientSetup = (hostUrl, pathKey, pathCert, setProxy = null, proxyName = null, proxyPort = null) => {
+    const setup = new AposPaymentClient();
+    let body = 'data=';
+
+    setup.sslClient(hostUrl, pathKey, pathCert);
+
+    if(setProxy && proxyName !== null && proxyPort !== null){
+        setProxy(proxyName, proxyPort);
+    }
+
+    return setup.options;
+
+};
+
+
+aposCaller = function(options, body, encoder) {
     const req = httpsUtil.request(options, (res) => {
         res.setEncoding('utf8');
         let buffer = "";
@@ -55,9 +91,12 @@ aposCaller = function(options, body) {
                 buffer = chunk;
             });
             res.on('end', function (chunk) {
-               result = xmlUtils.fromXML(buffer);
-                return result;
-
+                if(typeof buffer !== 'undefined' &&  buffer !== null) {
+                    result = xmlUtils.fromXML(buffer);
+                    verifyMacResponse(result, encoder);
+                }else{
+                    throw new Error("Bad Request");
+                }
             })
         }
     });
@@ -72,43 +111,61 @@ aposCaller = function(options, body) {
 
 }
 
-aposClientSetup = (hostUrl) => {
-    setup = new AposPaymentClient();
+verifyMacResponse = (response, encoder) => {
 
-    setup.simpleClient(hostUrl);
+    const NEUTRAL_MAC_VALUE = "NULL";
+    let rezMAC = [response.Timestamp, response.Result]
+    let responseMac = encoder.getMAC(rezMAC);
 
-    return setup.options;
+    if (!response.MAC === NEUTRAL_MAC_VALUE && !response.MAC === responseMac)
+        throw new Error("Response MAC is not valid");
+    if (!(!response.MAC === NEUTRAL_MAC_VALUE && !response.MAC === responseMac))
+        console.log(response.MAC + " " + responseMac)
 
-};
+    if (response.Data !== null && typeof response.Data.Operation !== 'undefined') {
+        let opMacData = [];
+        Object.keys(response.Data.Operation).forEach((data)=>{
+            opMacData.push(response.Data.Operation[data])
+        })
+        let operationMac = encoder.MAC(opMacData);
+        if (!response.Data.Operation.Mac === NEUTRAL_MAC_VALUE && !response.Data.Operation.Mac === operationMac)
+            throw new Error("Operation MAC is not valid");
 
-aposProxyClientSetup = (hostUrl, proxyName, proxyPort) => {
-    setup = new AposPaymentClient();
+    }
 
-    setup.proxyClient(hostUrl, proxyName, proxyPort);
+    if (response.Data !== null && typeof response.Data.Authorization !== 'undefined') {
+        let authMacData = [];
+        Object.keys(response.Data.Authorization).forEach((auth) => {
+            if(typeof auth === 'string'){
+                authMacData.push(response.Data.Authorization[auth]);
+            }else if(typeof auth === 'object'){
+                Object.keys(auth).forEach((data)=>{
+                    authMacData.push(auth[data]);
 
-    return setup.options;
+                })
+                let authorizationMac = encoder.getMAC(authMacData);
+                authMacData = [];
+                if (!auth.MAC === NEUTRAL_MAC_VALUE && !auth.MAC === authorizationMac)
+                    throw new Error("Response MAC is not valid");
+            }
+        })
 
-};
+        if(authMacData.length) {
+            let authorizationMac = encoder.getMAC(authMacData);
+            if (!response.Data.Authorization.MAC === NEUTRAL_MAC_VALUE && !response.Data.Authorization.MAC === authorizationMac)
+                throw new Error("Response MAC is not valid");
 
-aposSSLClientSetup = (hostUrl, pathKey, pathCert) => {
-    const setup = new AposPaymentClient();
-
-    setup.sslClient(hostUrl, pathKey, pathCert);
-
-    return setup.options;
-
-};
-
-module.exports = {
-
-    aposCaller : aposCaller,
-    aposClientSetup : aposClientSetup,
-    aposProxyClientSetup : aposProxyClientSetup,
-    aposSSLClientSetup : aposSSLClientSetup,
-    setProxy : setProxy
-
+        }
+    }
 }
 
 
+module.exports = {
+    aposClientSetup: aposClientSetup,
+    aposProxyClientSetup: aposProxyClientSetup,
+    aposSSLClientSetup: aposSSLClientSetup,
+    aposCaller : aposCaller
+
+}
 
 

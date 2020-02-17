@@ -3,12 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="11aeef7b-7ef7-4f51-8144-70755d3c7801" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/client/VPOSClient.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/client/VPOSClient.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/client/VPOSClientAbstract.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/client/VPOSClientAbstract.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/Application.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/Application.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/client/VPOSClientSSL.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/client/VPOSClientSSL.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/client/VPOSClientStandard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/client/VPOSClientStandard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/client/VPOSClientWithProxy.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/client/VPOSClientWithProxy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/Auth3DSStep1Request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/Auth3DSStep1Request.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/APOSPaymentClient.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/APOSPaymentClient.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/HTMLGenerator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/HTMLGenerator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/Encoder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/Encoder.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/RequestBuilder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/RequestBuilder.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/XMLUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/XMLUtils.js" afterDir="false" />
     </list>
@@ -68,6 +69,11 @@
       <recent name="C:\Users\danie\Documents\GitHub\javascript-library\src\main\resources" />
     </key>
   </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="002.30" />
+    </option>
+  </component>
   <component name="RunManager">
     <configuration name="Constants.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/constants/Constants.js" working-dir="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/constants">
       <method v="2" />
@@ -105,7 +111,9 @@
       <workItem from="1581322974709" duration="20936000" />
       <workItem from="1581409442565" duration="36507000" />
       <workItem from="1581580985883" duration="23147000" />
-      <workItem from="1581669034743" duration="12017000" />
+      <workItem from="1581669034743" duration="22666000" />
+      <workItem from="1581847651328" duration="6734000" />
+      <workItem from="1581925934344" duration="31892000" />
     </task>
     <task id="LOCAL-00001" summary="APOSClient draft">
       <created>1580403587065</created>
@@ -191,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581612430686</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Almost completed">
+      <created>1581689979805</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1581689979805</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,7 +238,8 @@
     <MESSAGE value="New ReqRefNum generator" />
     <MESSAGE value="Fixed payment redirect" />
     <MESSAGE value="card tokenizer method + fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="card tokenizer method + fixes" />
+    <MESSAGE value="Almost completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Almost completed" />
   </component>
   <component name="WindowStateProjectService">
     <state x="496" y="88" key="#Constants.js" timestamp="1581587188992">
@@ -250,10 +266,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="596" y="259" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1581412889489" />
-    <state x="245" y="8" key="CommitChangelistDialog2" timestamp="1581689874405">
+    <state x="245" y="8" key="CommitChangelistDialog2" timestamp="1581689977095">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="245" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581689874405" />
+    <state x="245" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1581689977095" />
     <state x="549" y="155" key="FileChooserDialogImpl" timestamp="1580297007715">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -330,13 +346,29 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="463" y="10" width="609" height="804" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1580393759570" />
-    <state x="798" y="190" key="run.anything.popup" timestamp="1581586080603">
+    <state x="798" y="190" width="672" height="677" key="run.anything.popup" timestamp="1581890066080">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="798" y="190" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1581586080603" />
+    <state x="798" y="190" width="672" height="677" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1581890066080" />
     <state x="692" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1581505468528">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="692" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1581505468528" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/RequestBuilder.js</url>
+          <line>11</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/RequestBuilder.js</url>
+          <line>666</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
