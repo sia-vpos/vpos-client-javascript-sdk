@@ -1,7 +1,7 @@
 const paymentClient = require('../utils/APOSPaymentClient').aposClientSetup;
 const aposCaller = require('../utils/APOSPaymentClient').aposCaller;
 const RequestBuilder = require('../utils/RequestBuilder');
-const Encoder = require('../utils/Encoder');
+const COFException = require('../utils/COFException');
 
 class VPOSClientStandard {
 
@@ -25,50 +25,73 @@ class VPOSClientStandard {
 
 
     start3dsAuth = (headerItem, dataItem, data3DSObject) => {
-        let options = this.options;
-        let body = 'data=';
-        body += this.requester.buildBPWXmlRequest(this.requester.buildAuth3DSStep1Request(headerItem, dataItem, data3DSObject, this.encoder));
-        aposCaller(options, body, this.encoder);
+        try {
+            let options = this.options;
+            let body = 'data=';
+            body += this.requester.buildBPWXmlRequest(this.requester.buildAuth3DSStep1Request(headerItem, dataItem, data3DSObject, this.encoder));
+            aposCaller(options, body, this.encoder);
+        } catch(e){
+            throw new COFException(e.message);
+        }
 
     }
 
     start3DSAuthStep2 = (headerItem, dataItem) => {
-        let options = this.options;
-        let body = 'data=';
-        body += this.requester.buildBPWXmlRequest(this.requester.build3DSStep2AuthRequest(headerItem, dataItem, this.encoder));
-        aposCaller(options, body, this.encoder);
-
+        try {
+            let options = this.options;
+            let body = 'data=';
+            body += this.requester.buildBPWXmlRequest(this.requester.build3DSStep2AuthRequest(headerItem, dataItem, this.encoder));
+            aposCaller(options, body, this.encoder);
+        } catch(e){
+            throw new COFException(e.message);
+        }
     }
 
     confirmTransaction = (headerItem, dataItem) => {
-        let options = this.options;
-        let body = 'data=';
-        body += this.requester.buildBPWXmlRequest(this.requester.buildConfirmRequest(headerItem, dataItem, this.encoder));
-        aposCaller(options, body, this.encoder);
+        try {
+            let options = this.options;
+            let body = 'data=';
+            body += this.requester.buildBPWXmlRequest(this.requester.buildConfirmRequest(headerItem, dataItem, this.encoder));
+            aposCaller(options, body, this.encoder);
+        }catch(e){
+            throw new COFException(e.message);
+        }
 
     }
 
     refundPayment = (headerItem, dataItem) => {
-        let options = this.options;
-        let body = 'data=';
-        body += this.requester.buildBPWXmlRequest(this.requester.buildRefundRequest(headerItem, dataItem, this.encoder));
-        aposCaller(options, body, this.encoder);
+        try {
+            let options = this.options;
+            let body = 'data=';
+            body += this.requester.buildBPWXmlRequest(this.requester.buildRefundRequest(headerItem, dataItem, this.encoder));
+            aposCaller(options, body, this.encoder);
+        }catch(e){
+            throw new COFException(e.message);
+        }
 
     }
 
     verifyRequest = (headerItem, dataItem) => {
-        let options = this.options;
-        let body = 'data=';
-        body += this.requester.buildBPWXmlRequest(this.requester.buildVerifyRequest(headerItem, dataItem, this.encoder));
-        aposCaller(options, body, this.encoder);
+        try {
+            let options = this.options;
+            let body = 'data=';
+            body += this.requester.buildBPWXmlRequest(this.requester.buildVerifyRequest(headerItem, dataItem, this.encoder));
+            aposCaller(options, body, this.encoder);
+        }catch(e){
+            throw new COFException(e.message);
+        }
 
     }
 
     getOrderStatus = (headerItem, dataItem) => {
-        let options = this.options;
-        let body = 'data=';
-        body += this.requester.buildBPWXmlRequest(this.requester.buildOrderStatusRequest(headerItem, dataItem, this.encoder));
-        aposCaller(options, body, this.encoder);
+        try {
+            let options = this.options;
+            let body = 'data=';
+            body += this.requester.buildBPWXmlRequest(this.requester.buildOrderStatusRequest(headerItem, dataItem, this.encoder));
+            aposCaller(options, body, this.encoder);
+        }catch(e){
+            throw new COFException(e.message);
+        }
 
     }
 
