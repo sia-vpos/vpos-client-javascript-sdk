@@ -1,8 +1,7 @@
 'use strict';
 const crypto = require("crypto");
-const algorithms = require("./MacAlgorithms");
 
-class Encoder{
+class Encoder {
 
     algorithm;
     key;
@@ -13,23 +12,23 @@ class Encoder{
 
     }
 
-    set algorithm(value){
+    set algorithm(value) {
         this.algorithm = value;
     }
 
-    get algorithm(){
+    get algorithm() {
         return this.algorithm
     }
 
-    set key(value){
+    set key(value) {
         this.key = value;
     }
 
-    get key(){
+    get key() {
         return this.key;
     }
 
-     getMAC = function (myObject) {
+    getMAC = function (myObject) {
         let myString = "";
 
         let appendField = function (value, key) {
@@ -55,8 +54,8 @@ class Encoder{
 
         Object.getOwnPropertyNames(myObject).forEach(function (field) {
             if (myObject[field] !== null && typeof myObject[field] !== 'undefined') {
-                if(field !== 'length')
-                myString += appendField(myObject[field], field.toUpperCase());
+                if (field !== 'length')
+                    myString += appendField(myObject[field], field.toUpperCase());
             }
         });
 
@@ -71,9 +70,6 @@ class Encoder{
     }
 
 }
-
-
-
 
 
 module.exports = Encoder;

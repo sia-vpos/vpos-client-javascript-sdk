@@ -1,4 +1,4 @@
-class Data3DS{
+class Data3DS {
 
     service;
     eci;
@@ -10,13 +10,13 @@ class Data3DS{
 
     constructor(service, eci, xid, cavv, paresStatus, scEnrollStatus, signatureVerification) {
 
-        this.service =  service;
-        this.eci = eci;
-        this.xid = xid;
-        this.cavv = cavv;
-        this.paresStatus = paresStatus;
-        this.scEnrollStatus = scEnrollStatus;
-        this.signatureVerification = signatureVerification;
+        this.service = service.match('[SV47]{4}') ? service : null;
+        this.eci = eci.match('([01]|[02]|[05]|[07]){2}') ? eci : null;
+        this.xid = xid.match('{40}') ? xid : null;
+        this.cavv = cavv.match('{40}') ? cavv : null;
+        this.paresStatus = paresStatus.match('([Y]|[N]|[A]|[U]){1}') ? paresStatus : null;
+        this.scEnrollStatus = scEnrollStatus.match('([Y]|[N]|[U]){1}') ? scEnrollStatus : null;
+        this.signatureVerification = signatureVerification.match('([Y]|[N]){1}') ? signatureVerification : null;
 
     }
 
@@ -76,10 +76,10 @@ class Data3DS{
         this.signatureVerification = signatureVerification;
     }
 
-    toString(){
+    toString() {
         return "Service: " + this.service + " Eci: " + this.eci + " Xid: " + this.xid + " CAVV: " + this.cavv
-                + "\nParResStatus: " + this.paresStatus + " ScEnrollStatus: " + this.scEnrollStatus +
-                " SignatureVerification: " + this.scEnrollStatus;
+            + "\nParResStatus: " + this.paresStatus + " ScEnrollStatus: " + this.scEnrollStatus +
+            " SignatureVerification: " + this.scEnrollStatus;
 
     }
 

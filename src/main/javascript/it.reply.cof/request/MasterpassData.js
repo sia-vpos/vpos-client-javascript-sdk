@@ -1,17 +1,12 @@
-class MasterpassData{
+class MasterpassData {
 
     pp_AuthenticationMethod;
     pp_CardEnrollMethod;
 
-    constructor(authenticationMethod, cardEnrollMethod) {
-        this.pp_AuthenticationMethod = authenticationMethod;
-        this.pp_CardEnrollMethod = cardEnrollMethod;
-    }
-
     constructor(pp_AuthenticationMethod, pp_CardEnrollMethod) {
 
-        this.pp_AuthenticationMethod = pp_AuthenticationMethod;
-        this.pp_CardEnrollMethod = pp_CardEnrollMethod;
+        this.pp_AuthenticationMethod = pp_AuthenticationMethod.match('[MERCHANT ONLY]|[3DS]|[NO AUTHENTICATION]){3,20}') ? pp_CardEnrollMethod : null;
+        this.pp_CardEnrollMethod = pp_CardEnrollMethod.match('[Manual]|[Direct Provisioned]|[3DS Manual]|[NFC Tap]){6,20}') ? pp_CardEnrollMethod : null;
 
 
     }
@@ -32,7 +27,7 @@ class MasterpassData{
         this.pp_CardEnrollMethod = pp_CardEnrollMethod;
     }
 
-    toString(){
+    toString() {
         return "pp_AuthenticationMethod: " + this.pp_AuthenticationMethod + " pp_CardEnrollMethod: " + this.pp_CardEnrollMethod;
 
     }

@@ -1,7 +1,6 @@
 const x = require('./XMLUtils');
 const fs = require('fs');
 const reqRef = require('./ReqRefGenerator');
-const key = 'fU-9et-s-Sj8W---E8uhUDu9fEzqr8hH3L95s48r9nq-cq3cBXbp-tZsvGQU--t-nqmtaW-7x-7-C2PdcuFdbHuShQ-pYVWnr-4-';
 
 
 class RequestBuilder {
@@ -59,9 +58,6 @@ class RequestBuilder {
     buildRefundRequest = (
         headerItem, refundItem, encoder
     ) => {
-
-        const refundRequest = require('../request/GeneralRequest');
-        const Header = require('../request/Header');
 
         let refund = refundItem;
         let header = headerItem;
@@ -125,8 +121,6 @@ class RequestBuilder {
         headerItem, confirmItem, encoder
     ) => {
 
-        const confirmRequest = require('../request/ConfirmRequest');
-        const Header = require('../request/Header');
         let confirm =  confirmItem;
         let header =  headerItem;
         let xmlBody = "";
@@ -196,8 +190,7 @@ class RequestBuilder {
         headerItem, bookingItem, encoder
     ) => {
 
-        const bookingRequest = require('../request/GeneralRequest');
-        const Header = require('../request/Header');
+
 
         let booking = bookingItem;
         let header = headerItem;
@@ -257,11 +250,10 @@ class RequestBuilder {
     buildOrderStatusRequest = (
         headerItem, orderStatusItem, encoder
     ) => {
-        const OrderStatusRequest = require('../request/StatusRequest');
-        const Header = require('../request/Header');
 
-        let header = new Header(ShopID, OperatorID);
-        let orderStatus = new OrderStatusRequest(OriginalReqRefNum, OrderID, ProductRef, Options);
+
+        let header = headerItem;
+        let orderStatus =orderStatusItem;
 
         let xmlRequest = {
 
@@ -310,8 +302,6 @@ class RequestBuilder {
     buildVerifyRequest = (
        headerItem, verifyItem , encoder
     ) => {
-        const verifyRequest = require('../request/StatusRequest');
-        const Header = require('../request/Header');
 
         let header = headerItem;
         let verifyRequestInstance = verifyItem;
@@ -392,8 +382,6 @@ class RequestBuilder {
        headerItem, auth3DS1Item,
         data3DSObj = null, encoder
     ) => {
-        const auth3DSStep1Request = require('../request/Auth3DSStep1Request');
-        const Header = require('../request/Header');
 
         let header = headerItem;
         let auth3DSStep1 = auth3DS1Item;
@@ -495,8 +483,7 @@ class RequestBuilder {
     build3DSStep2AuthRequest = (
          headerItem, auth3DS12item, encoder
     ) => {
-        const auth3DSStep2Request = require('../request/Auth3DSStep2Request');
-        const Header = require('../request/Header');
+
 
         let header = headerItem;
         let auth3DSStep2 = auth3DS12item;
@@ -558,7 +545,7 @@ class RequestBuilder {
 
     }
     
-    getHtmlPaymentDocument = (paymentInfos, urlApos, templatePath = "", data3DSJson = null, encoder) => {
+    getHtmlPaymentDocument = (paymentInfos, urlApos, templatePath = "", data3DSJson = null, encoder, merchantKey) => {
 
         const paymentInfo = require('../request/PaymentInfo');
         const HtmlGenerator = require('../utils/HTMLGenerator');
@@ -599,7 +586,7 @@ class RequestBuilder {
         }
 
         if (typeof paymentInfo.data3DSJson !== 'undefined' && paymentInfo.data3DSJson !== null) {
-            myObject['3DSDATA'] = aesEncoder(key, JSON.stringify(paymentInfo.data3DSJson));
+            myObject['3DSDATA'] = aesEncoder(merchantKey, JSON.stringify(paymentInfo.data3DSJson));
 
         }
 

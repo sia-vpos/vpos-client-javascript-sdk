@@ -1,13 +1,7 @@
 const paymentClient = require('../utils/APOSPaymentClient').aposClientSetup;
 const aposCaller = require('../utils/APOSPaymentClient').aposCaller;
 const RequestBuilder = require('../utils/RequestBuilder');
-const fromXML = require('../utils/XMLUtils').fromXML;
 const Encoder = require('../utils/Encoder');
-const Header = require('../request/Header');
-const Auth3DS = require('../request/Auth3DSStep1Request');
-const startKey = 'fU-9et-s-Sj8W---E8uhUDu9fEzqr8hH3L95s48r9nq-cq3cBXbp-tZsvGQU--t-nqmtaW-7x-7-C2PdcuFdbHuShQ-pYVWnr-4-';
-
-
 
 class VPOSClientStandard {
 
@@ -28,9 +22,6 @@ class VPOSClientStandard {
         this.options = paymentClient(urlAPI);
 
     }
-
-
-
 
 
     start3dsAuth = (headerItem, dataItem, data3DSObject) => {

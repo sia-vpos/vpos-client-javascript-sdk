@@ -1,5 +1,5 @@
-class Auth3DSStep2Request{
-    
+class Auth3DSStep2Request {
+
     originalReqRefNum;
     paRes;
     acquirer;
@@ -7,17 +7,18 @@ class Auth3DSStep2Request{
 
     constructor(OriginalReqRefNum, PaRes, Acquirer = "", Options = "") {
 
-        this.originalReqRefNum = OriginalReqRefNum;
+        this.originalReqRefNum = OriginalReqRefNum.match('[20[0-9][0-9](0[1-9]|1[0-2])(0[1-9]|2[0-9]|3[0-1])]{8}\\d{24}') ? OriginalReqRefNum : null;
         this.paRes = PaRes;
-        this.acquirer = Acquirer;
+        this.acquirer = Acquirer.match('[A-Za-z0-9]{5}') ? Acquirer : null;
         this.options = Options;
 
     }
 
-    get options(){
+    get options() {
         return this.options;
     }
-    set options(options){
+
+    set options(options) {
         this.options = options;
 
     };
@@ -27,7 +28,7 @@ class Auth3DSStep2Request{
         * no args constructor
         * */
     }
-    
+
     get header() {
         return this.header;
     }
@@ -60,10 +61,11 @@ class Auth3DSStep2Request{
         this.acquirer = acquirer;
     }
 
-    toString(){
+    toString() {
         return "Header: {" + this.header.toString() + "}" + " OriginalReqRefNum: " + this.originalReqRefNum + " PaRes: " + this.paRes + " Acquirer: " + this.acquirer;
     }
-    
-    
+
+
 }
+
 module.exports = Auth3DSStep2Request;

@@ -17,7 +17,6 @@ let AposPaymentClient = class APOSPaymentClient {
     }
 
 
-
     simpleClient = (urlWebApi) => {
         this.options.host = hostUrlFormatter(urlWebApi).host;
         this.options.path = hostUrlFormatter(urlWebApi).path;
@@ -39,7 +38,6 @@ let AposPaymentClient = class APOSPaymentClient {
 
 
 }
-
 
 
 setProxy = (proxyName, proxyPort) => {
@@ -71,7 +69,7 @@ aposSSLClientSetup = (hostUrl, pathKey, pathCert, setProxy = null, proxyName = n
 
     setup.sslClient(hostUrl, pathKey, pathCert);
 
-    if(setProxy && proxyName !== null && proxyPort !== null){
+    if (setProxy && proxyName !== null && proxyPort !== null) {
         setProxy(proxyName, proxyPort);
     }
 
@@ -79,8 +77,56 @@ aposSSLClientSetup = (hostUrl, pathKey, pathCert, setProxy = null, proxyName = n
 
 };
 
+verifyMacResponse = (response, encoder) => {
 
-aposCaller = function(options, body, encoder) {
+    const NEUTRAL_MAC_VALUE = "NULL";
+    let rezMAC = [response.Timestamp, response.Result]
+    let responseMac = encoder.getMAC(rezMAC);
+
+    if (!response.MAC === NEUTRAL_MAC_VALUE && !response.MAC === responseMac)
+        throw new Error("Response MAC is not valid");
+    if (!(!response.MAC === NEUTRAL_MAC_VALUE && !response.MAC === responseMac))
+        console.log(response.MAC + " " + responseMac)
+
+    if (response.Data !== null && typeof response.Data.Operation !== 'undefined') {
+        let opMacData = [];
+        Object.keys(response.Data.Operation).forEach((data) => {
+            opMacData.push(response.Data.Operation[data])
+        })
+        let operationMac = encoder.MAC(opMacData);
+        if (!response.Data.Operation.Mac === NEUTRAL_MAC_VALUE && !response.Data.Operation.Mac === operationMac)
+            throw new Error("Operation MAC is not valid");
+
+    }
+
+    if (response.Data !== null && typeof response.Data.Authorization !== 'undefined') {
+        let authMacData = [];
+        Object.keys(response.Data.Authorization).forEach((auth) => {
+            if (typeof auth === 'string') {
+                authMacData.push(response.Data.Authorization[auth]);
+            } else if (typeof auth === 'object') {
+                Object.keys(auth).forEach((data) => {
+                    authMacData.push(auth[data]);
+
+                })
+                let authorizationMac = encoder.getMAC(authMacData);
+                authMacData = [];
+                if (!auth.MAC === NEUTRAL_MAC_VALUE && !auth.MAC === authorizationMac)
+                    throw new Error("Response MAC is not valid");
+            }
+        })
+
+        if (authMacData.length) {
+            let authorizationMac = encoder.getMAC(authMacData);
+            if (!response.Data.Authorization.MAC === NEUTRAL_MAC_VALUE && !response.Data.Authorization.MAC === authorizationMac)
+                throw new Error("Response MAC is not valid");
+
+        }
+    }
+}
+
+
+aposCaller = function (options, body, encoder) {
     const req = httpsUtil.request(options, (res) => {
         res.setEncoding('utf8');
         let buffer = "";
@@ -91,10 +137,10 @@ aposCaller = function(options, body, encoder) {
                 buffer = chunk;
             });
             res.on('end', function (chunk) {
-                if(typeof buffer !== 'undefined' &&  buffer !== null) {
+                if (typeof buffer !== 'undefined' && buffer !== null) {
                     result = xmlUtils.fromXML(buffer);
                     verifyMacResponse(result, encoder);
-                }else{
+                } else {
                     throw new Error("Bad Request");
                 }
             })
@@ -111,60 +157,13 @@ aposCaller = function(options, body, encoder) {
 
 }
 
-verifyMacResponse = (response, encoder) => {
-
-    const NEUTRAL_MAC_VALUE = "NULL";
-    let rezMAC = [response.Timestamp, response.Result]
-    let responseMac = encoder.getMAC(rezMAC);
-
-    if (!response.MAC === NEUTRAL_MAC_VALUE && !response.MAC === responseMac)
-        throw new Error("Response MAC is not valid");
-    if (!(!response.MAC === NEUTRAL_MAC_VALUE && !response.MAC === responseMac))
-        console.log(response.MAC + " " + responseMac)
-
-    if (response.Data !== null && typeof response.Data.Operation !== 'undefined') {
-        let opMacData = [];
-        Object.keys(response.Data.Operation).forEach((data)=>{
-            opMacData.push(response.Data.Operation[data])
-        })
-        let operationMac = encoder.MAC(opMacData);
-        if (!response.Data.Operation.Mac === NEUTRAL_MAC_VALUE && !response.Data.Operation.Mac === operationMac)
-            throw new Error("Operation MAC is not valid");
-
-    }
-
-    if (response.Data !== null && typeof response.Data.Authorization !== 'undefined') {
-        let authMacData = [];
-        Object.keys(response.Data.Authorization).forEach((auth) => {
-            if(typeof auth === 'string'){
-                authMacData.push(response.Data.Authorization[auth]);
-            }else if(typeof auth === 'object'){
-                Object.keys(auth).forEach((data)=>{
-                    authMacData.push(auth[data]);
-
-                })
-                let authorizationMac = encoder.getMAC(authMacData);
-                authMacData = [];
-                if (!auth.MAC === NEUTRAL_MAC_VALUE && !auth.MAC === authorizationMac)
-                    throw new Error("Response MAC is not valid");
-            }
-        })
-
-        if(authMacData.length) {
-            let authorizationMac = encoder.getMAC(authMacData);
-            if (!response.Data.Authorization.MAC === NEUTRAL_MAC_VALUE && !response.Data.Authorization.MAC === authorizationMac)
-                throw new Error("Response MAC is not valid");
-
-        }
-    }
-}
 
 
 module.exports = {
     aposClientSetup: aposClientSetup,
     aposProxyClientSetup: aposProxyClientSetup,
     aposSSLClientSetup: aposSSLClientSetup,
-    aposCaller : aposCaller
+    aposCaller: aposCaller
 
 }
 

@@ -2,20 +2,20 @@ const openTag = "<";
 const closeTag = ">";
 const closeSlash = "/";
 
-function tagOpener(tagName){
+function tagOpener(tagName) {
     return openTag + tagName.toString() + closeTag;
-    }
+}
 
 function tagCloser(tagName) {
     return openTag + closeSlash + tagName.toString() + closeTag;
 }
 
-function populateSingleXMLElement(tagName, value){
+function populateSingleXMLElement(tagName, value) {
     return tagOpener(tagName) + value + tagCloser(tagName);
 }
 
 let fromXMLDirty;
-!function(r) {
+!function (r) {
     function t(r, t) {
         return a(n(r), t)
     }
@@ -49,6 +49,7 @@ let fromXMLDirty;
         function e(r) {
             r = f(r), r && n(u(r))
         }
+
         for (var a = String.prototype.split.call(r, /<([^!<>?](?:'[\S\s]*?'|"[\S\s]*?"|[^'"<>])*|!(?:--[\S\s]*?--|\[[^\[\]'"<>]+\[[\S\s]*?]]|DOCTYPE[^\[<>]*?\[[\S\s]*?]|(?:ENTITY[^"<>]*?"[\S\s]*?")?[\S\s]*?)|\?[\S\s]*?\?)>/), o = a.length, i = {
             f: []
         }, l = i, c = [], p = 0; p < o;) {
@@ -95,7 +96,7 @@ let fromXMLDirty;
     }
 
     function u(r) {
-        return r.replace(/(&(?:lt|gt|amp|apos|quot|#(?:\d{1,6}|x[0-9a-fA-F]{1,5}));)/g, function(r) {
+        return r.replace(/(&(?:lt|gt|amp|apos|quot|#(?:\d{1,6}|x[0-9a-fA-F]{1,5}));)/g, function (r) {
             if ("#" === r[1]) {
                 var t = "x" === r[2] ? parseInt(r.substr(3), 16) : parseInt(r.substr(2), 10);
                 if (t > -1) return String.fromCharCode(t)
@@ -111,7 +112,7 @@ let fromXMLDirty;
         var s, f = e(r, t),
             u = r.f,
             i = u.length;
-        if (f || i > 1) s = f || {}, u.forEach(function(r) {
+        if (f || i > 1) s = f || {}, u.forEach(function (r) {
             "string" == typeof r ? o(s, c, r) : o(s, r.n, a(r, t))
         });
         else if (i) {
@@ -130,6 +131,7 @@ let fromXMLDirty;
             s instanceof Array ? s.push(n) : t in r ? r[t] = [s, n] : r[t] = n
         }
     }
+
     var i = {
             "&amp;": "&",
             "&lt;": "<",
@@ -143,13 +145,12 @@ let fromXMLDirty;
 }("object" == typeof exports && exports || {});
 
 
-
 objectCleaner = (dirtyObject) => {
     Object.keys(dirtyObject).forEach((key) => {
-        if(typeof dirtyObject[key] === 'object'  && dirtyObject[key] !== null){
+        if (typeof dirtyObject[key] === 'object' && dirtyObject[key] !== null) {
             objectCleaner(dirtyObject[key]);
-        }else if (typeof dirtyObject[key] === 'string'){
-            if(key === '!' || key === '?'){
+        } else if (typeof dirtyObject[key] === 'string') {
+            if (key === '!' || key === '?') {
                 delete dirtyObject[key];
             }
         }
@@ -171,8 +172,8 @@ fromXML = (xmlData) => {
 
 module.exports = {
 
-    populateSingleXMLElement : populateSingleXMLElement,
-    fromXML : fromXML
+    populateSingleXMLElement: populateSingleXMLElement,
+    fromXML: fromXML
 
 }
 

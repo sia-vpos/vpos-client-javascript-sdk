@@ -1,4 +1,4 @@
-class Request{
+class Request {
 
     Operation;
     Timestamp;
@@ -10,41 +10,45 @@ class Request{
         * */
     }
 
-    constructor(Operation, Timestamp){
+    constructor(Operation, Timestamp) {
         this.Operation = Operation;
         this.Timestamp = Timestamp;
 
     }
 
     //Setters
-    setOperation(Operation){
+    setOperation(Operation) {
         this.Operation = Operation;
 
     }
-    setTimestamp(Timestamp){
+
+    setTimestamp(Timestamp) {
         this.Timestamp = Timestamp;
 
     }
-    setMAC(MAC){
+
+    setMAC(MAC) {
         this.MAC = MAC;
 
     }
 
     //Getters
-    getOperation(){
+    getOperation() {
         return this.Operation;
 
     }
-    getTimestamp(){
+
+    getTimestamp() {
         return this.Timestamp;
 
     }
-    getMAC(){
+
+    getMAC() {
         return this.MAC;
 
     }
 
-    toString(){
+    toString() {
         return "Timestamp: " + this.Timestamp + " Operation :" + this.Operation;
 
     }

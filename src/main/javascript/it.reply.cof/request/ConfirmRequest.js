@@ -1,6 +1,6 @@
 const GeneralRequest = require('./GeneralRequest');
 
-class ConfirmRequest extends GeneralRequest{
+class ConfirmRequest extends GeneralRequest {
 
     accountingMode;
     closeOrder;
@@ -8,16 +8,16 @@ class ConfirmRequest extends GeneralRequest{
 
     constructor(transactionid, orderid, amount, currency, exponent, accountingMode, closeOrder, ipAddress = "", opDescr = "", options = "") {
         super(transactionid, orderid, amount, currency, exponent, opDescr = "", options = "");
-        this.accountingMode = accountingMode;
-        this.closeOrder = closeOrder;
-        this.ipAddress = ipAddress;
+        this.accountingMode = accountingMode.match('((D)|(I)){1}') ? accountingMode : null;
+        this.closeOrder = closeOrder.match('((S)|(N)){1}') ? close() : null;
+        this.ipAddress = ipAddress.match('^(?=.*[^\\.]$)((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.?){4}$') ? ipAddress : null;
     }
 
-    get ipAddress(){
+    get ipAddress() {
         return this.ipAddress;
     }
 
-    set ipAddress(ipAddress){
+    set ipAddress(ipAddress) {
         this.ipAddress = ipAddress;
     }
 

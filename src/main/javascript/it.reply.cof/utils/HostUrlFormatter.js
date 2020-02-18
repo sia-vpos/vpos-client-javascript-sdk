@@ -1,4 +1,4 @@
-formatUrl  = (myUrl) => {
+formatUrl = (myUrl) => {
 
     let urlArr = myUrl.substring(8).split('/');
     let host = urlArr.shift();

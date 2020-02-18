@@ -1,5 +1,4 @@
-
-class StatusRequest{
+class StatusRequest {
 
 
     originalReqRefNum;
@@ -64,33 +63,32 @@ class StatusRequest{
 
     stringer = () => {
 
-       var arr = [
-           "operation",
-           "timestamp",
-           "shopid",
-           "operatorid",
-           "originalReqRefNum",
-           "orderid",
-           "options",
-           "productRef"
-       ];
-       var buffer = "";
-       arr.forEach((key) => {
-           buffer += key.toUpperCase() + " : " + this[key] + "\n";
-       })
+        var arr = [
+            "operation",
+            "timestamp",
+            "shopid",
+            "operatorid",
+            "originalReqRefNum",
+            "orderid",
+            "options",
+            "productRef"
+        ];
+        var buffer = "";
+        arr.forEach((key) => {
+            buffer += key.toUpperCase() + " : " + this[key] + "\n";
+        })
 
         return buffer;
 
     }
 
-    toString = () =>{
+    toString = () => {
 
         return this.stringer();
 
     }
 
 
-    
 }
 
 module.exports = StatusRequest;
