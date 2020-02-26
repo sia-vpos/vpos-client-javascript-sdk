@@ -12,20 +12,20 @@ class Encoder {
 
     }
 
-    set algorithm(value) {
-        this.algorithm = value;
-    }
-
     get algorithm() {
         return this.algorithm
     }
 
-    set key(value) {
-        this.key = value;
+    set algorithm(value) {
+        this.algorithm = value;
     }
 
     get key() {
         return this.key;
+    }
+
+    set key(value) {
+        this.key = value;
     }
 
     getMAC = function (myObject) {
@@ -62,11 +62,10 @@ class Encoder {
             let that = this;
 
             myString = myString.substring(1);
-            console.log("\n" + "MAC string: " + myString + "\n");
             const hmac = crypto.createHmac(that.algorithm, that.key);
             hmac.update(myString, "utf8");
             return hmac.digest("hex");
-        }catch(e){
+        } catch (e) {
             throw new Error('Something went wrong while calculating the MAC');
         }
     }

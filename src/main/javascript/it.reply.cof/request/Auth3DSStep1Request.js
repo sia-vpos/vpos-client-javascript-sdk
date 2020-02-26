@@ -42,12 +42,12 @@ class Auth3DSStep1Request {
         this.accountingMode = accountingMode.match('(D|I){1}') ? accountingMode : null;
         this.network = network.match('^[0-9]{2}') ? network : null;
         this.merchantURL = merchantURL.match('[A-Za-z0-9_\\-/:. ]') ? merchantURL : null;
-        this.emailCH = emailCH.match('.{7,50}') ? emailCH : null;
+        this.emailCH = emailCH.match('\\S{7,50}') && emailCH !== "" ? emailCH : null;
         this.userID = userID.match('.{1,255}') ? userID : null;
         this.acquirer = acquirer.match('[A-Za-z0-9]{5}') ? acquirer : null;
         this.ipAddress = ipAddress.match('^(?=.*[^\\.]$)((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.?){4}$') ? ipAddress : null;
         this.usrAuthFlag = usrAuthFlag.match('[0-2]{1}') ? usrAuthFlag : null;
-        this.taxID = taxID.match('^([A-Z0-9]{16}|[0-9]{11}') ? taxID : null;
+        this.taxID = taxID.match('^([A-Z0-9]{16}|[0-9]{11})') ? taxID : null;
         this.createPanAlias = createPanAlias.match('S') ? createPanAlias : null;
         this.inPerson = inPerson.match('([S]|[N]){1}') ? inPerson : null;
 

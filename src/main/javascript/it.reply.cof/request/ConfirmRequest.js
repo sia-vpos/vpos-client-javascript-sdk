@@ -6,10 +6,10 @@ class ConfirmRequest extends GeneralRequest {
     closeOrder;
     ipAddress;
 
-    constructor(transactionid, orderid, amount, currency, exponent, accountingMode, closeOrder, ipAddress = "", opDescr = "", options = "") {
+    constructor(transactionid, orderid, amount, currency, exponent, accountingMode = "", closeOrder = "", ipAddress = "", opDescr = "", options = "") {
         super(transactionid, orderid, amount, currency, exponent, opDescr = "", options = "");
         this.accountingMode = accountingMode.match('((D)|(I)){1}') ? accountingMode : null;
-        this.closeOrder = closeOrder.match('((S)|(N)){1}') ? close() : null;
+        this.closeOrder = closeOrder.match('((S)|(N)){1}') ? closeOrder : null;
         this.ipAddress = ipAddress.match('^(?=.*[^\\.]$)((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.?){4}$') ? ipAddress : null;
     }
 

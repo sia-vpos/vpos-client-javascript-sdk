@@ -15,6 +15,6 @@ class VPOSClientSSL extends VPOSClientStandard {
 
     }
 
-
 }
 
+module.exports = VPOSClientSSL;

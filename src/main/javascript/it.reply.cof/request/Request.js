@@ -4,12 +4,6 @@ class Request {
     Timestamp;
     MAC;
 
-    constructor() {
-        /*
-        * no args constructor
-        * */
-    }
-
     constructor(Operation, Timestamp) {
         this.Operation = Operation;
         this.Timestamp = Timestamp;

@@ -10,3 +10,5 @@ class VPOSClientWithProxy extends VPOSClientStandard {
 
 
 }
+
+module.exports = VPOSClientWithProxy;

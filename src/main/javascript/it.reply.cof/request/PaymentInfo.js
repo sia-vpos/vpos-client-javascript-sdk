@@ -11,32 +11,43 @@ class PaymentInfo {
     accountingMode;
     authorMode;
     data3DSJson;
-    notCompulsoryFields = {
-        'LANG': '',
-        'SHOPEMAIL': '',
-        'OPTIONS': '',
-        'LOCKCARD': '',
-        'COMMIS': '',
-        'EMAIL': '',
-        'ORDDESCR': '',
-        'VSID': '',
-        'OPDESCR': '',
-        'REMAININGDURATION': '',
-        'USERID': '',
-        'BP_POSTEPAY': '',
-        'BP_CARDS': '',
-        'PHONENUMBER': '',
-        'CAUSATION': '',
-        'USER': '',
-        'NAME': '',
-        'SURNAME': '',
-        'TAXID': '',
-        'PRODUCTREF': '',
-        'ANTIFRAUD': ''
+    notCompulsoryFields;
 
-    };
+    constructor(amount, currency, orderId, shopId, urlBack, urlDone, urlMS, accountingMode, authorMode) {
+        this.amount = amount;
+        this.currency = currency;
+        this.orderId = orderId;
+        this.shopId = shopId;
+        this.urlBack = urlBack;
+        this.urlDone = urlDone;
+        this.urlMs = urlMS;
+        this.accountingMode = accountingMode;
+        this.authorMode = authorMode;
+        this.notCompulsoryFields = {
+            'LANG': '',
+            'SHOPEMAIL': '',
+            'OPTIONS': '',
+            'LOCKCARD': '',
+            'COMMIS': '',
+            'EMAIL': '',
+            'ORDDESCR': '',
+            'VSID': '',
+            'OPDESCR': '',
+            'REMAININGDURATION': '',
+            'USERID': '',
+            'BP_POSTEPAY': '',
+            'BP_CARDS': '',
+            'PHONENUMBER': '',
+            'CAUSATION': '',
+            'USER': '',
+            'NAME': '',
+            'SURNAME': '',
+            'TAXID': '',
+            'PRODUCTREF': '',
+            'ANTIFRAUD': ''
 
-    constructor() {
+        };
+
     }
 
     get amount() {

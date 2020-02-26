@@ -44,8 +44,9 @@ class RequestBuilder {
 
 
         Object.getOwnPropertyNames(xmlFields).forEach(key => {
-            if (xmlFields[key] !== "" && typeof xmlFields[key] !== 'undefined')
+            if (xmlFields[key] !== "" && typeof xmlFields[key] !== 'undefined' && xmlFields[key] !== null) {
                 xmlBuffer += "\t" + x.populateSingleXMLElement(key, xmlFields[key]) + "\n";
+            }
         })
 
         xmlBuffer = "\n" + x.populateSingleXMLElement('Data', "\n" + x.populateSingleXMLElement(requestName, xmlBuffer) + "\n");
@@ -121,8 +122,8 @@ class RequestBuilder {
         headerItem, confirmItem, encoder
     ) => {
 
-        let confirm =  confirmItem;
-        let header =  headerItem;
+        let confirm = confirmItem;
+        let header = headerItem;
         let xmlBody = "";
         let xmlBuffer = "";
 
@@ -191,7 +192,6 @@ class RequestBuilder {
     ) => {
 
 
-
         let booking = bookingItem;
         let header = headerItem;
 
@@ -253,7 +253,7 @@ class RequestBuilder {
 
 
         let header = headerItem;
-        let orderStatus =orderStatusItem;
+        let orderStatus = orderStatusItem;
 
         let xmlRequest = {
 
@@ -300,7 +300,7 @@ class RequestBuilder {
     }
 
     buildVerifyRequest = (
-       headerItem, verifyItem , encoder
+        headerItem, verifyItem, encoder
     ) => {
 
         let header = headerItem;
@@ -379,7 +379,7 @@ class RequestBuilder {
     }
 
     buildAuth3DSStep1Request = (
-       headerItem, auth3DS1Item,
+        headerItem, auth3DS1Item,
         data3DSObj = null, encoder
     ) => {
 
@@ -481,7 +481,7 @@ class RequestBuilder {
     }
 
     build3DSStep2AuthRequest = (
-         headerItem, auth3DS12item, encoder
+        headerItem, auth3DS12item, encoder
     ) => {
 
 
@@ -544,10 +544,10 @@ class RequestBuilder {
         return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' + xmlBody;
 
     }
-    
+
     getHtmlPaymentDocument = (paymentInfos, urlApos, templatePath = "", data3DSJson = null, encoder, merchantKey) => {
 
-        const paymentInfo = require('../request/PaymentInfo');
+        const paymentInfo = paymentInfos;
         const HtmlGenerator = require('../utils/HTMLGenerator');
         const aesEncoder = require('../utils/AESEncoder');
 
@@ -606,22 +606,21 @@ class RequestBuilder {
 
     }
 
-    tokenizeCard = (shopId, urlBack, urlDone, urlMs, urlApos, templatePath = "") => {
+    tokenizeCard = (shopId, urlBack, urlDone, urlMs, urlApos, encoder, merchantKey, templatePath = "") => {
         const paymentInfo = require('../request/PaymentInfo');
-        const HtmlGenerator = require('../utils/HTMLGenerator');
 
         paymentInfo.amount = '10';
         paymentInfo.currency = '978';
-        paymentInfo.orderId = 'Virtualizza Carta';
+        paymentInfo.orderId = '9406834360412569123500997001144853035';
         paymentInfo.shopId = shopId;
         paymentInfo.urlBack = urlBack;
         paymentInfo.urlDone = urlDone;
         paymentInfo.urlMs = urlMs;
         paymentInfo.accountingMode = 'D';
         paymentInfo.authorMode = 'I';
-        paymentInfo.nonCompulsoryFields = {'OPTIONS': 'GM'};
+        paymentInfo.notCompulsoryFields = {'OPTIONS': 'GM'};
 
-        return HtmlGenerator.htmlToBase64(templatePath, urlApos, paymentInfo);
+        return this.getHtmlPaymentDocument(paymentInfo, urlApos, "", null, encoder, merchantKey);
 
     }
 
@@ -645,11 +644,12 @@ class RequestBuilder {
             })
 
         } catch (e) {
-           console.log(e.message)
+            console.log(e.message)
         }
 
     }
 
 }
+
 module.exports = RequestBuilder;
 

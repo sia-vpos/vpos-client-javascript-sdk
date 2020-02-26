@@ -5,7 +5,18 @@ class StatusRequest {
     orderid;
     productRef;
     options;
+    macFields = [
+        "operation",
+        "timestamp",
+        "shopid",
+        "operatorid",
+        "originalReqRefNum",
+        "orderid",
+        this.getOptions() !== "" ? "options" : "",
+        this.getProductRef() !== "" ? "productRef" : ""
 
+
+    ]
 
     constructor(originalReqRefNum, orderid, productRef = "", options = "") {
         this.originalReqRefNum = originalReqRefNum;
@@ -14,7 +25,6 @@ class StatusRequest {
         this.options = options;
 
     }
-
 
     getOriginalReqRefNum() {
         return this.originalReqRefNum;
@@ -47,19 +57,6 @@ class StatusRequest {
     setOptions(value) {
         this.options = value;
     }
-
-    macFields = [
-        "operation",
-        "timestamp",
-        "shopid",
-        "operatorid",
-        "originalReqRefNum",
-        "orderid",
-        this.getOptions() !== "" ? "options" : "",
-        this.getProductRef() !== "" ? "productRef" : ""
-
-
-    ]
 
     stringer = () => {
 

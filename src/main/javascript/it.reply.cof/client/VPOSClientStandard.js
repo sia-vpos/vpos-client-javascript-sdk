@@ -1,5 +1,6 @@
 const paymentClient = require('../utils/APOSPaymentClient').aposClientSetup;
 const aposCaller = require('../utils/APOSPaymentClient').aposCaller;
+const Encoder = require('../utils/Encoder');
 const RequestBuilder = require('../utils/RequestBuilder');
 const COFException = require('../utils/COFException');
 
@@ -16,6 +17,9 @@ class VPOSClientStandard {
 
     };
     requester = new RequestBuilder();
+    injectHtmlTemplate = this.requester.injectHtmlTemplate;
+    getHtmlPaymentDocument = this.requester.getHtmlPaymentDocument;
+    tokenize = this.requester.tokenizeCard;
 
     constructor(urlAPI, algorithm, secretKey) {
         this.encoder = new Encoder(algorithm, secretKey);
@@ -23,14 +27,13 @@ class VPOSClientStandard {
 
     }
 
-
     start3dsAuth = (headerItem, dataItem, data3DSObject) => {
         try {
             let options = this.options;
             let body = 'data=';
             body += this.requester.buildBPWXmlRequest(this.requester.buildAuth3DSStep1Request(headerItem, dataItem, data3DSObject, this.encoder));
             aposCaller(options, body, this.encoder);
-        } catch(e){
+        } catch (e) {
             throw new COFException(e.message);
         }
 
@@ -42,7 +45,7 @@ class VPOSClientStandard {
             let body = 'data=';
             body += this.requester.buildBPWXmlRequest(this.requester.build3DSStep2AuthRequest(headerItem, dataItem, this.encoder));
             aposCaller(options, body, this.encoder);
-        } catch(e){
+        } catch (e) {
             throw new COFException(e.message);
         }
     }
@@ -53,7 +56,7 @@ class VPOSClientStandard {
             let body = 'data=';
             body += this.requester.buildBPWXmlRequest(this.requester.buildConfirmRequest(headerItem, dataItem, this.encoder));
             aposCaller(options, body, this.encoder);
-        }catch(e){
+        } catch (e) {
             throw new COFException(e.message);
         }
 
@@ -65,7 +68,7 @@ class VPOSClientStandard {
             let body = 'data=';
             body += this.requester.buildBPWXmlRequest(this.requester.buildRefundRequest(headerItem, dataItem, this.encoder));
             aposCaller(options, body, this.encoder);
-        }catch(e){
+        } catch (e) {
             throw new COFException(e.message);
         }
 
@@ -77,7 +80,7 @@ class VPOSClientStandard {
             let body = 'data=';
             body += this.requester.buildBPWXmlRequest(this.requester.buildVerifyRequest(headerItem, dataItem, this.encoder));
             aposCaller(options, body, this.encoder);
-        }catch(e){
+        } catch (e) {
             throw new COFException(e.message);
         }
 
@@ -89,7 +92,7 @@ class VPOSClientStandard {
             let body = 'data=';
             body += this.requester.buildBPWXmlRequest(this.requester.buildOrderStatusRequest(headerItem, dataItem, this.encoder));
             aposCaller(options, body, this.encoder);
-        }catch(e){
+        } catch (e) {
             throw new COFException(e.message);
         }
 

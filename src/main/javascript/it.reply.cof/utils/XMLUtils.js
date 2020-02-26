@@ -146,16 +146,17 @@ let fromXMLDirty;
 
 
 objectCleaner = (dirtyObject) => {
-    Object.keys(dirtyObject).forEach((key) => {
-        if (typeof dirtyObject[key] === 'object' && dirtyObject[key] !== null) {
-            objectCleaner(dirtyObject[key]);
-        } else if (typeof dirtyObject[key] === 'string') {
-            if (key === '!' || key === '?') {
-                delete dirtyObject[key];
+    if (dirtyObject !== null && typeof dirtyObject !== 'undefined')
+        Object.keys(dirtyObject).forEach((key) => {
+            if (typeof dirtyObject[key] === 'object' && dirtyObject[key] !== null) {
+                objectCleaner(dirtyObject[key]);
+            } else if (typeof dirtyObject[key] === 'string') {
+                if (key === '!' || key === '?') {
+                    delete dirtyObject[key];
+                }
             }
-        }
 
-    })
+        })
 
     return dirtyObject
 
