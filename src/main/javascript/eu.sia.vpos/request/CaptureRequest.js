@@ -1,6 +1,6 @@
 const GeneralRequest = require('./GeneralRequest');
 
-class ConfirmRequest extends GeneralRequest {
+class CaptureRequest extends GeneralRequest {
 
     accountingMode;
     closeOrder;
@@ -51,4 +51,4 @@ class ConfirmRequest extends GeneralRequest {
 
 }
 
-module.exports = ConfirmRequest;
+module.exports = CaptureRequest;

@@ -20,6 +20,7 @@ aesEncrypt = (key, str) => {
     const cipher = crypto.createCipheriv('aes-128-cbc', bitkey, iv);
     let crypt = cipher.update(str, 'utf8', 'base64');
     crypt += cipher.final("base64");
+    crypt = crypt.replace(/\+/g, "");
     return crypt;
 
 }

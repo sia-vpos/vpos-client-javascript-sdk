@@ -1,156 +1,14 @@
-class PaymentInfo {
+class ThreeDSData {
 
-    amount;
-    currency;
-    exponent;
-    orderId;
-    shopId;
-    urlBack;
-    urlDone;
-    urlMs;
-    accountingMode;
-    authorMode;
-    data3DSJson;
-    notCompulsoryFields;
-
-    constructor(amount, currency, orderId, shopId, urlBack, urlDone, urlMS, accountingMode, authorMode) {
-        this.amount = amount;
-        this.currency = currency;
-        this.orderId = orderId;
-        this.shopId = shopId;
-        this.urlBack = urlBack;
-        this.urlDone = urlDone;
-        this.urlMs = urlMS;
-        this.accountingMode = accountingMode;
-        this.authorMode = authorMode;
-        this.notCompulsoryFields = {
-            'LANG': '',
-            'SHOPEMAIL': '',
-            'OPTIONS': '',
-            'LOCKCARD': '',
-            'COMMIS': '',
-            'EMAIL': '',
-            'ORDDESCR': '',
-            'VSID': '',
-            'OPDESCR': '',
-            'REMAININGDURATION': '',
-            'USERID': '',
-            'BP_POSTEPAY': '',
-            'BP_CARDS': '',
-            'PHONENUMBER': '',
-            'CAUSATION': '',
-            'USER': '',
-            'NAME': '',
-            'SURNAME': '',
-            'TAXID': '',
-            'PRODUCTREF': '',
-            'ANTIFRAUD': ''
-
-        };
-
-    }
-
-    get amount() {
-        return this.amount;
-    }
-
-    set amount(value) {
-        this.amount = value;
-    }
-
-    get currency() {
-        return this.currency;
-    }
-
-    set currency(value) {
-        this.currency = value;
-    }
-
-    get exponent() {
-        return this.exponent;
-    }
-
-    set exponent(value) {
-        this.exponent = value;
-    }
-
-    get orderId() {
-        return this.orderId;
-    }
-
-    set orderId(value) {
-        this.orderId = value;
-    }
-
-    get shopId() {
-        return this.shopId;
-    }
-
-    set shopId(value) {
-        this.shopId = value;
-    }
-
-    get urlBack() {
-        return this.urlBack;
-    }
-
-    set urlBack(value) {
-        this.urlBack = value;
-    }
-
-    get urlDone() {
-        return this.urlDone;
-    }
-
-    set urlDone(value) {
-        this.urlDone = value;
-    }
-
-    get urlMs() {
-        return this.urlMs;
-    }
-
-    set urlMs(value) {
-        this.urlMs = value;
-    }
-
-    get accountingMode() {
-        return this.accountingMode;
-    }
-
-    set accountingMode(value) {
-        this.accountingMode = value;
-    }
-
-    get authorMode() {
-        return this.authorMode;
-    }
-
-    set authorMode(value) {
-        this.authorMode = value;
-    }
-
-    get data3DSJson() {
-        return this.data3DSJson;
-    }
-
-    set data3DSJson(value) {
-        this.data3DSJson = value;
-    }
-
-    get notCompulsoryFields() {
-        return this.notCompulsoryFields;
-    }
-
-    set notCompulsoryFields(value) {
-        this.notCompulsoryFields = value
-    }
-
-}
-
-
-class Data3DSJson {
-
+    browserAcceptHeader;
+    browserIP;
+    browserJavaEnabled;
+    browserLanguage;
+    browserColorDepth;
+    browserScreenHeight;
+    browserScreenWidth;
+    browserTZ;
+    browserUserAgent;
     threeDSRequestorChallengeInd;
     addrMatch;
     chAccAgeInd;
@@ -187,7 +45,98 @@ class Data3DSJson {
     deliveryTimeframe;
     preOrderDate;
     preOrderPurchaseInd;
+    reorderItemsInd;
+    shipIndicator
 
+    constructor(){};
+
+    get browserAcceptHeader() {
+        return this.browserAcceptHeader;
+    }
+
+    set browserAcceptHeader(value) {
+        this.browserAcceptHeader = value;
+    }
+
+    get browserIP() {
+        return this.browserIP;
+    }
+
+    set browserIP(value) {
+        this.browserIP = value;
+    }
+
+    get browserJavaEnabled() {
+        return this.browserJavaEnabled;
+    }
+
+    set browserJavaEnabled(value) {
+        this.browserJavaEnabled = value;
+    }
+
+    get browserLanguage() {
+        return this.browserLanguage;
+    }
+
+    set browserLanguage(value) {
+        this.browserLanguage = value;
+    }
+
+    get browserColorDepth() {
+        return this.browserColorDepth;
+    }
+
+    set browserColorDepth(value) {
+        this.browserColorDepth = value;
+    }
+
+    get browserScreenHeight() {
+        return this.browserScreenHeight;
+    }
+
+    set browserScreenHeight(value) {
+        this.browserScreenHeight = value;
+    }
+
+    get browserScreenWidth() {
+        return this.browserScreenWidth;
+    }
+
+    set browserScreenWidth(value) {
+        this.browserScreenWidth = value;
+    }
+
+    get browserTZ() {
+        return this.browserTZ;
+    }
+
+    set browserTZ(value) {
+        this.browserTZ = value;
+    }
+
+    get browserUserAgent() {
+        return this.browserUserAgent;
+    }
+
+    set browserUserAgent(value) {
+        this.browserUserAgent = value;
+    }
+
+    get reorderItemsInd() {
+        return this.reorderItemsInd;
+    }
+
+    set reorderItemsInd(value) {
+        this.reorderItemsInd = value;
+    }
+
+    get shipIndicator() {
+        return this.shipIndicator;
+    }
+
+    set shipIndicator(value) {
+        this.shipIndicator = value;
+    }
 
     get threeDSRequestorChallengeInd() {
         return this.threeDSRequestorChallengeInd;
@@ -477,11 +426,6 @@ class Data3DSJson {
         this.preOrderPurchaseInd = value;
     }
 
-
 }
 
-module.exports = {
-    PaymentInfo: PaymentInfo,
-    Data3DSJson: Data3DSJson
-
-}
+module.exports = ThreeDSData;

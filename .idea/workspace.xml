@@ -2,14 +2,60 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="11aeef7b-7ef7-4f51-8144-70755d3c7801" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/qaplug_profiles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/request/ThreeDS2Step0.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/request/ThreeDS2Step1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/request/ThreeDS2Step2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/request/ThreeDSData.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/utils/ClientConfigurator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/client/VPOSClientStandard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/client/VPOSClientStandard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/Encoder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/Encoder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/Test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/Test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/client/VPOSClientSSL.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/client/VPOSClientStandard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/client/VPosClient.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/client/VPOSClientWithProxy.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/Auth3DSStep1Request.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/Auth3DSStep2Request.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/ConfirmRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/request/CaptureRequest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/Data3DS.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/GeneralRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/request/GeneralRequest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/request/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/MasterpassData.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/PaymentInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/request/PaymentInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/Request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/request/Request.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/Requests.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/request/Requests.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/request/StatusRequest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/request/StatusRequest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/resources/default.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/AESEncoder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/utils/AESEncoder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/APOSPaymentClient.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/COFException.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/utils/VPosClientException.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/Encoder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/utils/Encoder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/Errors.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/HTMLGenerator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/utils/HTMLGenerator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/HostUrlFormatter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/utils/HostUrlFormatter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/MacAlgorithms.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/utils/MacAlgorithms.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/ReqRefGenerator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/utils/ReqRefGenerator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/RequestBuilder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/utils/RequestBuilder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/XMLUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/utils/XMLUtils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -38,10 +84,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="javascript.nodejs.core.library.configured.version" value="12.14.1" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/javascript/it.reply.cof" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Pay Reply/vpos-client-java-sdk" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -50,16 +98,16 @@
     <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.eslint" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\danie\Documents\JS-library\src\main\javascript\it.reply.cof\utils" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\danie\Documents\GitHub\javascript-library\src\main\javascript\it.reply.cof" />
       <recent name="C:\Users\danie\Documents\GitHub\javascript-library\src\main\javascript\it.reply.cof\utils" />
       <recent name="C:\Users\danie\Documents\GitHub\javascript-library\src\main\resources" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\danie\Documents\JS-library\src\main\javascript\it.reply.cof\utils" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -67,10 +115,17 @@
       <command value="002.30" />
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Node.js.Test.js">
     <configuration name="Constants.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/constants/Constants.js" working-dir="$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/constants">
       <method v="2" />
     </configuration>
+    <configuration name="Test.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/Test.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Node.js.Constants.js" />
+      <item itemvalue="Node.js.Test.js" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -109,7 +164,20 @@
       <workItem from="1581925934344" duration="33810000" />
       <workItem from="1581974995613" duration="5298000" />
       <workItem from="1582014567436" duration="544000" />
-      <workItem from="1582015326936" duration="1108000" />
+      <workItem from="1582015326936" duration="1133000" />
+      <workItem from="1582568898425" duration="627000" />
+      <workItem from="1582618008578" duration="462000" />
+      <workItem from="1582618485013" duration="20582000" />
+      <workItem from="1582642206274" duration="5080000" />
+      <workItem from="1582704266642" duration="16627000" />
+      <workItem from="1582726579216" duration="1273000" />
+      <workItem from="1582732848531" duration="10281000" />
+      <workItem from="1582747087902" duration="2000000" />
+      <workItem from="1582749911407" duration="248000" />
+      <workItem from="1582791183818" duration="4398000" />
+      <workItem from="1582880571073" duration="17827000" />
+      <workItem from="1583085395205" duration="2435000" />
+      <workItem from="1583136961979" duration="19064000" />
     </task>
     <task id="LOCAL-00001" summary="APOSClient draft">
       <created>1580403587065</created>
@@ -216,7 +284,21 @@
       <option name="project" value="LOCAL" />
       <updated>1582015109767</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="COFException">
+      <created>1582016872843</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1582016872843</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Final testing round">
+      <created>1582726247495</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1582726247495</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,6 +312,20 @@
             <State>
               <option name="COLUMN_ORDER" />
             </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
           </value>
         </entry>
       </map>
@@ -251,7 +347,9 @@
     <MESSAGE value="Almost completed" />
     <MESSAGE value="Working" />
     <MESSAGE value="Working + clean up" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working + clean up" />
+    <MESSAGE value="COFException" />
+    <MESSAGE value="Final testing round" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final testing round" />
   </component>
   <component name="WindowStateProjectService">
     <state x="496" y="88" key="#Constants.js" timestamp="1581587188992">
@@ -266,123 +364,149 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="605" y="75" key="#Usage_Scope/0.0.1536.824@0.0.1536.824" timestamp="1580296090682" />
-    <state x="223" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580746305115">
+    <state x="223" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582632165703">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="223" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1580746305115" />
+    <state x="223" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1582632165703" />
     <state x="469" y="216" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1579857842876">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="469" y="216" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1579857842876" />
-    <state x="596" y="259" key="#com.intellij.ide.util.MemberChooser" timestamp="1581412889489">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="2516" y="257" key="#com.intellij.ide.util.MemberChooser" timestamp="1583155417223">
+      <screen x="1920" y="0" width="1536" height="824" />
     </state>
+    <state x="2516" y="257" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/1920.0.1536.824@1920.0.1536.824" timestamp="1583155417223" />
     <state x="596" y="259" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1581412889489" />
-    <state x="245" y="8" key="CommitChangelistDialog2" timestamp="1582015108689">
+    <state x="2419" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1583147929310">
+      <screen x="1920" y="0" width="1536" height="824" />
+    </state>
+    <state x="2419" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/1920.0.1536.824@1920.0.1536.824" timestamp="1583147929310" />
+    <state x="245" y="8" key="CommitChangelistDialog2" timestamp="1582726246083">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="245" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1582015108689" />
-    <state x="549" y="155" key="FileChooserDialogImpl" timestamp="1580297007715">
+    <state x="245" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1582726246083" />
+    <state x="2469" y="155" key="FileChooserDialogImpl" timestamp="1583138470458">
+      <screen x="1920" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="155" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1582791246421" />
+    <state x="2469" y="155" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1536.824@1920.0.1536.824" timestamp="1583138470458" />
+    <state x="549" y="155" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1582746992593" />
+    <state width="1493" height="410" key="GridCell.Tab.0.bottom" timestamp="1583160451452">
+      <screen x="1920" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="410" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1582895521625" />
+    <state width="1493" height="410" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1536.824@1920.0.1536.824" timestamp="1583160451452" />
+    <state width="1493" height="410" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583087831748" />
+    <state width="1493" height="410" key="GridCell.Tab.0.center" timestamp="1583160451452">
+      <screen x="1920" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="410" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1582895521624" />
+    <state width="1493" height="410" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1536.824@1920.0.1536.824" timestamp="1583160451452" />
+    <state width="1493" height="410" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1583087831748" />
+    <state width="1493" height="410" key="GridCell.Tab.0.left" timestamp="1583160451452">
+      <screen x="1920" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="410" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1582895521624" />
+    <state width="1493" height="410" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1536.824@1920.0.1536.824" timestamp="1583160451452" />
+    <state width="1493" height="410" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1583087831748" />
+    <state width="1493" height="410" key="GridCell.Tab.0.right" timestamp="1583160451452">
+      <screen x="1920" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="410" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1582895521624" />
+    <state width="1493" height="410" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1536.824@1920.0.1536.824" timestamp="1583160451452" />
+    <state width="1493" height="410" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1583087831748" />
+    <state width="1493" height="259" key="GridCell.Tab.1.bottom" timestamp="1582726274312">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="155" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1580297007715" />
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1580828747041">
+    <state width="1493" height="259" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1582726274312" />
+    <state width="1493" height="259" key="GridCell.Tab.1.center" timestamp="1582726274312">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580828747041" />
-    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1580828747041">
+    <state width="1493" height="259" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1582726274312" />
+    <state width="1493" height="259" key="GridCell.Tab.1.left" timestamp="1582726274312">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1580828747041" />
-    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1580828747041">
+    <state width="1493" height="259" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1582726274312" />
+    <state width="1493" height="259" key="GridCell.Tab.1.right" timestamp="1582726274312">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1580828747041" />
-    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1580828747041">
+    <state width="1493" height="259" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1582726274312" />
+    <state width="1493" height="259" key="GridCell.Tab.2.bottom" timestamp="1582726274313">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1580828747041" />
-    <state width="1515" height="261" key="GridCell.Tab.1.bottom" timestamp="1580749766015">
+    <state width="1493" height="259" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1582726274313" />
+    <state width="1493" height="259" key="GridCell.Tab.2.center" timestamp="1582726274312">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580749766015" />
-    <state width="1515" height="261" key="GridCell.Tab.1.center" timestamp="1580749766014">
+    <state width="1493" height="259" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1582726274312" />
+    <state width="1493" height="259" key="GridCell.Tab.2.left" timestamp="1582726274312">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1580749766014" />
-    <state width="1515" height="261" key="GridCell.Tab.1.left" timestamp="1580749766014">
+    <state width="1493" height="259" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1582726274312" />
+    <state width="1493" height="259" key="GridCell.Tab.2.right" timestamp="1582726274313">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1580749766014" />
-    <state width="1515" height="261" key="GridCell.Tab.1.right" timestamp="1580749766014">
+    <state width="1493" height="259" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1582726274313" />
+    <state width="1493" height="259" key="GridCell.Tab.3.bottom" timestamp="1582726274313">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1580749766014" />
-    <state width="1515" height="261" key="GridCell.Tab.2.bottom" timestamp="1580749766015">
+    <state width="1493" height="259" key="GridCell.Tab.3.bottom/0.0.1536.824@0.0.1536.824" timestamp="1582726274313" />
+    <state width="1493" height="259" key="GridCell.Tab.3.center" timestamp="1582726274313">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="261" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580749766015" />
-    <state width="1515" height="261" key="GridCell.Tab.2.center" timestamp="1580749766015">
+    <state width="1493" height="259" key="GridCell.Tab.3.center/0.0.1536.824@0.0.1536.824" timestamp="1582726274313" />
+    <state width="1493" height="259" key="GridCell.Tab.3.left" timestamp="1582726274313">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="261" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1580749766015" />
-    <state width="1515" height="261" key="GridCell.Tab.2.left" timestamp="1580749766015">
+    <state width="1493" height="259" key="GridCell.Tab.3.left/0.0.1536.824@0.0.1536.824" timestamp="1582726274313" />
+    <state width="1493" height="259" key="GridCell.Tab.3.right" timestamp="1582726274313">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="261" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1580749766015" />
-    <state width="1515" height="261" key="GridCell.Tab.2.right" timestamp="1580749766015">
+    <state width="1493" height="259" key="GridCell.Tab.3.right/0.0.1536.824@0.0.1536.824" timestamp="1582726274313" />
+    <state x="522" y="59" key="SettingsEditor" timestamp="1582618467262">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="261" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1580749766015" />
-    <state width="1515" height="261" key="GridCell.Tab.3.bottom" timestamp="1580749766016">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="522" y="59" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1582618467262" />
+    <state x="2390" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1583136962380">
+      <screen x="1920" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="261" key="GridCell.Tab.3.bottom/0.0.1536.824@0.0.1536.824" timestamp="1580749766016" />
-    <state width="1515" height="261" key="GridCell.Tab.3.center" timestamp="1580749766016">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1515" height="261" key="GridCell.Tab.3.center/0.0.1536.824@0.0.1536.824" timestamp="1580749766016" />
-    <state width="1515" height="261" key="GridCell.Tab.3.left" timestamp="1580749766016">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1515" height="261" key="GridCell.Tab.3.left/0.0.1536.824@0.0.1536.824" timestamp="1580749766016" />
-    <state width="1515" height="261" key="GridCell.Tab.3.right" timestamp="1580749766016">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1515" height="261" key="GridCell.Tab.3.right/0.0.1536.824@0.0.1536.824" timestamp="1580749766016" />
-    <state x="522" y="59" key="SettingsEditor" timestamp="1580296402571">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="522" y="59" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1580296402571" />
+    <state x="470" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824/1920.0.1536.824@0.0.1536.824" timestamp="1582791183722" />
+    <state x="2390" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824/1920.0.1536.824@1920.0.1536.824" timestamp="1583136962380" />
+    <state x="470" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1583085402070" />
     <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1581978674451">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1581978674451" />
-    <state x="463" y="10" width="609" height="804" key="find.popup" timestamp="1580393759570">
+    <state x="2081" y="121" width="1507" height="810" key="dock-window-1" timestamp="1582909643573">
+      <screen x="1920" y="0" width="1536" height="824" />
+    </state>
+    <state x="2081" y="121" width="1507" height="810" key="dock-window-1/0.0.1536.824/1920.0.1536.824@1920.0.1536.824" timestamp="1582909643573" />
+    <state x="463" y="10" width="611" height="804" key="find.popup" timestamp="1582744637918">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="463" y="10" width="609" height="804" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1580393759570" />
+    <state x="463" y="10" width="611" height="804" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1582744637918" />
     <state x="798" y="190" width="672" height="677" key="run.anything.popup" timestamp="1581890066080">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="798" y="190" width="672" height="677" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1581890066080" />
-    <state x="692" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1581505468528">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="2612" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1582795103356">
+      <screen x="1920" y="0" width="1536" height="824" />
     </state>
-    <state x="692" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1581505468528" />
+    <state x="2612" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1536.824@1920.0.1536.824" timestamp="1582795103356" />
+    <state x="692" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1582748313871" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/RequestBuilder.js</url>
-          <line>10</line>
-          <option name="timeStamp" value="3" />
+          <url>file://$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/utils/ClientConfigurator.js</url>
+          <line>155</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/main/javascript/it.reply.cof/utils/RequestBuilder.js</url>
-          <line>653</line>
-          <option name="timeStamp" value="5" />
+          <url>file://$PROJECT_DIR$/src/main/javascript/eu.sia.vpos/utils/ClientConfigurator.js</url>
+          <line>134</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

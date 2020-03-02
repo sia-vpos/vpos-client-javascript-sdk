@@ -1,20 +1,14 @@
-const COFException = require("./COFException");
+const COFException = require("./VPosClientException");
 const fs = require("fs");
 const FORM_PATTERN = "PGZvcm0gYWN0aW9uPSJbQVBPU19VUkxdIiBtZXRob2Q9IlBPU1QiPjxpbnB1dCBuYW1lPSJQQUdFIiB0eXBlPSJoaWRkZW4iIHZhbHVlPSJMQU5EIj5bUEFSQU1FVEVSU108aW5wdXQgaWQ9InN1Ym1pdCIgc3R5bGU9ImRpc3BsYXk6IG5vbmU7IiB0eXBlPXN1Ym1pdCAgdmFsdWU9Ii4iPjwvZm9ybT4=";
 const INPUT_PATTERN = "PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iS0VZIiB2YWx1ZT0iVkFMVUUiPg==";
 const SCRIPT = "PHNjcmlwdCB0eXBlPSJ0ZXh0L2phdmFzY3JpcHQiPndpbmRvdy5vbmxvYWQgPSBmdW5jdGlvbigpe3NldFRpbWVvdXQoZnVuY3Rpb24oKXtkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnc3VibWl0JykuY2xpY2soKTt9LCBbREVMQVldKTt9PC9zY3JpcHQ+";
 const HTML_PATH = ".\\resources\\default.html";
+const defaultHTML = "<div onload=\"fun = function(){setTimeout(function(){document.getElementById('submit').click();}, [DELAY]);}\"><form action=\"[APOS_URL]\" method=\"POST\"><input name=\"PAGE\" type=\"hidden\" value=\"LAND\">[PARAMETERS]<input id=\"submit\" style=\"display: none;\" type=submit  value=\".\"></form></div>";
 
 
-function htmlToBase64(isCustomHTML, urlPayment, params) {
-    let html = "";
-    let path = isCustomHTML ? isCustomHTML : HTML_PATH;
-    try {
-        html = fs.readFileSync(path);
-    } catch (e) {
-        let addInfo = "\nInside HTMLGenerator's htmlToBase64 function, invalid html path";
-        throw COFException.constructor(e.message + addInfo);
-    }
+function htmlToBase64( urlPayment, params) {
+    let html = defaultHTML;
 
     return Buffer.from(Buffer.from(html.toString()
         .replace("[APOS_URL]", urlPayment)).toString()
