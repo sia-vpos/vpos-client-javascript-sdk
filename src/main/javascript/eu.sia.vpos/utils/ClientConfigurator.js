@@ -68,12 +68,11 @@ aposSSLClientSetup = (hostUrl, pathKey, pathCert, setProxy = null, proxyName = n
 };
 
 
-
 module.exports = {
     aposClientSetup: aposClientSetup,
     aposProxyClientSetup: aposProxyClientSetup,
     aposSSLClientSetup: aposSSLClientSetup,
-    setProxy : setProxy
+    setProxy: setProxy
 }
 
 

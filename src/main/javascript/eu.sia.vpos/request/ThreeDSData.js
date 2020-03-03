@@ -48,7 +48,8 @@ class ThreeDSData {
     reorderItemsInd;
     shipIndicator
 
-    constructor(){};
+    constructor() {
+    };
 
     get browserAcceptHeader() {
         return this.browserAcceptHeader;

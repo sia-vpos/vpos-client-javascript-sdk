@@ -1,4 +1,4 @@
-class ThreeDS2Step2{
+class ThreeDS2Step2 {
 
     ThreeDsTransId;
 

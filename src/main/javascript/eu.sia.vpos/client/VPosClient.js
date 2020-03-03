@@ -2,20 +2,22 @@ const httpsUtil = require('https');
 const xmlUtils = require('../utils/XMLUtils');
 const Encoder = require('../utils/Encoder');
 const RequestBuilder = require('../utils/RequestBuilder');
-const VPosClientException= require('../utils/VPosClientException');
+const VPosClientException = require('../utils/VPosClientException');
 
 class VPosClient {
 
     shopID;
-    encoder;
-    options = {};
     merchantKey;
+    encoder;
+    redirectEncoder;
+    options = {};
     requester = new RequestBuilder();
 
-    constructor(shopID, algorithm, secretKey, merchantKey,options) {
+    constructor(shopID, algorithm, secretKey, merchantKey, options) {
         this.shopID = shopID;
-        this.encoder = new Encoder(algorithm, secretKey);
         this.merchantKey = merchantKey;
+        this.encoder = new Encoder(algorithm, secretKey);
+        this.redirectEncoder = new Encoder(algorithm, merchantKey);
         this.options = options;
     }
 
@@ -132,7 +134,7 @@ class VPosClient {
         })
     }
 
-    verifyMAC = (myUrl) => {
+    verifyMACREDIRECT = (myUrl) => {
 
         let queryBegin = myUrl.indexOf('?') + 1;
         let query = myUrl.substring(queryBegin);
@@ -237,7 +239,7 @@ class VPosClient {
 
         }
 
-        myObject['MAC'] = this.encoder.getMAC(myObject);
+        myObject['MAC'] = this.redirectEncoder.getMAC(myObject);
         myObject['URLBACK'] = paymentInfo.urlBack;
 
         if (paymentInfo.notCompulsoryFields.LANG) {
@@ -256,6 +258,7 @@ class VPosClient {
 }
 
 function aposCaller(options, body, encoder) {
+    console.log(body);
     return new Promise((resolve, reject) => {
         const req = httpsUtil.request(options, (res) => {
             res.setEncoding('utf8');

@@ -1,7 +1,7 @@
-const SHOP_ID = "129286666666667";
+const SHOP_ID = "129281292800104";
 const PAN_ALIAS = "0000847379064699692";
-const API_RESULT_KEY = "qJS-dSZx7DG-dyetrvTyS-a4CGLkBkCxY-n-SuCb-sdUbhgv5Ghea7tuXap-m4cC-RM-q-a8JGRPA-zV-dSLwnpGs4VkkrNU-Jqz";
-const SECRET_KEY_MERCHANT = "dnC8ybnbPaBSNYHsN5vq-pcaf5QXV2YHpFStxjGfY3wftC-7-PZkL5dbhP--em-DV24-YeCKMKr-ENZ-nE3JHMvqeyYDKJ3wK8b2";
+const API_RESULT_KEY = "nS-zLHC35Pzu47m-AZtRejrd-xd2SsudbpKmmfGgD-9-dJjRQpm8pPJM84uEZgkgq-CfJ9n--sHNHjKx7--Aw-56jEqLVDe-aT-f";
+const SECRET_KEY_MERCHANT = "CNCuDT5Vyws2v9t--RhDdtCwstaV2tqVeqfE-D8G-S-Ds--C-fFkSBxw-3wWBqBC--U9hwN-H-Mj4ZZHMr--YSHLdU5WKLx-cT-T";
 const URL_REDIRECT = "https://atpostest.ssb.it/atpos/pagamenti/main";
 const URL_DONE = "http://localhost:8080/payment-gateway/vpos/tokenize";
 const URL_BACK = "http://localhost:8080/payment-gateway/vpos/tokenize";
@@ -19,69 +19,101 @@ const Client = require('./client/VPosClient');
 const Requests = require('./request/Requests');
 
 let options = ClientConfig.aposProxyClientSetup(URL_WEB_API, PROXYNAME, PROXYPORT);
-let client = new Client(SHOP_ID, 'sha256', API_RESULT_KEY, SECRET_KEY_MERCHANT,options);
+let client = new Client(SHOP_ID, 'sha256', API_RESULT_KEY, SECRET_KEY_MERCHANT, options);
 let header = new Requests.Header(client.shopID, OPERATOR_ID);
 
-let ThreeDSData = {"browserAcceptHeader":"1024","browserIP":"1.12.123.255","browserJavaEnabled":"true","browserLanguage":"IT","browserColorDepth":"16","browserScreenHeight":"100","browserScreenWidth":"100","browserTZ":"-120","browserUserAgent":"Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 firefox/47.0"};
-let ThreeDS2Step0 = new Requests.ThreeDSStep0(ThreeDSData, "345620200302121451563", "0000409500729966732", "111",
-                                                "2112", "6600", "978", "2", "I", "98", "https://atpostest.ssb.it/atpos/apibo/en/3ds-notification.html",
-                                                     "fake@mail.it", "", "", "", "", "", "", "",
-                                                    "", "", "", "", "", "", "", "",
-                                                       "")
+let ThreeDSData = {
+    "browserAcceptHeader": "1024",
+    "browserIP": "1.12.123.255",
+    "browserJavaEnabled": "true",
+    "browserLanguage": "it",
+    "browserColorDepth": "16",
+    "browserScreenHeight": "100",
+    "browserScreenWidth": "100",
+    "browserTZ": "-60",
+    "browserUserAgent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 firefox/47.0",
+    "addrMatch": "n",
+    "chAccChangeInd": "04",
+    "chAccChange": "20190211",
+    "chAccChangeInd": "03",
+    "chAccDate": "20190210",
+    "chAccPwChange": "20190214",
+    "chAccPwChangeInd": "04",
+    "nbPurchaseAccount": "1000",
+    "txnActivityDay": "100",
+    "txnActivityYear": "100",
+    "shipAddressUsage": "20181220",
+    "shipAddressUsageInd": "03",
+    "shipNameIndicator": "01",
+    "billAddrCity": "billaddrcity",
+    "billAddrCountry": "004",
+    "billAddrLine1": "billaddrline1",
+    "billAddrLine2": "billaddrline2",
+    "billAddrLine3": "billaddrline3",
+    "billAddrPostCode": "billaddrpostcode",
+    "billAddrState": "11",
+    "homePhone": "39-321818198",
+    "mobilePhone": "33-312",
+    "shipAddrCity": "zio",
+    "shipAddrCountry": "008",
+    "shipAddrLine1": "shipaddrline1",
+    "shipAddrLine2": "shipaddrline2",
+    "shipAddrLine3": "shipaddrline3",
+    "shipAddrPostCode": "shipaddrpostcode",
+    "shipAddrState": "222",
+    "workPhone": "39-0321818198",
+    "deliveryEmailAddress": "a-b@example.com",
+    "deliveryTimeframe": "02",
+    "preOrderDate": "20181220",
+    "preOrderPurchaseInd": "01",
+    "reorderItemsInd": "02",
+    "shipIndicator": "01"
+}
+/*
+let ThreeDS2Step0 = new Requests.ThreeDSStep0(ThreeDSData, "345612350302121451563", "0000409500729966732", "111",
+    "2112", "6600", "978", "2", "I", "98", "https://atpostest.ssb.it/atpos/apibo/en/3ds-notification.html",
+    "fake@mail.it", "", "", "", "", "", "", "",
+    "", "", "", "", "", "", "", "",
+    "")
+
 client.threeDSAuthorize0(header, ThreeDS2Step0).then(console.log).catch(console.log)
+*/
 
 //client.injectHtmlTemplate(base64temp, '5000', customTemplatePath); ok
 
 //console.log(client.tokenize(SHOP_ID, URL_BACK,URL_DONE, URLMS, URL_REDIRECT, client.encoder, API_RESULT_KEY)); ok
 
-/* let paymentReq = new Requests.PaymentInfo('10000','978', '102345331127444321', SHOP_ID,URL_BACK, URL_DONE, URLMS, 'I', 'I');
+/*
+ let paymentReq = new Requests.PaymentInfo('10000','978', '10236668654324321', SHOP_ID,URL_BACK, URL_DONE, URLMS, 'D', 'I');
 paymentReq.notCompulsoryFields = {'OPTIONS': 'GM'};
 
-console.log(client.getHtmlPaymentDocument(paymentReq, URL_REDIRECT, "",null, client.encoder, API_RESULT_KEY)) ok
-
- */
-/*
-let auth3dsStep1 = new Requests.Auth3DSStep1(false, '33214224384476', '0000409500729966732','111', '2112', '220000',
-        '978', '2', 'D', '98', 'http://jnfjdshjfhjd.it',
-            'fake@mail.it', '', '', '', '', '', '', '',
-            '', '', '', '', '', 'N');
-
-client.start3dsAuth(header, auth3dsStep1);
-
+console.log(client.buildHTMLRedirectFragment(paymentReq, URL_REDIRECT, "", API_RESULT_KEY)); ok
 
  */
 
-/*
-let auth3DSStep2 = new Requests.Auth3DSStep2('20200226460652087670648325818183', PaRes);
-
-
-
-client.start3DSAuthStep2(header, auth3DSStep2);
-*/
 
 /*
-
-let confirmReq = new Requests.GeneralRequest('8032112928AT2vhlw7ark1ac4', '33214224384476', '10000', '978', '2');
-console.log(client.confirmTransaction(header, confirmReq));
-*/
-
-/*
- let verifyReq = new Requests.StatusRequest('20200226254460307767601200335882', '33214224384476');
-
-let result = client.verifyRequest(header, verifyReq).then(console.log).catch(console.log);
-*/
-
-/*let refundReq = new Requests.GeneralRequest('8032112928AT21d7xhj4w31r4', '34524328664682324', '20', '978', '2')
-
-client.refundPayment(header, refundReq);  */
-
-/*
-let orderStatusReq = new Requests.StatusRequest('20200226048647404218723060008016', '34524328664682324');
+let orderStatusReq = new Requests.StatusRequest('20200303445671565623067748551642', '102345331127444321');
 
 client.getOrderStatus(header, orderStatusReq).then(console.log);
-*/
+ok
+ */
 
 /*
-let url = "http://localhost:8080/payment-gateway/vpos/tokenize?ORDERID=102345331127444321&SHOPID=129281292800109&AUTHNUMBER=714509&AMOUNT=10000&CURRENCY=978&TRANSACTIONID=8032112928SL11h15g9igcwr4&ACCOUNTINGMODE=I&AUTHORMODE=I&RESULT=00&TRANSACTIONTYPE=TT09&PANALIASREV=&PANALIAS=0000284414795379578&PANALIASEXPDATE=2112&PANALIASTAIL=0031&MASKEDPAN=525590xxxxxx0031&PANTAIL=0031&PANEXPIRYDATE=2112&NETWORK=02&MAC=53b942bae89d9712468354a14fed02f93cea9312fd8cdd16ceb225db5968666a";
-client.verifyURL(url)
+let url = "http://localhost:8080/payment-gateway/vpos/tokenize?ORDERID=102345331127444321&SHOPID=129281292800104&AUTHNUMBER=595865&AMOUNT=10000&CURRENCY=978&TRANSACTIONID=8032112928SL11qhnjpkgpdz4&ACCOUNTINGMODE=I&AUTHORMODE=I&RESULT=00&TRANSACTIONTYPE=TT01&PANALIASREV=&PANALIAS=0000024376231761231&PANALIASEXPDATE=2112&PANALIASTAIL=0027&MASKEDPAN=459825xxxxxx0027&PANTAIL=0027&PANEXPIRYDATE=2112&NETWORK=01&MAC=31d8ad560d8720f38fe86ebb29f660b68121630f2c401db1fe2fd53bf12486b8"
+console.log(client.verifyMACREDIRECT(url))
+
+ */
+
+/*
+let dataItem = new Requests.CaptureRequest("8032112928SL11qhnjpkgpdz4", "102345331127444321", "10000",
+                "978", "2") ;
+client.capture(header, dataItem).then(console.log) ok
+
+ */
+/*
+let dataItem = new Requests.GeneralRequest("8032112928SL11qhnjpkgpdz4", "102345331127444321", "100", "978"
+                    ,"2")
+client.refund(header, dataItem).then(console.log)
+ok
  */

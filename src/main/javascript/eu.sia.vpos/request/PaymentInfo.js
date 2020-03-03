@@ -149,5 +149,4 @@ class PaymentInfo {
 }
 
 
-
 module.exports = PaymentInfo;

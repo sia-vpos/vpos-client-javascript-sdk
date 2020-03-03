@@ -4,10 +4,10 @@ const FORM_PATTERN = "PGZvcm0gYWN0aW9uPSJbQVBPU19VUkxdIiBtZXRob2Q9IlBPU1QiPjxpbn
 const INPUT_PATTERN = "PGlucHV0IHR5cGU9ImhpZGRlbiIgbmFtZT0iS0VZIiB2YWx1ZT0iVkFMVUUiPg==";
 const SCRIPT = "PHNjcmlwdCB0eXBlPSJ0ZXh0L2phdmFzY3JpcHQiPndpbmRvdy5vbmxvYWQgPSBmdW5jdGlvbigpe3NldFRpbWVvdXQoZnVuY3Rpb24oKXtkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnc3VibWl0JykuY2xpY2soKTt9LCBbREVMQVldKTt9PC9zY3JpcHQ+";
 const HTML_PATH = ".\\resources\\default.html";
-const defaultHTML = "<div onload=\"fun = function(){setTimeout(function(){document.getElementById('submit').click();}, [DELAY]);}\"><form action=\"[APOS_URL]\" method=\"POST\"><input name=\"PAGE\" type=\"hidden\" value=\"LAND\">[PARAMETERS]<input id=\"submit\" style=\"display: none;\" type=submit  value=\".\"></form></div>";
+const defaultHTML = "<div><form id=\"myForm\"action=\"[APOS_URL]\" method=\"POST\"><input name=\"PAGE\" type=\"hidden\" value=\"LAND\">[PARAMETERS]</form><script>document.getElementById('myForm').submit();</script></div>";
 
 
-function htmlToBase64( urlPayment, params) {
+function htmlToBase64(urlPayment, params) {
     let html = defaultHTML;
 
     return Buffer.from(Buffer.from(html.toString()
