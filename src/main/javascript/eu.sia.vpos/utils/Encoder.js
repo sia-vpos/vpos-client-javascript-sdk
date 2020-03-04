@@ -34,7 +34,7 @@ class Encoder {
             let appendField = function (value, key) {
                 let result = "";
                 if (Array.isArray(myObject)) {
-                    if (value !== null && value !== "") {
+                    if (value !== null) {
                         result += ("&");
                         result += value;
                     }

@@ -1,25 +1,14 @@
 class StatusRequest {
 
 
-    originalReqRefNum;
+    reqRefNum;
     orderid;
     productRef;
     options;
-    macFields = [
-        "operation",
-        "timestamp",
-        "shopid",
-        "operatorid",
-        "originalReqRefNum",
-        "orderid",
-        this.getOptions() !== "" ? "options" : "",
-        this.getProductRef() !== "" ? "productRef" : ""
 
 
-    ]
-
-    constructor(originalReqRefNum, orderid, productRef = "", options = "") {
-        this.originalReqRefNum = originalReqRefNum;
+    constructor(ReqRefNum, orderid, productRef = "", options = "") {
+        this.reqRefNum = ReqRefNum;
         this.orderid = orderid;
         this.productRef = productRef;
         this.options = options;
@@ -27,11 +16,11 @@ class StatusRequest {
     }
 
     getOriginalReqRefNum() {
-        return this.originalReqRefNum;
+        return this.reqRefNum;
     }
 
     setOriginalReqRefNum(value) {
-        this.originalReqRefNum = value;
+        this.reqRefNum = value;
     }
 
     getOrderID() {

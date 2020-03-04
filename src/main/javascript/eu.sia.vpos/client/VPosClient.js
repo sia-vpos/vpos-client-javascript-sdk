@@ -258,7 +258,6 @@ class VPosClient {
 }
 
 function aposCaller(options, body, encoder) {
-    console.log(body);
     return new Promise((resolve, reject) => {
         const req = httpsUtil.request(options, (res) => {
             res.setEncoding('utf8');
@@ -275,8 +274,8 @@ function aposCaller(options, body, encoder) {
             res.on('end', function (chunk) {
                 if (typeof buffer !== 'undefined' && buffer !== null) {
                     try {
+                        console.log(buffer)
                         result = xmlUtils.fromXML(buffer);
-                        console.log(result);
                         verifyMacResponse(result, encoder);
                         resolve(result);
                     } catch (e) {

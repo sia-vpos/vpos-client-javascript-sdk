@@ -1,7 +1,7 @@
-const SHOP_ID = "129281292800104";
+const SHOP_ID = "129281292800109";
 const PAN_ALIAS = "0000847379064699692";
-const API_RESULT_KEY = "nS-zLHC35Pzu47m-AZtRejrd-xd2SsudbpKmmfGgD-9-dJjRQpm8pPJM84uEZgkgq-CfJ9n--sHNHjKx7--Aw-56jEqLVDe-aT-f";
-const SECRET_KEY_MERCHANT = "CNCuDT5Vyws2v9t--RhDdtCwstaV2tqVeqfE-D8G-S-Ds--C-fFkSBxw-3wWBqBC--U9hwN-H-Mj4ZZHMr--YSHLdU5WKLx-cT-T";
+const API_RESULT_KEY = "E-vmE-GHXmx73-Lfg24LztZ-7-yCyVsKn4QXphL5qzf-Kr-Cf-JWpZwZgaZRA5dR9V677xL4uCbc-Ce--8h2-tdrSu--QKjF-nZh";
+const SECRET_KEY_MERCHANT = "fU-9et-s-Sj8W---E8uhUDu9fEzqr8hH3L95s48r9nq-cq3cBXbp-tZsvGQU--t-nqmtaW-7x-7-C2PdcuFdbHuShQ-pYVWnr-4-";
 const URL_REDIRECT = "https://atpostest.ssb.it/atpos/pagamenti/main";
 const URL_DONE = "http://localhost:8080/payment-gateway/vpos/tokenize";
 const URL_BACK = "http://localhost:8080/payment-gateway/vpos/tokenize";
@@ -83,37 +83,40 @@ client.threeDSAuthorize0(header, ThreeDS2Step0).then(console.log).catch(console.
 
 //console.log(client.tokenize(SHOP_ID, URL_BACK,URL_DONE, URLMS, URL_REDIRECT, client.encoder, API_RESULT_KEY)); ok
 
-/*
- let paymentReq = new Requests.PaymentInfo('10000','978', '10236668654324321', SHOP_ID,URL_BACK, URL_DONE, URLMS, 'D', 'I');
+
+ let paymentReq = new Requests.PaymentInfo('10000','978', '13123865345124321', SHOP_ID,URL_BACK, URL_DONE, URLMS, 'D', 'I');
 paymentReq.notCompulsoryFields = {'OPTIONS': 'GM'};
 
-console.log(client.buildHTMLRedirectFragment(paymentReq, URL_REDIRECT, "", API_RESULT_KEY)); ok
+console.log(client.buildHTMLRedirectFragment(paymentReq, URL_REDIRECT, "", API_RESULT_KEY));
 
- */
 
 
 /*
-let orderStatusReq = new Requests.StatusRequest('20200303445671565623067748551642', '102345331127444321');
+let orderStatusReq = new Requests.StatusRequest('', '12345676912345649849');
 
 client.getOrderStatus(header, orderStatusReq).then(console.log);
-ok
+
+
  */
+
 
 /*
 let url = "http://localhost:8080/payment-gateway/vpos/tokenize?ORDERID=102345331127444321&SHOPID=129281292800104&AUTHNUMBER=595865&AMOUNT=10000&CURRENCY=978&TRANSACTIONID=8032112928SL11qhnjpkgpdz4&ACCOUNTINGMODE=I&AUTHORMODE=I&RESULT=00&TRANSACTIONTYPE=TT01&PANALIASREV=&PANALIAS=0000024376231761231&PANALIASEXPDATE=2112&PANALIASTAIL=0027&MASKEDPAN=459825xxxxxx0027&PANTAIL=0027&PANEXPIRYDATE=2112&NETWORK=01&MAC=31d8ad560d8720f38fe86ebb29f660b68121630f2c401db1fe2fd53bf12486b8"
 console.log(client.verifyMACREDIRECT(url))
 
+
  */
 
 /*
-let dataItem = new Requests.CaptureRequest("8032112928SL11qhnjpkgpdz4", "102345331127444321", "10000",
+let dataItem = new Requests.CaptureRequest("8032112928SL2596myzk06sb4", "12345676912345649849", "10000",
                 "978", "2") ;
-client.capture(header, dataItem).then(console.log) ok
+client.capture(header, dataItem).then(console.log)
+ */
 
- */
+
+
 /*
-let dataItem = new Requests.GeneralRequest("8032112928SL11qhnjpkgpdz4", "102345331127444321", "100", "978"
+let dataItem = new Requests.GeneralRequest("8032112928SL11hr54ke2ygo4", "131238654324321", "10", "978"
                     ,"2")
-client.refund(header, dataItem).then(console.log)
-ok
- */
+client.refund(header, dataItem).then((obj)=>console.log(obj.Data.Operation.Authorization))
+*/
