@@ -11,6 +11,7 @@ class VPosClient {
     encoder;
     redirectEncoder;
     options = {};
+
     requester = new RequestBuilder();
 
     constructor(config) {

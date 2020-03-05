@@ -1,5 +1,4 @@
 const x = require('./XMLUtils');
-const fs = require('fs');
 const reqRef = require('./ReqRefGenerator');
 
 
@@ -64,7 +63,7 @@ class RequestBuilder {
 
         let xmlFields = {
 
-            "OrderID" : threeDS2Step0.orderID,
+            "OrderID": threeDS2Step0.orderID,
             "Pan": threeDS2Step0.pan,
             "ExpDate": threeDS2Step0.expDate,
             "Amount": threeDS2Step0.amount,
@@ -130,13 +129,14 @@ class RequestBuilder {
         }
 
         xmlRequest.MAC = encoder.getMAC(macObject);
+
         function ConvertKeysToLowerCase(obj) {
             var output = {};
             for (let i in obj) {
                 if (Object.prototype.toString.apply(obj[i]) === '[object Object]') {
                     output[i.toLowerCase()] = ConvertKeysToLowerCase(obj[i]);
-                }else if(Object.prototype.toString.apply(obj[i]) === '[object Array]'){
-                    output[i.toLowerCase()]=[];
+                } else if (Object.prototype.toString.apply(obj[i]) === '[object Array]') {
+                    output[i.toLowerCase()] = [];
                     output[i.toLowerCase()].push(ConvertKeysToLowerCase(obj[i][0]));
                 } else {
                     output[i.toLowerCase()] = obj[i];
@@ -144,7 +144,6 @@ class RequestBuilder {
             }
             return output;
         };
-
 
 
         return this.xmlBodyBuilder(xmlRequest, xmlHeader, xmlFields, 'ThreeDSAuthorizationRequest0');

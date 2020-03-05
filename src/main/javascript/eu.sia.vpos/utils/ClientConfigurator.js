@@ -1,4 +1,3 @@
-const fs = require('fs');
 const hostUrlFormatter = require('./HostUrlFormatter');
 
 let ClientConfigurator = class APOSPaymentClient {
@@ -29,11 +28,11 @@ let ClientConfigurator = class APOSPaymentClient {
         }
     }
 
-    sslClient = (urlWebApi, pathKey, pathCert) => {
+    sslClient = (urlWebApi, key, cert) => {
         this.options.host = hostUrlFormatter(urlWebApi).host;
         this.options.path = hostUrlFormatter(urlWebApi).path;
-        this.options.key = fs.readFileSync(pathKey);
-        this.options.cert = fs.readFileSync(pathCert);
+        this.options.key = key;
+        this.options.cert = cert;
 
     }
 
@@ -43,7 +42,7 @@ setProxy = (proxyName, proxyPort) => {
     this.options.proxy = proxyName + ':' + proxyPort;
 }
 
-aposClientSetup = (shopID, algorithm, secretKey, merchantKey, hostUrl) => {
+aposClientSetup = (shopID, urlRedirect, algorithm, secretKey, merchantKey, hostUrl) => {
     const setup = new ClientConfigurator();
     setup.simpleClient(hostUrl);
     let setter = {
@@ -60,9 +59,9 @@ aposClientSetup = (shopID, algorithm, secretKey, merchantKey, hostUrl) => {
 
 };
 
-aposProxyClientSetup = (shopID, algorithm, secretKey, merchantKey, hostUrl, proxyName, proxyPort) => {
+aposProxyClientSetup = (shopID, urlRedirect, algorithm, secretKey, merchantKey, hostUrl, proxyName, proxyPort, proxyUsername = null, proxyPassword = null,) => {
     const setup = new ClientConfigurator();
-    setup.proxyClient(hostUrl, proxyName, proxyPort);
+    setup.proxyClient(hostUrl, proxyName, proxyPort, proxyUsername, proxyPassword);
     let setter = {
         "shopID": shopID,
         "algorithm": algorithm,
@@ -73,7 +72,7 @@ aposProxyClientSetup = (shopID, algorithm, secretKey, merchantKey, hostUrl, prox
 
 };
 
-aposSSLClientSetup = (shopID, algorithm, secretKey, merchantKey, hostUrl, pathKey, pathCert, setProxy = null, proxyName = null, proxyPort = null) => {
+aposSSLClientSetup = (shopID, urlRedirect, algorithm, secretKey, merchantKey, hostUrl, pathKey, pathCert, setProxy = null, proxyName = null, proxyPort = null) => {
     const setup = new ClientConfigurator();
 
     setup.sslClient(hostUrl, pathKey, pathCert);
