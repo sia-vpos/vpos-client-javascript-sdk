@@ -18,8 +18,8 @@ const ClientConfig = require('./utils/ClientConfigurator');
 const Client = require('./client/VPosClient');
 const Requests = require('./request/Requests');
 
-let options = ClientConfig.aposProxyClientSetup(URL_WEB_API, PROXYNAME, PROXYPORT);
-let client = new Client(SHOP_ID, 'sha256', API_RESULT_KEY, SECRET_KEY_MERCHANT, options);
+let config = ClientConfig.aposProxyClientSetup(SHOP_ID, "sha256",API_RESULT_KEY, SECRET_KEY_MERCHANT, URL_WEB_API, PROXYNAME, PROXYPORT);
+let client = new Client(config);
 let header = new Requests.Header(client.shopID, OPERATOR_ID);
 
 let ThreeDSData = {

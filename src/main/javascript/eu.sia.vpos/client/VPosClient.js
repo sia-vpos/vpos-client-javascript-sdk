@@ -13,12 +13,12 @@ class VPosClient {
     options = {};
     requester = new RequestBuilder();
 
-    constructor(shopID, algorithm, secretKey, merchantKey, options) {
-        this.shopID = shopID;
-        this.merchantKey = merchantKey;
-        this.encoder = new Encoder(algorithm, secretKey);
-        this.redirectEncoder = new Encoder(algorithm, merchantKey);
-        this.options = options;
+    constructor(config) {
+        this.shopID = config.setter.shopID;
+        this.merchantKey = config.setter.merchantKey;
+        this.encoder = new Encoder(config.setter.algorithm, config.setter.secretKey);
+        this.redirectEncoder = new Encoder(config.setter.algorithm, config.setter.merchantKey);
+        this.options = config.options;
     }
 
 
