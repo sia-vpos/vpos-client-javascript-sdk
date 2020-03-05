@@ -38,8 +38,12 @@ let ClientConfigurator = class APOSPaymentClient {
 
 }
 
-setProxy = (proxyName, proxyPort) => {
-    this.options.proxy = proxyName + ':' + proxyPort;
+setProxy = (configurator ,proxyName, proxyPort, proxyUsername = null, proxyPassword = null) => {
+    configurator.options.proxy = proxyName + ':' + proxyPort;
+    if(proxyUsername && proxyPassword){
+        let auth = 'Basic ' + new Buffer( proxyUsername+ ":" + proxyPassword).toString('base64');
+        configurator.options.headers['Proxy-Authorization']  = auth;
+    }
 }
 
 aposClientSetup = (shopID, urlRedirect, algorithm, secretKey, merchantKey, hostUrl) => {
@@ -72,7 +76,7 @@ aposProxyClientSetup = (shopID, urlRedirect, algorithm, secretKey, merchantKey, 
 
 };
 
-aposSSLClientSetup = (shopID, urlRedirect, algorithm, secretKey, merchantKey, hostUrl, pathKey, pathCert) => {
+aposSSLClientSetup = (shopID, urlRedirect, algorithm, secretKey, merchantKey, hostUrl, pathKey, pathCert, setProxy = null, proxyName = null, proxyPort = null, proxyUsername = null, proxyPassword = null) => {
     const setup = new ClientConfigurator();
 
     setup.sslClient(hostUrl, pathKey, pathCert);
@@ -82,6 +86,10 @@ aposSSLClientSetup = (shopID, urlRedirect, algorithm, secretKey, merchantKey, ho
         "algorithm": algorithm,
         "secretKey": secretKey,
         "merchantKey": merchantKey
+    }
+
+    if (setProxy && proxyName  && proxyPort) {
+        setProxy(setup, proxyName, proxyPort, proxyUsername, proxyPassword);
     }
 
     return setup.options;
