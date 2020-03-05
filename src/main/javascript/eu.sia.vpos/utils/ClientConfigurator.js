@@ -72,7 +72,7 @@ aposProxyClientSetup = (shopID, urlRedirect, algorithm, secretKey, merchantKey, 
 
 };
 
-aposSSLClientSetup = (shopID, urlRedirect, algorithm, secretKey, merchantKey, hostUrl, pathKey, pathCert, setProxy = null, proxyName = null, proxyPort = null) => {
+aposSSLClientSetup = (shopID, urlRedirect, algorithm, secretKey, merchantKey, hostUrl, pathKey, pathCert) => {
     const setup = new ClientConfigurator();
 
     setup.sslClient(hostUrl, pathKey, pathCert);
@@ -82,10 +82,6 @@ aposSSLClientSetup = (shopID, urlRedirect, algorithm, secretKey, merchantKey, ho
         "algorithm": algorithm,
         "secretKey": secretKey,
         "merchantKey": merchantKey
-    }
-
-    if (setProxy && proxyName !== null && proxyPort !== null) {
-        setProxy(proxyName, proxyPort);
     }
 
     return setup.options;
