@@ -22,9 +22,9 @@ let ClientConfigurator = class APOSPaymentClient {
         this.options.host = hostUrlFormatter(urlWebApi).host;
         this.options.path = hostUrlFormatter(urlWebApi).path;
         this.options.proxy = proxyName + ':' + proxyPort;
-        if(proxyUsername && proxyPassword){
-            let auth = 'Basic ' + new Buffer( proxyUsername+ ":" + proxyPassword).toString('base64');
-            this.options.headers['Proxy-Authorization']  = auth;
+        if (proxyUsername && proxyPassword) {
+            let auth = 'Basic ' + new Buffer(proxyUsername + ":" + proxyPassword).toString('base64');
+            this.options.headers['Proxy-Authorization'] = auth;
         }
     }
 
@@ -38,22 +38,26 @@ let ClientConfigurator = class APOSPaymentClient {
 
 }
 
-setProxy = (configurator ,proxyName, proxyPort, proxyUsername = null, proxyPassword = null) => {
+setProxy = (configurator, proxyName, proxyPort, proxyUsername = null, proxyPassword = null) => {
     configurator.options.proxy = proxyName + ':' + proxyPort;
-    if(proxyUsername && proxyPassword){
-        let auth = 'Basic ' + new Buffer( proxyUsername+ ":" + proxyPassword).toString('base64');
-        configurator.options.headers['Proxy-Authorization']  = auth;
+    if (proxyUsername && proxyPassword) {
+        let auth = 'Basic ' + new Buffer(proxyUsername + ":" + proxyPassword).toString('base64');
+        configurator.options.headers['Proxy-Authorization'] = auth;
     }
 }
 
-aposClientSetup = (shopID, urlRedirect, algorithm, secretKey, merchantKey, hostUrl) => {
+aposClientSetup = (shopID, redirectUrl, algorithm, apiKey, merchantKey, hostUrl, timeout = null) => {
     const setup = new ClientConfigurator();
     setup.simpleClient(hostUrl);
     let setter = {
         "shopID": shopID,
         "algorithm": algorithm,
-        "secretKey": secretKey,
-        "merchantKey": merchantKey
+        "apiKey": apiKey,
+        "merchantKey": merchantKey,
+        "redirectUrl" : redirectUrl
+    }
+    if(timeout && typeof timeout === 'number'){
+        setup.options[timeout] = timeout;
     }
 
     return {
@@ -63,20 +67,29 @@ aposClientSetup = (shopID, urlRedirect, algorithm, secretKey, merchantKey, hostU
 
 };
 
-aposProxyClientSetup = (shopID, urlRedirect, algorithm, secretKey, merchantKey, hostUrl, proxyName, proxyPort, proxyUsername = null, proxyPassword = null,) => {
+aposProxyClientSetup = (shopID, redirectUrl, algorithm, apiKey, merchantKey, hostUrl, proxyName, proxyPort, proxyUsername = null, proxyPassword = null, timeout = null) => {
     const setup = new ClientConfigurator();
     setup.proxyClient(hostUrl, proxyName, proxyPort, proxyUsername, proxyPassword);
     let setter = {
         "shopID": shopID,
         "algorithm": algorithm,
-        "secretKey": secretKey,
-        "merchantKey": merchantKey
-    }
-    return setup.options;
+        "apiKey": apiKey,
+        "merchantKey": merchantKey,
+        "redirectUrl" : redirectUrl
 
+    }
+
+    if(timeout && typeof timeout === 'number'){
+        setup.options[timeout] = timeout;
+    }
+
+    return {
+        "setter": setter,
+        "options": setup.options
+    };
 };
 
-aposSSLClientSetup = (shopID, urlRedirect, algorithm, secretKey, merchantKey, hostUrl, pathKey, pathCert, setProxy = null, proxyName = null, proxyPort = null, proxyUsername = null, proxyPassword = null) => {
+aposSSLClientSetup = (shopID, redirectUrl, algorithm, apiKey, merchantKey, hostUrl, pathKey, pathCert, setProxy = null, proxyName = null, proxyPort = null, proxyUsername = null, proxyPassword = null, timeout = null) => {
     const setup = new ClientConfigurator();
 
     setup.sslClient(hostUrl, pathKey, pathCert);
@@ -84,12 +97,17 @@ aposSSLClientSetup = (shopID, urlRedirect, algorithm, secretKey, merchantKey, ho
     let setter = {
         "shopID": shopID,
         "algorithm": algorithm,
-        "secretKey": secretKey,
-        "merchantKey": merchantKey
+        "apiKey": apiKey,
+        "merchantKey": merchantKey,
+        "redirectUrl" : redirectUrl
     }
 
-    if (setProxy && proxyName  && proxyPort) {
+    if (setProxy && proxyName && proxyPort) {
         setProxy(setup, proxyName, proxyPort, proxyUsername, proxyPassword);
+    }
+
+    if(timeout && typeof timeout === 'number'){
+        setup.options[timeout] = timeout;
     }
 
     return setup.options;

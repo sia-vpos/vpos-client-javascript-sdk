@@ -1,6 +1,5 @@
 class GeneralRequest {
 
-    header;
     transactionID;
     orderID;
     amount;
@@ -42,13 +41,6 @@ class GeneralRequest {
         this.opDescr = opDescr;
     }
 
-    get Header() {
-        return this.header;
-    }
-
-    set Header(Header) {
-        this.header = Header();
-    }
 
     get TransactionID() {
         return this.transactionID;

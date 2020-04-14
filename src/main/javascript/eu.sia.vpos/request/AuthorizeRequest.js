@@ -1,8 +1,9 @@
-class ThreeDS2Step0 {
+class AuthorizeRequest {
 
     orderID;
     pan;
     cvv2;
+    createPanAlias;
     expDate;
     amount;
     currency;
@@ -10,7 +11,6 @@ class ThreeDS2Step0 {
     accountingMode;
     network;
     emailCH;
-    nameCH;
     userID;
     acquirer;
     ipAddress;
@@ -22,19 +22,12 @@ class ThreeDS2Step0 {
     name;
     surname;
     taxID;
-    createPanAlias;
-    threeDSData;
-    notifURL;
-    cPROF;
-    threeDSMtdNotifURL;
-    challengeWinSize;
 
-    constructor(threeDSData, orderID, pan, cvv2 = "", expDate, amount, currency,
-                exponent, accountingMode, network, notifURL, emailCH, nameCH = "", userID = "", acquirer = "", ipAddress = "",
+    constructor(orderID, pan, cvv2 = "", expDate, amount, currency,
+                exponent, accountingMode, network, emailCH, userID = "", acquirer = "", ipAddress = "",
                 usrAuthFlag = "", opDescr = "", options = "", antifraud = "", productRef = "", name = "", surname = "",
-                taxID = "", createPanAlias = "", cProf = "", threeDSMtdNotifURL = "", challengeWinSize = ""
+                taxID = "", createPanAlias = ""
     ) {
-        this.threeDSData = threeDSData;
         this.orderID = orderID !== null ? orderID : null;
         this.pan = pan.match('^[0-9]{10,19}') ? pan : null;
         this.cvv2 = cvv2.match('^[0-9]') ? cvv2 : null;
@@ -44,8 +37,7 @@ class ThreeDS2Step0 {
         this.exponent = exponent.match('[0-9]{1}') ? exponent : null;
         this.accountingMode = accountingMode.match('(D|I){1}') ? accountingMode : null;
         this.network = network.match('^[0-9]{2}') ? network : null;
-        this.emailCH = emailCH.match('\\S{7,50}') && emailCH !== "" ? emailCH : null;
-        this.nameCH = nameCH.match('.{2,42}') ? nameCH : null;
+        this.emailCH = emailCH.match('\\S{7,50}') ? emailCH : null;
         this.userID = userID.match('.{1,255}') ? userID : null;
         this.acquirer = acquirer.match('[A-Za-z0-9]{5}') ? acquirer : null;
         this.ipAddress = ipAddress.match('^(?=.*[^\\.]$)((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.?){4}$') ? ipAddress : null;
@@ -58,12 +50,10 @@ class ThreeDS2Step0 {
         this.productRef = productRef;
         this.name = name;
         this.surname = surname;
-        this.notifURL = notifURL;
-        this.threeDSMtdNotifURL = threeDSMtdNotifURL;
-        this.challengeWinSize = challengeWinSize;
-        this.cPROF = cProf;
+
 
     }
+
 
     get orderID() {
         return this.orderID;
@@ -143,14 +133,6 @@ class ThreeDS2Step0 {
 
     set emailCH(value) {
         this.emailCH = value;
-    }
-
-    get nameCH() {
-        return this.nameCH;
-    }
-
-    set nameCH(value) {
-        this.nameCH = value;
     }
 
     get userID() {
@@ -240,56 +222,6 @@ class ThreeDS2Step0 {
     set taxID(value) {
         this.taxID = value;
     }
-
-    get createPanAlias() {
-        return this.createPanAlias;
-    }
-
-    set createPanAlias(value) {
-        this.createPanAlias = value;
-    }
-
-    get threeDSData() {
-        return this.threeDSData;
-    }
-
-    set threeDSData(value) {
-        this.threeDSData = value;
-    }
-
-    get notifURL() {
-        return this.notifURL;
-    }
-
-    set notifURL(value) {
-        this.notifURL = value;
-    }
-
-    get cPROF() {
-        return this.cPROF;
-    }
-
-    set cPROF(value) {
-        this.cPROF = value;
-    }
-
-    get threeDSMtdNotifURL() {
-        return this.threeDSMtdNotifURL;
-    }
-
-    set threeDSMtdNotifURL(value) {
-        this.threeDSMtdNotifURL = value;
-    }
-
-    get challengeWinSize() {
-        return this.challengeWinSize;
-    }
-
-    set challengeWinSize(value) {
-        this.challengeWinSize = value;
-    }
-
-
 }
 
-module.exports = ThreeDS2Step0;
+module.exports = AuthorizeRequest;

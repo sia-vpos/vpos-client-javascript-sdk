@@ -7,7 +7,7 @@ class StatusRequest {
     options;
 
 
-    constructor(ReqRefNum, orderid, productRef = "", options = "") {
+    constructor(orderid, ReqRefNum = "",  productRef = "", options = "") {
         this.reqRefNum = ReqRefNum;
         this.orderid = orderid;
         this.productRef = productRef;

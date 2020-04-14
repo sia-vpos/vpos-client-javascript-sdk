@@ -1,3 +1,4 @@
+
 const x = require('./XMLUtils');
 const reqRef = require('./ReqRefGenerator');
 
@@ -34,10 +35,90 @@ class RequestBuilder {
 
     }
 
-    buildAuthorizationRequest = () => {
+    buildAuthorizationRequest = (headerItem, authorizeItem, encoder) => {
+
+        let authorize = authorizeItem;
+        let header = headerItem;
+
+        let xmlRequest = {
+
+            "Operation": "AUTHORIZATION",
+            "Timestamp": generateTimestamp(),
+            "MAC": ""
+
+        }
+
+        header.ReqRefNum = reqRef.generator(xmlRequest.Timestamp);
+
+        let xmlHeader = {
+
+            "ShopID": header.ShopID,
+            "OperatorID": header.OperatorID,
+            "ReqRefNum": header.ReqRefNum,
+
+        }
+
+        let xmlFields = {
+
+            "OrderID": authorize.orderID,
+            "PAN": authorize.pan,
+            "CVV2": authorize.cvv2,
+            "CreatePanAlias": authorize.createPanAlias,
+            "ExpDate": authorize.expDate,
+            "Amount": authorize.amount,
+            "Currency": authorize.currency,
+            "Exponent": authorize.exponent,
+            "AccountingMode": authorize.accountingMode,
+            "Network": authorize.network,
+            "EmailCH": authorize.emailCH,
+            "UserID": authorize.userID,
+            "Acquirer": authorize.acquirer,
+            "UsrAuthFlag": authorize.usrAuthFlag,
+            "OpDescr": authorize.opDescr,
+            "Options": authorize.options,
+            "Antifraud": authorize.antifraud,
+            "ProductRef": authorize.productRef,
+            "Name": authorize.name,
+            "Surname": authorize.surname,
+            "TaxID": authorize.taxID,
+        }
+
+        let macObject = {
+            "OPERATION": xmlRequest.Operation,
+            "TIMESTAMP": xmlRequest.Timestamp,
+            "SHOPID": xmlHeader.ShopID,
+            "ORDERID" : xmlFields.OrderID,
+            "OPERATORID": xmlHeader.OperatorID,
+            "REQREFNUM": xmlHeader.ReqRefNum,
+            "PAN": xmlFields.PAN,
+            "CVV2": xmlFields.CVV2 !== "" && xmlFields.CVV2 !== null ? xmlFields.CVV2 : null,
+            "EXPDATE": xmlFields.ExpDate,
+            "AMOUNT": xmlFields.Amount,
+            "CURRENCY": xmlFields.Currency,
+            "EXPONENT": xmlFields.Exponent !== "" && xmlFields.Exponent !== null ? xmlFields.Exponent : null,
+            "ACCOUNTINGMODE": xmlFields.AccountingMode,
+            "NETWORK": xmlFields.Network,
+            "EMAILCH": xmlFields.EmailCH !== "" && xmlFields.EmailCH !== null ? xmlFields.EmailCH : null,
+            "USERID": xmlFields.UserID !== "" && xmlFields.UserID !== null ? xmlFields.UserID : null,
+            "ACQUIRER": xmlFields.Acquirer !== "" && xmlFields.Acquirer !== null ? xmlFields.Acquirer : null,
+            "IPADDRESS": xmlFields.IpAddress !== "" && xmlFields.IpAddress !== null ? xmlFields.IpAddress : null,
+            "OPDESCR": xmlFields.OpDescr !== "" && xmlFields.OpDescr !== null ? xmlFields.OpDescr : null,
+            "USRAUTHFLAG": xmlFields.UsrAuthFlag !== "" && xmlFields.UsrAuthFlag !== null ? xmlFields.UsrAuthFlag : null,
+            "OPTIONS": xmlFields.Options !== "" && xmlFields.Options !== null ? xmlFields.Options : null,
+            "ANTIFRAUD": xmlFields.Antifraud !== "" && xmlFields.Antifraud !== null ? xmlFields.Antifraud : null,
+            "PRODUCTREF": xmlFields.ProductRef !== "" && xmlFields.ProductRef !== null ? xmlFields.ProductRef : null,
+            "NAME": xmlFields.Name !== "" && xmlFields.Name !== null ? xmlFields.Name : null,
+            "SURNAME": xmlFields.Surname !== "" && xmlFields.Surname !== null ? xmlFields.Surname : null,
+            "TAXID": xmlFields.TaxID !== "" && xmlFields.TaxID !== null ? xmlFields.TaxID : null
+        }
+
+        xmlRequest.MAC = encoder.getMAC(macObject);
+
+        return this.xmlBodyBuilder(xmlRequest, xmlHeader, xmlFields, 'AuthorizationRequest');
+
     }
 
-    buildAuth3DS2Step0Request = (headerItem, threeDS2Step0Item, encoder, merchantKey) => {
+    buildAuth3DS2Step0Request = (headerItem, threeDS2Step0Item, encoder, apiKey) => {
 
         let threeDS2Step0 = threeDS2Step0Item;
         let header = headerItem;
@@ -46,7 +127,7 @@ class RequestBuilder {
         let xmlRequest = {
 
             "Operation": "THREEDSAUTHORIZATION0",
-            "Timestamp": new Date().toISOString().substring(0, 23),
+            "Timestamp": generateTimestamp(),
             "MAC": ""
 
         }
@@ -64,50 +145,51 @@ class RequestBuilder {
         let xmlFields = {
 
             "OrderID": threeDS2Step0.orderID,
-            "Pan": threeDS2Step0.pan,
+            "PAN": threeDS2Step0.pan,
+            "CVV2": threeDS2Step0.cvv2,
+            "CreatePanAlias": threeDS2Step0.createPanAlias,
             "ExpDate": threeDS2Step0.expDate,
             "Amount": threeDS2Step0.amount,
             "Currency": threeDS2Step0.currency,
             "Exponent": threeDS2Step0.exponent,
             "AccountingMode": threeDS2Step0.accountingMode,
             "Network": threeDS2Step0.network,
-            "CVV2": threeDS2Step0.cvv2,
             "EmailCH": threeDS2Step0.emailCH,
             "NameCH": threeDS2Step0.nameCH,
             "UserID": threeDS2Step0.userID,
             "Acquirer": threeDS2Step0.acquirer,
+            "OpDescr": threeDS2Step0.opDescr,
             "IpAddress": threeDS2Step0.ipAddress,
             "UsrAuthFlag": threeDS2Step0.usrAuthFlag,
-            "OpDescr": threeDS2Step0.opDescr,
-            "Options": threeDS2Step0.options,
             "Antifraud": threeDS2Step0.antifraud,
             "ProductRef": threeDS2Step0.productRef,
             "Name": threeDS2Step0.name,
             "Surname": threeDS2Step0.surname,
             "TaxID": threeDS2Step0.taxID,
-            "CreatePanAlias": threeDS2Step0.createPanAlias,
-            "ThreeDSData": aesEncoder(merchantKey, JSON.stringify(threeDS2Step0.threeDSData)),
+            "ThreeDSData":  threeDS2Step0.threeDSData ? aesEncoder(apiKey, JSON.stringify(threeDS2Step0.threeDSData)) : null,
             "NotifUrl": threeDS2Step0.notifURL,
+            "ChallengeWinsize": threeDS2Step0.challengeWinSize,
             "CPROF": threeDS2Step0.cPROF,
             "ThreeDSMtdNotifUrl": threeDS2Step0.threeDSMtdNotifURL,
-            "ChallengeWinsize": threeDS2Step0.challengeWinSize
+            "Options": threeDS2Step0.options,
 
         }
 
 
         let macObject = {
             "OPERATION": xmlRequest.Operation,
-            "Timestamp": xmlRequest.Timestamp,
+            "TIMESTAMP": xmlRequest.Timestamp,
             "SHOPID": xmlHeader.ShopID,
+            "ORDERID" : xmlFields.OrderID,
             "OPERATORID": xmlHeader.OperatorID,
             "REQREFNUM": xmlHeader.ReqRefNum,
-            "PAN": xmlFields.Pan,
+            "PAN": xmlFields.PAN,
             "CVV2": xmlFields.CVV2 !== "" && xmlFields.CVV2 !== null ? xmlFields.CVV2 : null,
             "EXPDATE": xmlFields.ExpDate,
             "AMOUNT": xmlFields.Amount,
             "CURRENCY": xmlFields.Currency,
             "EXPONENT": xmlFields.Exponent !== "" && xmlFields.Exponent !== null ? xmlFields.Exponent : null,
-            "ACCOUNTIGMODE": xmlFields.AccountingMode,
+            "ACCOUNTINGMODE": xmlFields.AccountingMode,
             "NETWORK": xmlFields.Network,
             "EMAILCH": xmlFields.EmailCH !== "" && xmlFields.EmailCH !== null ? xmlFields.EmailCH : null,
             "USERID": xmlFields.UserID !== "" && xmlFields.UserID !== null ? xmlFields.UserID : null,
@@ -121,7 +203,8 @@ class RequestBuilder {
             "NAME": xmlFields.Name !== "" && xmlFields.Name !== null ? xmlFields.Name : null,
             "SURNAME": xmlFields.Surname !== "" && xmlFields.Surname !== null ? xmlFields.Surname : null,
             "TAXID": xmlFields.TaxID !== "" && xmlFields.TaxID !== null ? xmlFields.TaxID : null,
-            "THREEDSDATA": xmlFields.ThreeDSData,
+            "THREEDSDATA": xmlFields.ThreeDSData != null ? xmlFields.ThreeDSData : null,
+            "NAMECH" : xmlFields.NameCH,
             "NOTIFURL": xmlFields.NotifUrl,
             "THREEDSMTDNOTIFURL": xmlFields.ThreeDSMtdNotifUrl !== "" && xmlFields.ThreeDSMtdNotifUrl !== null ? xmlFields.ThreeDSMtdNotifUrl : null,
             "CHALLENGEWINSIZE": xmlFields.ChallengeWinsize !== "" && xmlFields.ChallengeWinsize !== null ? xmlFields.ChallengeWinsize : null
@@ -130,23 +213,9 @@ class RequestBuilder {
 
         xmlRequest.MAC = encoder.getMAC(macObject);
 
-        function ConvertKeysToLowerCase(obj) {
-            var output = {};
-            for (let i in obj) {
-                if (Object.prototype.toString.apply(obj[i]) === '[object Object]') {
-                    output[i.toLowerCase()] = ConvertKeysToLowerCase(obj[i]);
-                } else if (Object.prototype.toString.apply(obj[i]) === '[object Array]') {
-                    output[i.toLowerCase()] = [];
-                    output[i.toLowerCase()].push(ConvertKeysToLowerCase(obj[i][0]));
-                } else {
-                    output[i.toLowerCase()] = obj[i];
-                }
-            }
-            return output;
-        };
+        xmlFields.ThreeDSData = encodeURIComponent(xmlFields.ThreeDSData);
 
-
-        return this.xmlBodyBuilder(xmlRequest, xmlHeader, xmlFields, 'ThreeDSAuthorizationRequest0');
+        return this.xmlBodyBuilder(xmlRequest, xmlHeader, xmlFields, 'ThreeDSAuthorization0Request');
 
 
     }
@@ -159,7 +228,7 @@ class RequestBuilder {
         let xmlRequest = {
 
             "Operation": "THREEDSAUTHORIZATION1",
-            "Timestamp": new Date().toISOString().substring(0, 23),
+            "Timestamp": generateTimestamp(),
             "MAC": ""
 
         }
@@ -174,7 +243,10 @@ class RequestBuilder {
 
         }
 
-        let xmlFields = {}
+        let xmlFields = {
+            "ThreeDsTransID": threeDS2Step1.ThreeDSTransID,
+            "ThreeDsMtdComplInd": threeDS2Step1Item.ThreeDsMtdComplInd
+        }
 
         let macObject = {
             "OPERATION": xmlRequest.Operation,
@@ -182,7 +254,7 @@ class RequestBuilder {
             "SHOPID": xmlHeader.ShopID,
             "OPERATORID": xmlHeader.OperatorID,
             "REQREFNUM": xmlHeader.ReqRefNum,
-            "THREEDSTRANSID": xmlFields.ThreeDSTransID,
+            "THREEDSTRANSID": xmlFields.ThreeDsTransID,
             "THREEDSMTDCOMPLIND": xmlFields.ThreeDsMtdComplInd
 
         }
@@ -202,7 +274,7 @@ class RequestBuilder {
         let xmlRequest = {
 
             "Operation": "THREEDSAUTHORIZATION2",
-            "Timestamp": new Date().toISOString().substring(0, 23),
+            "Timestamp": generateTimestamp(),
             "MAC": ""
 
         }
@@ -227,7 +299,7 @@ class RequestBuilder {
             "SHOPID": xmlHeader.ShopID,
             "OPERATORID": xmlHeader.OperatorID,
             "REQREFNUM": xmlHeader.ReqRefNum,
-            "THREEDSTRANSID": xmlFields.ThreeDSTransID
+            "THREEDSTRANSID": xmlFields.ThreeDsTransID
         }
 
         xmlRequest.MAC = encoder.getMAC(macObject);
@@ -246,7 +318,7 @@ class RequestBuilder {
         let xmlRequest = {
 
             "Operation": "ACCOUNTING",
-            "Timestamp": new Date().toISOString().substring(0, 23),
+            "Timestamp": generateTimestamp(),
             "MAC": ""
 
         }
@@ -309,7 +381,7 @@ class RequestBuilder {
         let xmlRequest = {
 
             "Operation": "REFUND",
-            "Timestamp": new Date().toISOString().substring(0, 23),
+            "Timestamp": generateTimestamp(),
             "MAC": ""
         }
 
@@ -370,7 +442,7 @@ class RequestBuilder {
         let xmlRequest = {
 
             "Operation": "ORDERSTATUS",
-            "Timestamp": new Date().toISOString().substring(0, 23),
+            "Timestamp": generateTimestamp(),
             "MAC": ""
 
         }
@@ -415,12 +487,17 @@ class RequestBuilder {
 
         let xmlBody = "";
 
-        xmlBody = "\n" + x.populateSingleXMLElement('BPWXmlRequest', "\n" + x.populateSingleXMLElement('release', '02') + "\n" + requestDataXml + "\n");
+        xmlBody = "\n" + x.populateSingleXMLElement('BPWXmlRequest', "\n" + x.populateSingleXMLElement('Release', '02') + "\n" + requestDataXml + "\n");
 
         return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' + xmlBody;
 
     }
 
+}
+
+generateTimestamp = () =>{
+    let date = new Date();
+    return new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString().substring(0,23);
 }
 
 module.exports = RequestBuilder;

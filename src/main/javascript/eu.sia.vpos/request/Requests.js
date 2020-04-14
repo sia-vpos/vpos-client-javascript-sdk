@@ -1,3 +1,4 @@
+const Authorize = require('./AuthorizeRequest');
 const ThreeDSStep0 = require('./ThreeDS2Step0');
 const ThreeDSStep1 = require('./ThreeDS2Step1');
 const ThreeDSStep2 = require('./ThreeDS2Step2');
@@ -12,6 +13,7 @@ const StatusRequest = require('./StatusRequest');
 module.exports = {
 
     Header: Header,
+    Authorize: Authorize,
     ThreeDSStep0: ThreeDSStep0,
     ThreeDSStep1: ThreeDSStep1,
     ThreeDSStep2: ThreeDSStep2,

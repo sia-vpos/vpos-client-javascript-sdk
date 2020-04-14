@@ -6,8 +6,8 @@ class Header {
 
 
     constructor(ShopID, OperatorID) {
-        this.ShopID = ShopID.match('[0-9]{15}') ? ShopID : null;
-        this.OperatorID = OperatorID.match('[a-zA-Z0-9\\s]{8,18}') ? OperatorID : null;
+        this.ShopID = ShopID.match('[0-9a-zA-z]{15}') ? ShopID : null;
+        this.OperatorID = OperatorID.match('[a-zA-Z0-9\\s*]{8,18}') ? OperatorID : null;
 
         return this;
     }

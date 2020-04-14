@@ -12,11 +12,9 @@ aesEncrypt = (key, str) => {
 
     let bitkey = key.substring(0, 16);
     let iv = Buffer.alloc(16);
-    console.log(bitkey);
     const cipher = crypto.createCipheriv('aes-128-cbc', bitkey, iv);
     let crypt = cipher.update(str, 'utf8', 'base64');
     crypt += cipher.final("base64");
-    //crypt = crypt.replace(/\+/g, "");
     return crypt;
 
 }

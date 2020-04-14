@@ -12,8 +12,13 @@ class PaymentInfo {
     authorMode;
     threeDSData;
     notCompulsoryFields;
+    trecurr;
+    crecurr;
+    token;
+    expdate;
+    network;
 
-    constructor(amount, currency, orderId, shopId, urlBack, urlDone, urlMS, accountingMode, authorMode) {
+    constructor(threeDSData, amount, currency, orderId, shopId, urlBack, urlDone, urlMS, accountingMode, authorMode, trecurr, crecurr, token, expdate, network) {
         this.amount = amount;
         this.currency = currency;
         this.orderId = orderId;
@@ -47,6 +52,14 @@ class PaymentInfo {
             'ANTIFRAUD': ''
 
         };
+        if(threeDSData){
+            this.threeDSData = threeDSData;
+        }
+        this.crecurr = crecurr;
+        this.trecurr = trecurr;
+        this.token = token;
+        this.network = network;
+        this.expdate = expdate;
 
     }
 
