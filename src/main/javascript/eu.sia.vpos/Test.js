@@ -107,8 +107,8 @@ let threeDS2Step2 = new Requests.ThreeDSStep2('70f5ce1a-ad93-43a0-930a-3931c04c1
 client.threeDSAuthorize2(header, threeDS2Step2).then(console.log);
 */
 
-/*
-let paymentReq = new Requests.PaymentInfo(ThreeDSData, '100', '978', '865642h790ui67523', SHOP_ID, URL_BACK, URL_DONE, URLMS, 'D', 'D', 'U');
+
+let paymentReq = new Requests.PaymentInfo(ThreeDSData, '100', '978', '8655321790ui67523', SHOP_ID, URL_BACK, URL_DONE, URLMS, 'D', 'D', 'U');
 paymentReq.notCompulsoryFields =
     {
         'OPTIONS': 'M',
@@ -125,7 +125,7 @@ let stream = fs.createWriteStream(htmlPath);
 stream.once('open', function (fd) {
     stream.end(htmlString);
 });
-*/
+
 
 /*
 

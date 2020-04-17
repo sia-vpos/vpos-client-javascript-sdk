@@ -320,7 +320,7 @@ class VPosClient {
                 myObject.SHOPEMAIL = paymentInfo.notCompulsoryFields.SHOPEMAIL;
             }
         }
-        return HtmlGenerator.htmlOutput(urlApos, myObject);
+        return HtmlGenerator.htmlOutput(urlApos, myObject, tokenConfig);
 
 
     }
