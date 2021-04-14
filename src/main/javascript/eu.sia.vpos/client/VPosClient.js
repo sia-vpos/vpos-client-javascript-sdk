@@ -250,7 +250,7 @@ class VPosClient {
                 'USER': paymentInfo.notCompulsoryFields.USER ? paymentInfo.notCompulsoryFields.USER : null,
                 'PRODUCTREF': paymentInfo.notCompulsoryFields.PRODUCTREF ? paymentInfo.notCompulsoryFields.PRODUCTREF : null,
                 'ANTIFRAUD': paymentInfo.notCompulsoryFields.ANTIFRAUD ? paymentInfo.notCompulsoryFields.ANTIFRAUD : null,
-                '3DSDATA' : paymentInfo.threeDSData ? paymentInfo.threeDSData : null,
+                '3DSDATA': paymentInfo.threeDSData ? paymentInfo.threeDSData : null,
                 'TRECURR': paymentInfo.trecurr,
                 'CRECURR': paymentInfo.crecurr,
 
@@ -299,7 +299,7 @@ class VPosClient {
                 'USER': paymentInfo.notCompulsoryFields.USER ? paymentInfo.notCompulsoryFields.USER : null,
                 'PRODUCTREF': paymentInfo.notCompulsoryFields.PRODUCTREF ? paymentInfo.notCompulsoryFields.PRODUCTREF : null,
                 'ANTIFRAUD': paymentInfo.notCompulsoryFields.ANTIFRAUD ? paymentInfo.notCompulsoryFields.ANTIFRAUD : null,
-                '3DSDATA' : paymentInfo.threeDSData ? paymentInfo.threeDSData : null,
+                '3DSDATA': paymentInfo.threeDSData ? paymentInfo.threeDSData : null,
                 'TRECURR': paymentInfo.trecurr,
                 'CRECURR': paymentInfo.crecurr,
 
@@ -371,13 +371,16 @@ function aposCaller(options, body, encoder) {
 verifyMacResponse = (response, encoder) => {
 
     const NEUTRAL_MAC_VALUE = "NULL";
+    const BAD_REQUEST = "03";
+    const INVALID_MAC = "04";
+
     let rezMAC = [response.Timestamp, response.Result]
     let responseMac = encoder.getMAC(rezMAC);
 
-    if (response.MAC !== NEUTRAL_MAC_VALUE && response.MAC !== responseMac)
+    if (response.MAC !== NEUTRAL_MAC_VALUE && response.Result !== BAD_REQUEST && response.Result !== INVALID_MAC && response.MAC !== responseMac)
         throw new Error("Response MAC is not valid");
 
-    if(response.Data !== null && typeof response.Data.ThreeDSMethod !== 'undefined'){
+    if (response.Data !== null && typeof response.Data.ThreeDSMethod !== 'undefined') {
         let threeDSMethodDataMac = [];
         Object.keys(response.Data.ThreeDSMethod).forEach((data) => {
             if (ThreeDSMethodList.includes(data))
@@ -388,7 +391,7 @@ verifyMacResponse = (response, encoder) => {
             throw new Error("ThreeDSMethod MAC is not valid");
     }
 
-    if(response.Data !== null && typeof response.Data.ThreeDSChallenge !== 'undefined'){
+    if (response.Data !== null && typeof response.Data.ThreeDSChallenge !== 'undefined') {
         let threeDSChallengeDataMac = [];
         Object.keys(response.Data.ThreeDSChallenge).forEach((data) => {
             if (ThreeDSChallengeList.includes(data))
@@ -438,7 +441,7 @@ verifyMacResponse = (response, encoder) => {
         }
     }
 
-    if(response.Data !== null && typeof response.Data.PanAliasData !== 'undefined'){
+    if (response.Data !== null && typeof response.Data.PanAliasData !== 'undefined') {
         let panAliasDataMac = [];
         Object.keys(response.Data.PanAliasData).forEach((data) => {
             if (PanAliasList.includes(data))
